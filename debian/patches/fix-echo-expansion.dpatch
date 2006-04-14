@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## echo-expansion-fix.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
+##
+## DP: The echo command shipped with the Debian system takes \ as an escape
+## DP: sequence. This causes a formfeed is printed in the string "\fenc...". 
+
+@DPATCH@
+diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/make-rules/alphabets/Makefile.in
+--- xindy-2.2-beta2~/make-rules/alphabets/Makefile.in	2006-04-13 17:23:13.186672000 +0200
++++ xindy-2.2-beta2/make-rules/alphabets/Makefile.in	2006-04-13 17:24:38.442672000 +0200
+@@ -2438,7 +2438,7 @@
+ 	echo "\section{Codepage latin9}" >>$@
+ 	for i in $(DOCS_LATIN9); do echo "\input{$$i}" >>$@; done
+ 	echo "\ienc{cp1251}" >>$@
+-	echo "\fenc{T2A}" >>$@
++	printf "%s\n" "\fenc{T2A}" >>$@
+ 	echo "\chapter{Cyrillic scripts}" >>$@
+ 	echo "\section{Codepage 1251}" >>$@	
+ 	for i in $(DOCS_CYR_1251); do echo "\input{$$i}" >>$@; done

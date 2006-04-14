@@ -1,0 +1,24 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-cleanup.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad xindy-2.2-beta2~/rte/ordrules/Makefile.in xindy-2.2-beta2/rte/ordrules/Makefile.in
+--- xindy-2.2-beta2~/rte/ordrules/Makefile.in	2005-09-29 17:30:43.000000000 +0200
++++ xindy-2.2-beta2/rte/ordrules/Makefile.in	2006-04-14 12:42:27.261377000 +0200
+@@ -45,11 +45,11 @@
+ 	$(LN) $(DISTRIBFILES) $(distribdir)
+ 
+ clean : force
+-	rm -f core *.o *.a
++	rm -f core *.o *.a ordrulei.c
+ 	rm -f *.fas *.lib
+ 
+ distclean : clean
+-	rm -f config.log config.status
++	rm -f config.log config.status configure.lineno
+ 	rm -f version.lisp Makefile
+ 
+ force :

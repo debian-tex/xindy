@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-manpage.dpatch by JÃ¶rg Sommer <joerg@alea.gnuu.de>
+##
+## DP: lintian complains about incorrect chararter encoding in the manpages.
+
+@DPATCH@
+diff -urNad xindy-2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.2-beta2/tex2xindy/tex2xindy.1
+--- xindy-2.2-beta2~/tex2xindy/tex2xindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/tex2xindy/tex2xindy.1	2006-01-17 00:01:12.521979392 +0100
+@@ -1,6 +1,6 @@
+ .\" Copyright (c) 1996,1997 Roger Kehr
+ .\" See section COPYING for conditions for redistribution
+-.TH tex2xindy 1L "January 1997" "Roger Kehr" ""
++.TH tex2xindy 1 "January 1997" "Roger Kehr" ""
+ .de BP
+ .sp
+ .ti \-.2i
+diff -urNad xindy-2.2-beta2~/user-commands/texindy.1 xindy-2.2-beta2/user-commands/texindy.1
+--- xindy-2.2-beta2~/user-commands/texindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/user-commands/texindy.1	2006-01-17 00:04:38.069731384 +0100
+@@ -264,7 +264,7 @@
+ .Ve
+ .PP
+ German recognizes two different sorting schemes to handle umlauts:
+-normally, \f(CW\*(C`ä\*(C'\fR is sorted like \f(CW\*(C`ae\*(C'\fR, but in phone books or
++normally, \f(CW\*(C`\[:a]\*(C'\fR is sorted like \f(CW\*(C`ae\*(C'\fR, but in phone books or
+ dictionaries, it is sorted like \f(CW\*(C`a\*(C'\fR. The first scheme is known as
+ \&\fI\s-1DIN\s0 order\fR, the second as \fIDuden order\fR.
+ .PP
+diff -urNad xindy-2.2-beta2~/user-commands/xindy.1 xindy-2.2-beta2/user-commands/xindy.1
+--- xindy-2.2-beta2~/user-commands/xindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/user-commands/xindy.1	2006-01-17 00:04:33.712393800 +0100
+@@ -281,7 +281,7 @@
+ .Ve
+ .PP
+ German recognizes two different sorting schemes to handle umlauts:
+-normally, \f(CW\*(C`ä\*(C'\fR is sorted like \f(CW\*(C`ae\*(C'\fR, but in phone books or
++normally, \f(CW\*(C`\[:a]\*(C'\fR is sorted like \f(CW\*(C`ae\*(C'\fR, but in phone books or
+ dictionaries, it is sorted like \f(CW\*(C`a\*(C'\fR. The first scheme is known as
+ \&\fI\s-1DIN\s0 order\fR, the second as \fIDuden order\fR.
+ .PP

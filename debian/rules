@@ -1,0 +1,110 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/dpatch/dpatch.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+CFLAGS += -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+export CLISP_DIR = /usr/lib/clisp/
+export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
+
+config.status: configure patch-stamp
+	dh_testdir
+	for i in . rte/ordrules; do \
+	    for k in sub guess; do \
+	        test -r /usr/share/misc/config.$$k || continue; \
+	        if ! test -L $$i/config.$$k; then \
+	            mv $$i/config.$$k $$i/config.$$k.upstream; \
+	            ln -s /usr/share/misc/config.$$k $$i/config.$$k; \
+	        fi; \
+	    done \
+	done
+
+	# Add here commands to configure the package.
+	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
+	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
+	    --infodir=\$${prefix}/share/info
+
+build: build-stamp
+build-stamp:  config.status
+	dh_testdir
+
+	# Add here commands to compile the package.
+	$(MAKE) -C rte all clean
+	$(MAKE)
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	rm -f build-stamp 
+
+	# Add here commands to clean up after the build process.
+	-$(MAKE) distclean
+
+	for i in . rte/ordrules; do \
+	    for k in sub guess; do \
+	        if test -e $$i/config.$$k.upstream; then \
+	            mv -f $$i/config.$$k.upstream $$i/config.$$k; \
+	        fi; \
+	    done \
+	done
+
+	-$(MAKE) -f debian/rules unpatch
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+
+	# Add here commands to install the package into debian/xindy.
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/xindy
+	mv debian/xindy/usr/share/doc/xindy-* debian/xindy/usr/share/doc/xindy
+	find debian/xindy/usr/lib/xindy/modules/lang -name \*.pl -delete
+
+# Build architecture-independent files here.
+binary-indep:
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs ChangeLog
+	dh_installdocs
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_perl
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+
+get-orig-source:
+	wget http://dev.atmarama.org/xindy-2.2-beta2.tar.gz
+	mv xindy-2.2-beta2.tar.gz xindy_2.2-beta2.orig.tar.gz
+
+.PHONY: build clean binary-indep binary-arch binary install 
