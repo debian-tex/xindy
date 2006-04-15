@@ -1,8 +1,7 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
 ## fix-cleanup.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
 ##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: upstream forgot to remove two files in rte/ordrules/
 
 @DPATCH@
 diff -urNad xindy-2.2-beta2~/rte/ordrules/Makefile.in xindy-2.2-beta2/rte/ordrules/Makefile.in

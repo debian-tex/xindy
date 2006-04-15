@@ -3,8 +3,8 @@
 ##
 ## DP: Unfortunately, Xindy comes with a full clisp source tree rte/clisp-2.33.2
 ## DP: that is compiles and link against the clisp interpreter. This increases the
-## DP: compile time and leaves security risks and other bugs, because the
-## DP: interpreter is old.
+## DP: compile time (think of m65k builds) and leaves security risks and other bugs,
+## DP: because the interpreter is old.
 ## DP: 
 ## DP: This patch disables the clisp interpreter shipped with the source and uses
 ## DP: the clisp packages from Debian.

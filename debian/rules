@@ -44,7 +44,6 @@ build-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE) -C rte all clean
 	$(MAKE)
 
 	touch build-stamp
@@ -107,4 +106,4 @@ get-orig-source:
 	wget http://dev.atmarama.org/xindy-2.2-beta2.tar.gz
 	mv xindy-2.2-beta2.tar.gz xindy_2.2-beta2.orig.tar.gz
 
-.PHONY: build clean binary-indep binary-arch binary install 
+.PHONY: build clean binary-indep binary-arch binary install get-orig-source

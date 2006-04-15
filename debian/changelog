@@ -1,6 +1,14 @@
 xindy (2.2-beta2-1) unstable; urgency=low
 
-  * Initial release Closes: #nnnn  (nnnn is the bug number of your ITP)
+  * Initial release; closes: #362584
 
- -- Jörg Sommer <joerg@alea.gnuu.de>  Mon, 16 Jan 2006 19:20:31 +0100
+  * disabled the internal clisp interpreter and added a patch to build
+    with the clisp package from Debian
+
+  * added a patch to make xindy builds with the newer version of clisp
+    from the Debian package
+
+  * added a patch to fix the character encoding the the manpage
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Fri, 14 Apr 2006 15:01:10 +0200
 
