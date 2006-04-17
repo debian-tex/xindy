@@ -1,0 +1,139 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-FHS.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
+##
+## DP: All files below /usr/lib/xindy/modules/ are architecture independent
+## DP: and therefor need to be below /usr/share/ as forced by the FHS.
+
+@DPATCH@
+diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/make-rules/alphabets/Makefile.in
+--- xindy-2.2-beta2~/make-rules/alphabets/Makefile.in	2006-04-18 01:29:21.443791000 +0200
++++ xindy-2.2-beta2/make-rules/alphabets/Makefile.in	2006-04-18 01:30:02.199791000 +0200
+@@ -251,7 +251,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-langdir = $(pkglibdir)/modules/lang
++langdir = $(pkgdatadir)/lang
+ albaniandir = $(langdir)/albanian
+ ALBANIAN = \
+ 	albanian/latin1-lang.xdy \
+diff -urNad xindy-2.2-beta2~/make-rules/inputenc/Makefile.in xindy-2.2-beta2/make-rules/inputenc/Makefile.in
+--- xindy-2.2-beta2~/make-rules/inputenc/Makefile.in	2006-04-18 01:29:21.447791000 +0200
++++ xindy-2.2-beta2/make-rules/inputenc/Makefile.in	2006-04-18 01:30:02.187791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ inputencdir = $(modulesdir)/tex/inputenc
+ INPUTENCS = \
+ 	cp1250.xdy \
+diff -urNad xindy-2.2-beta2~/make-rules/styles/Makefile.in xindy-2.2-beta2/make-rules/styles/Makefile.in
+--- xindy-2.2-beta2~/make-rules/styles/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/make-rules/styles/Makefile.in	2006-04-18 01:30:02.191791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ stylesdir = $(modulesdir)/styles
+ STYLES = \
+ 	example.xdy \
+diff -urNad xindy-2.2-beta2~/modules/base/Makefile.in xindy-2.2-beta2/modules/base/Makefile.in
+--- xindy-2.2-beta2~/modules/base/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/base/Makefile.in	2006-04-18 01:30:02.183791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ basedir = $(modulesdir)/base
+ RULES = \
+ 	book-order.xdy \
+diff -urNad xindy-2.2-beta2~/modules/class/Makefile.in xindy-2.2-beta2/modules/class/Makefile.in
+--- xindy-2.2-beta2~/modules/class/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/class/Makefile.in	2006-04-18 01:30:02.179791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ classdir = $(modulesdir)/class
+ RULES = \
+ 	pagenums.xdy
+diff -urNad xindy-2.2-beta2~/modules/lang/german/Makefile.in xindy-2.2-beta2/modules/lang/german/Makefile.in
+--- xindy-2.2-beta2~/modules/lang/german/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/lang/german/Makefile.in	2006-04-18 01:30:02.179791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-langdir = $(pkglibdir)/modules/lang
++langdir = $(pkgdatadir)/lang
+ germandir = $(langdir)/german
+ RULES = \
+ 	din5007.xdy \
+diff -urNad xindy-2.2-beta2~/modules/lang/latin/Makefile.in xindy-2.2-beta2/modules/lang/latin/Makefile.in
+--- xindy-2.2-beta2~/modules/lang/latin/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/lang/latin/Makefile.in	2006-04-18 01:30:02.183791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-langdir = $(pkglibdir)/modules/lang
++langdir = $(pkgdatadir)/lang
+ latindir = $(langdir)/latin
+ RULES = \
+ 	caseisrt.xdy \
+diff -urNad xindy-2.2-beta2~/modules/ord/Makefile.in xindy-2.2-beta2/modules/ord/Makefile.in
+--- xindy-2.2-beta2~/modules/ord/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/ord/Makefile.in	2006-04-18 01:30:02.187791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ orddir = $(modulesdir)/ord
+ RULES = \
+ 	letorder.xdy
+diff -urNad xindy-2.2-beta2~/modules/rules/Makefile.in xindy-2.2-beta2/modules/rules/Makefile.in
+--- xindy-2.2-beta2~/modules/rules/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/rules/Makefile.in	2006-04-18 01:30:02.175791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ rulesdir = $(modulesdir)/rules
+ RULES = \
+ 	isolatin1-exchange.xdy \
+diff -urNad xindy-2.2-beta2~/modules/tex/Makefile.in xindy-2.2-beta2/modules/tex/Makefile.in
+--- xindy-2.2-beta2~/modules/tex/Makefile.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/modules/tex/Makefile.in	2006-04-18 01:30:02.183791000 +0200
+@@ -155,7 +155,7 @@
+ subdirs = @subdirs@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ texdir = $(modulesdir)/tex
+ RULES = \
+ 	isolatin1m-tex.xdy \
+diff -urNad xindy-2.2-beta2~/user-commands/xindy.in xindy-2.2-beta2/user-commands/xindy.in
+--- xindy-2.2-beta2~/user-commands/xindy.in	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.2-beta2/user-commands/xindy.in	2006-04-13 21:29:03.306672000 +0200
+@@ -286,7 +286,7 @@
+     #}
+     #
+     # modules directory
+-    $modules_dir = "$lib_dir/modules";
++    $modules_dir = "/usr/share/xindy";
+     #
+     #if ( -d "$cmd_dir/../modules" ) { # /opt style
+     #  $modules_dir = "$cmd_dir/../modules";

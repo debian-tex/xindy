@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-misc.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
+##
+## DP: Fix the mistake in the name of the directory name for the serbian
+## DP: language.
+
+@DPATCH@
+diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/make-rules/alphabets/Makefile.in
+--- xindy-2.2-beta2~/make-rules/alphabets/Makefile.in	2006-04-18 01:11:52.731791000 +0200
++++ xindy-2.2-beta2/make-rules/alphabets/Makefile.in	2006-04-18 01:12:21.107791000 +0200
+@@ -720,7 +720,7 @@
+ 	russian/utf8.xdy
+ 
+ nodist_russian_DATA = $(RUSSIAN)
+-serbiandir = $(langdir)/serbian)
++serbiandir = $(langdir)/serbian
+ SERBIAN = \
+ 	serbian/cp1251-lang.xdy \
+ 	serbian/cp1251-test.xdy \
