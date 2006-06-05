@@ -3,7 +3,14 @@ Mon, 16 Jan 2006 19:20:31 +0100.
 
 It was downloaded from http://xindy.sourceforge.net/
 
-Copyright Holder: Joachim Schrod <jschrod@acm.org>
+Upstream Authors: Joachim Schrod
+
+Copyright:
+    1996,1997   Roger Kehr
+    2004 - 2006 Joachim Schrod <jschrod@acm.org>
+
+The files in rte/clisp-2.33.2 are Copyright
+                1992 - 2003 Bruno Haible and Michael Stoll
 
 License:
 
@@ -24,3 +31,5 @@ License:
 On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.
 
+ The Debian packaging is (C) 2006, Jörg Sommer <your@email.address> and
+ is licensed under the GPL, see above.

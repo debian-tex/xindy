@@ -76,7 +76,7 @@ install: build
 	# Add here commands to install the package into debian/xindy.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/xindy
 	mv debian/xindy/usr/share/doc/xindy-* debian/xindy/usr/share/doc/xindy
-	find debian/xindy/usr/lib/xindy/modules/lang -name \*.pl -delete
+	find debian/xindy/usr/share/xindy/lang -name \*.pl -delete
 
 # Build architecture-independent files here.
 binary-indep:
