@@ -1,12 +1,15 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
 ## fix-manpage.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
 ##
-## DP: lintian complains about incorrect chararter encoding in the manpages.
+## DP: lintian complains about
+## DP:  + incorrect chararter encoding in the manpages
+## DP:  + not quoted dashes before of options (- vs. \-) in xindy.1 and texindy.
+## DP:  + a illegal section for tex2index manpage
 
 @DPATCH@
 diff -urNad xindy-2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.2-beta2/tex2xindy/tex2xindy.1
---- xindy-2.2-beta2~/tex2xindy/tex2xindy.1	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/tex2xindy/tex2xindy.1	2006-01-17 00:01:12.521979392 +0100
+--- xindy-2.2-beta2~/tex2xindy/tex2xindy.1	2006-06-05 18:50:10.000000000 +0200
++++ xindy-2.2-beta2/tex2xindy/tex2xindy.1	2006-06-05 18:50:17.410719724 +0200
 @@ -1,6 +1,6 @@
  .\" Copyright (c) 1996,1997 Roger Kehr
  .\" See section COPYING for conditions for redistribution
@@ -16,8 +19,51 @@ diff -urNad xindy-2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.2-beta2/tex2xindy/tex
  .sp
  .ti \-.2i
 diff -urNad xindy-2.2-beta2~/user-commands/texindy.1 xindy-2.2-beta2/user-commands/texindy.1
---- xindy-2.2-beta2~/user-commands/texindy.1	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/user-commands/texindy.1	2006-01-17 00:04:38.069731384 +0100
+--- xindy-2.2-beta2~/user-commands/texindy.1	2006-06-05 18:50:10.000000000 +0200
++++ xindy-2.2-beta2/user-commands/texindy.1	2006-06-05 19:01:18.830719724 +0200
+@@ -135,26 +135,26 @@
+ .SH "SYNOPSIS"
+ .IX Header "SYNOPSIS"
+ .Vb 2
+-\& texindy [-V?h] [-qv] [-iglr] [-d magic] [-o outfile.ind] [-t log] \e
+-\&         [-L lang] [-C codepage] [-M module] [idx0 idx1 ...]
++\& texindy [\-V?h] [\-qv] [\-iglr] [\-d magic] [\-o outfile.ind] [\-t log] \e
++\&         [\-L lang] [\-C codepage] [\-M module] [idx0 idx1 ...]
+ .Ve
+ .Sh "GNU-Style Long Options for Short Options:"
+ .IX Subsection "GNU-Style Long Options for Short Options:"
+ .Vb 14
+-\& -V / --version
+-\& -? / -h / --help
+-\& -q / --quiet
+-\& -v / --verbose
+-\& -i / --stdin
+-\& -g / --german
+-\& -l / --letter-ordering
+-\& -r / --no-ranges
+-\& -d / --debug          (multiple times)
+-\& -o / --out-file
+-\& -t / --log-file
+-\& -L / --language
+-\& -C / --codepage
+-\& -M / --module         (multiple times)
++\& \-V / \-\-version
++\& \-? / \-h / \-\-help
++\& \-q / \-\-quiet
++\& \-v / \-\-verbose
++\& \-i / \-\-stdin
++\& \-g / \-\-german
++\& \-l / \-\-letter\-ordering
++\& \-r / \-\-no\-ranges
++\& \-d / \-\-debug          (multiple times)
++\& \-o / \-\-out\-file
++\& \-t / \-\-log\-file
++\& \-L / \-\-language
++\& \-C / \-\-codepage
++\& \-M / \-\-module         (multiple times)
+ .Ve
+ .SH "DESCRIPTION"
+ .IX Header "DESCRIPTION"
 @@ -264,7 +264,7 @@
  .Ve
  .PP
@@ -27,9 +73,67 @@ diff -urNad xindy-2.2-beta2~/user-commands/texindy.1 xindy-2.2-beta2/user-comman
  dictionaries, it is sorted like \f(CW\*(C`a\*(C'\fR. The first scheme is known as
  \&\fI\s-1DIN\s0 order\fR, the second as \fIDuden order\fR.
  .PP
+@@ -317,7 +317,7 @@
+ .Vb 15
+ \& word-order      Default   A space comes before any letter in the
+ \&                           alphabet: ``index style'' is listed before
+-\&                           ``indexing''. Turn it off with option -l.
++\&                           ``indexing''. Turn it off with option \-l.
+ \& letter-order    Add-on    Spaces are ignored: ``index style''
+ \&                           is sorted after ``indexing''.
+ \& keep-blanks     Add-on    Leading and trailing white space (blanks
+@@ -336,7 +336,7 @@
+ .Vb 10
+ \& page-ranges     Default   Appearances on more than two consecutive
+ \&                           pages are listed as a range: ``1--4''.
+-\&                           Turn it off with option -r.
++\&                           Turn it off with option \-r.
+ \& ff-ranges       Add-on    Uses implicit ``ff'' notation for ranges
+ \&                           of three pages, and explicit ranges
+ \&                           thereafter: 2f, 2ff, 2--6.
 diff -urNad xindy-2.2-beta2~/user-commands/xindy.1 xindy-2.2-beta2/user-commands/xindy.1
---- xindy-2.2-beta2~/user-commands/xindy.1	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/user-commands/xindy.1	2006-01-17 00:04:33.712393800 +0100
+--- xindy-2.2-beta2~/user-commands/xindy.1	2006-06-05 18:50:10.000000000 +0200
++++ xindy-2.2-beta2/user-commands/xindy.1	2006-06-05 18:56:00.082719724 +0200
+@@ -135,25 +135,25 @@
+ .SH "SYNOPSIS"
+ .IX Header "SYNOPSIS"
+ .Vb 4
+-\& xindy [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \e
+-\&       [-L lang] [-C codepage] [-M module] [-I input] \e
+-\&       [--interactive] [--mem-file=xindy.mem] \e
++\& xindy [\-V?h] [\-qv] [\-d magic] [\-o outfile.ind] [\-t log] \e
++\&       [\-L lang] [\-C codepage] [\-M module] [\-I input] \e
++\&       [\-\-interactive] [\-\-mem\-file=xindy.mem] \e
+ \&       [idx0 idx1 ...]
+ .Ve
+ .Sh "GNU-Style Long Options for Short Options:"
+ .IX Subsection "GNU-Style Long Options for Short Options:"
+ .Vb 11
+-\& -V / --version
+-\& -? / -h / --help
+-\& -q / --quiet
+-\& -v / --verbose
+-\& -d / --debug          (multiple times)
+-\& -o / --out-file
+-\& -t / --log-file
+-\& -L / --language
+-\& -C / --codepage
+-\& -M / --module         (multiple times)
+-\& -I / --input-markup   (supported: latex, xindy)
++\& \-V / \-\-version
++\& \-? / \-h / \-\-help
++\& \-q / \-\-quiet
++\& \-v / \-\-verbose
++\& \-d / \-\-debug          (multiple times)
++\& \-o / \-\-out\-file
++\& \-t / \-\-log\-file
++\& \-L / \-\-language
++\& \-C / \-\-codepage
++\& \-M / \-\-module         (multiple times)
++\& \-I / \-\-input\-markup   (supported: latex, xindy)
+ .Ve
+ .SH "DESCRIPTION"
+ .IX Header "DESCRIPTION"
 @@ -281,7 +281,7 @@
  .Ve
  .PP

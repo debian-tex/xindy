@@ -3,7 +3,7 @@ Section: text
 Priority: optional
 Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
 Build-Depends: debhelper, dpatch, autotools-dev, flex, tetex-extra | texlive-lang-cyrillic, clisp-dev
-Standards-Version: 3.6.2
+Standards-Version: 3.7.2
 
 Package: xindy
 Architecture: any
