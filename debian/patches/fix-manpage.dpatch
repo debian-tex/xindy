@@ -7,9 +7,9 @@
 ## DP:  + a illegal section for tex2index manpage
 
 @DPATCH@
-diff -urNad xindy-2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.2-beta2/tex2xindy/tex2xindy.1
---- xindy-2.2-beta2~/tex2xindy/tex2xindy.1	2006-06-05 18:50:10.000000000 +0200
-+++ xindy-2.2-beta2/tex2xindy/tex2xindy.1	2006-06-05 18:50:17.410719724 +0200
+diff -urNad xindy-2.1.99+2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.1.99+2.2-beta2/tex2xindy/tex2xindy.1
+--- xindy-2.1.99+2.2-beta2~/tex2xindy/tex2xindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.1.99+2.2-beta2/tex2xindy/tex2xindy.1	2006-06-06 01:33:55.354719724 +0200
 @@ -1,6 +1,6 @@
  .\" Copyright (c) 1996,1997 Roger Kehr
  .\" See section COPYING for conditions for redistribution
@@ -18,9 +18,9 @@ diff -urNad xindy-2.2-beta2~/tex2xindy/tex2xindy.1 xindy-2.2-beta2/tex2xindy/tex
  .de BP
  .sp
  .ti \-.2i
-diff -urNad xindy-2.2-beta2~/user-commands/texindy.1 xindy-2.2-beta2/user-commands/texindy.1
---- xindy-2.2-beta2~/user-commands/texindy.1	2006-06-05 18:50:10.000000000 +0200
-+++ xindy-2.2-beta2/user-commands/texindy.1	2006-06-05 19:01:18.830719724 +0200
+diff -urNad xindy-2.1.99+2.2-beta2~/user-commands/texindy.1 xindy-2.1.99+2.2-beta2/user-commands/texindy.1
+--- xindy-2.1.99+2.2-beta2~/user-commands/texindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.1.99+2.2-beta2/user-commands/texindy.1	2006-06-06 01:35:20.206719724 +0200
 @@ -135,26 +135,26 @@
  .SH "SYNOPSIS"
  .IX Header "SYNOPSIS"
@@ -82,18 +82,24 @@ diff -urNad xindy-2.2-beta2~/user-commands/texindy.1 xindy-2.2-beta2/user-comman
  \& letter-order    Add-on    Spaces are ignored: ``index style''
  \&                           is sorted after ``indexing''.
  \& keep-blanks     Add-on    Leading and trailing white space (blanks
-@@ -336,7 +336,7 @@
+@@ -335,11 +335,11 @@
+ .IX Subsection "Page Numbers"
  .Vb 10
  \& page-ranges     Default   Appearances on more than two consecutive
- \&                           pages are listed as a range: ``1--4''.
+-\&                           pages are listed as a range: ``1--4''.
 -\&                           Turn it off with option -r.
++\&                           pages are listed as a range: ``1\(hy4''.
 +\&                           Turn it off with option \-r.
  \& ff-ranges       Add-on    Uses implicit ``ff'' notation for ranges
  \&                           of three pages, and explicit ranges
- \&                           thereafter: 2f, 2ff, 2--6.
-diff -urNad xindy-2.2-beta2~/user-commands/xindy.1 xindy-2.2-beta2/user-commands/xindy.1
---- xindy-2.2-beta2~/user-commands/xindy.1	2006-06-05 18:50:10.000000000 +0200
-+++ xindy-2.2-beta2/user-commands/xindy.1	2006-06-05 18:56:00.082719724 +0200
+-\&                           thereafter: 2f, 2ff, 2--6.
++\&                           thereafter: 2f, 2ff, 2\(hy6.
+ \& ff-ranges-only  Add-on    Uses only implicit ranges: 2f, 2ff.
+ \& book-order      Add-on    Sorts page numbers with common book numbering
+ \&                           scheme correctly -- Roman numerals first, then
+diff -urNad xindy-2.1.99+2.2-beta2~/user-commands/xindy.1 xindy-2.1.99+2.2-beta2/user-commands/xindy.1
+--- xindy-2.1.99+2.2-beta2~/user-commands/xindy.1	2005-09-29 17:30:44.000000000 +0200
++++ xindy-2.1.99+2.2-beta2/user-commands/xindy.1	2006-06-06 01:33:55.354719724 +0200
 @@ -135,25 +135,25 @@
  .SH "SYNOPSIS"
  .IX Header "SYNOPSIS"
