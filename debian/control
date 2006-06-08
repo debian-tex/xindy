@@ -19,8 +19,7 @@ Description: index generator for structured documents like LaTeX or SGML
  .
  In comparison to other index processors xindy has several powerful
  features that make it an ideal framework for describing and generating
- complex indices, addressing especially international indexing. Have a
- look at xindy's Overview that describes its most important features!
+ complex indices, addressing especially international indexing.
  .
   Homepage: http://xindy.sourceforge.net/
 
@@ -37,8 +36,7 @@ Description: index generator for structured documents like LaTeX or SGML
  .
  In comparison to other index processors xindy has several powerful
  features that make it an ideal framework for describing and generating
- complex indices, addressing especially international indexing. Have a
- look at xindy's Overview that describes its most important features!
+ complex indices, addressing especially international indexing.
  .
  This package contains the rule files (the brain) of xindy.
  .
