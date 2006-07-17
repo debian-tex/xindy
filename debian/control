@@ -2,8 +2,8 @@ Source: xindy
 Section: text
 Priority: optional
 Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
-Build-Depends-Indep: debhelper, dpatch, autotools-dev, tetex-extra | texlive-lang-cyrillic
-Build-Depends: debhelper, dpatch, autotools-dev, flex, clisp-dev
+Build-Depends-Indep: tetex-extra | texlive-lang-cyrillic
+Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp-dev
 Standards-Version: 3.7.2
 
 Package: xindy
@@ -21,7 +21,7 @@ Description: index generator for structured documents like LaTeX or SGML
  features that make it an ideal framework for describing and generating
  complex indices, addressing especially international indexing.
  .
-  Homepage: http://xindy.sourceforge.net/
+  Homepage: http://www.xindy.org/
 
 Package: xindy-rules
 Architecture: all
@@ -38,6 +38,6 @@ Description: index generator for structured documents like LaTeX or SGML
  features that make it an ideal framework for describing and generating
  complex indices, addressing especially international indexing.
  .
- This package contains the rule files (the brain) of xindy.
+ This package contains the rule files (the knowledge base) of xindy.
  .
-  Homepage: http://xindy.sourceforge.net/
+  Homepage: http://www.xindy.org/
