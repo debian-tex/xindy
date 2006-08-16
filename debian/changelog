@@ -1,13 +1,10 @@
-xindy (2.1.99+2.2-beta2-1) unstable; urgency=low
+xindy (2.2~beta2-1) unstable; urgency=low
 
   * Initial release; closes: #362584
-
-  * This is upstream version 2.2-beta2. Because 2.2 is not newer than
-    2.2-beta2 for dpkg this curious version is used.
 
   * Moved the files in the directory /usr/lib/xindy/modules/ to the more
     FHS-compatible directory /usr/share/xindy/, because they are
     architecture-independent.
 
- -- Jörg Sommer <joerg@alea.gnuu.de>  Tue, 18 Apr 2006 13:55:13 +0200
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Wed, 16 Aug 2006 20:22:31 +0200
 
