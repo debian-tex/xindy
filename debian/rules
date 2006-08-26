@@ -29,7 +29,7 @@ else
 	CFLAGS += -O2
 endif
 
-export CLISP_DIR = /usr/lib/clisp/
+export CLISP_DIR = /usr/lib/clisp
 export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
 
 arch_subdirs=rte binaries tex2xindy user-commands
@@ -135,6 +135,6 @@ binary: binary-indep binary-arch
 
 get-orig-source:
 	wget http://dev.atmarama.org/xindy-2.2-beta2.tar.gz
-	mv xindy-2.2-beta2.tar.gz xindy_2.1.99+2.2-beta2.orig.tar.gz
+	mv xindy-2.2-beta2.tar.gz xindy_2.2~beta2.orig.tar.gz
 
 .PHONY: build build-arch build-indep clean binary-indep binary-arch binary get-orig-source
