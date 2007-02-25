@@ -51,7 +51,7 @@ config.status: configure patch-stamp
 	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
 	    --infodir=\$${prefix}/share/info
 
-build:
+build: build-indep build-arch
 
 build-indep: build-indep-stamp
 build-indep-stamp: config.status
