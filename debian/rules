@@ -133,7 +133,7 @@ binary-arch: build-arch
 binary: binary-indep binary-arch
 
 get-orig-source:
-	wget -o xindy_2.2~beta2.orig.tar.gz \
+	wget -O xindy_2.2~beta2.orig.tar.gz \
 	    http://dev.atmarama.org/xindy-2.2-beta2.tar.gz
 
 .PHONY: build build-arch build-indep clean binary-indep binary-arch binary get-orig-source
