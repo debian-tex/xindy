@@ -6,16 +6,6 @@ include /usr/share/dpatch/dpatch.make
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-# upstream did not disable the maintainer mode of its makefile. If you have
-# a newer version of autotools installed all makefiles are rebuild and my
-# dpatches are lost. This variables pevent the rebuild of makefiles.
-export ACLOCAL=/bin/true
-export AMTAR=/bin/true
-export AUTOCONF=/bin/true
-export AUTOHEADER=/bin/true
-export AUTOMAKE=/bin/true
-export MAKEINFO=/bin/true
-
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
@@ -46,6 +36,14 @@ config.status: configure patch-stamp
 	        fi; \
 	    done \
 	done
+
+# Upstream did not disable the maintainer mode in aclocal.m4. Because the time
+# stamps in the archive are set in an adversarial way, all Makefiles, configure
+# and the like get rebuild upon build. If you have a newer version of autotools
+# installed all makefiles are rebuild and my dpatches are lost.
+	find -name aclocal.m4 -print0 | xargs -0 touch --date="now-4sec"
+	find -name Makefile.in -print0 | xargs -0 touch --date="now-2sec"
+	find -name configure -print0 | xargs -0 touch
 
 	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
 	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
