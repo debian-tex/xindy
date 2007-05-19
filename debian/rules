@@ -25,7 +25,7 @@ export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
 arch_subdirs=rte binaries tex2xindy user-commands
 indep_subdirs=modules make-rules doc
 
-config.status: configure patch-stamp
+pre-config-stamp: configure patch-stamp
 	dh_testdir
 	for i in . rte/ordrules; do \
 	    for k in sub guess; do \
@@ -45,14 +45,28 @@ config.status: configure patch-stamp
 	find -name Makefile.in -print0 | xargs -0 touch --date="now-2sec"
 	find -name configure -print0 | xargs -0 touch
 
+	touch $@
+
+config.status: pre-config-stamp
+	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
+	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
+	    --infodir=\$${prefix}/share/info --disable-make-rules --disable-docs
+
+config.status-with-latex: pre-config-stamp
+	if [ -e config.status ]; then \
+	    rm -f build-arch-stamp build-indep-stamp; \
+	    $(MAKE) distclean || true; \
+	fi
 	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
 	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
 	    --infodir=\$${prefix}/share/info
 
+	ln config.status config.status-with-latex
+
 build: build-indep build-arch
 
 build-indep: build-indep-stamp
-build-indep-stamp: config.status
+build-indep-stamp: config.status-with-latex
 	dh_testdir
 
 	for i in $(indep_subdirs); do $(MAKE) -C $$i all || exit 1; done
@@ -69,7 +83,8 @@ build-arch-stamp:  config.status
 
 clean:
 	dh_testdir
-	rm -f build-arch-stamp build-indep-stamp
+	rm -f build-arch-stamp build-indep-stamp pre-config-stamp \
+	  config.status-with-latex
 
 	-$(MAKE) distclean
 

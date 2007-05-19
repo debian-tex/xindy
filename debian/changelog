@@ -1,3 +1,17 @@
+xindy (2.2~beta2-2) unstable; urgency=low
+
+  * Changed the build rules (in debian/rules) to use different configure
+    calls for the different targets build-indep and build-arch. For
+    build-arch, configure is instructed to build no documentation and
+    make-rules, because latex is not available. (closes: #424976)
+
+  * Removed tetex-extra as a possible build dependency, because it's
+    removed from Debian.
+
+  * Upload is sponsored by Norbert Preining.
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Fri, 18 May 2007 16:02:43 +0200
+
 xindy (2.2~beta2-1) unstable; urgency=low
 
   * Initial release; closes: #362584
