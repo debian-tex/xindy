@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp-dev
 Standards-Version: 3.7.2
 
 Package: xindy
-Architecture: any
+Architecture: alpha amd64 hurd-i386 i386 kfreebsd-i386 kfreebsd-amd64 mips powerpc sparc
 Depends: xindy-rules, ${shlibs:Depends}, ${perl:Depends}
 Description: index generator for structured documents like LaTeX or SGML
  xindy is an index processor that can be used to generate book-like

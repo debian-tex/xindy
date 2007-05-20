@@ -1,7 +1,18 @@
+xindy (2.2~beta2-3) unstable; urgency=low
+
+  * Acknowledge NMU. (closes: #424976)
+
+  * Excluded arm, hppa, ia64, m68k, mipsel and s390 from the list of
+    supported architectures. For every other architecture the clisp
+    maintainer had enabled FFI support, at least in version 1:2.41-1.
+    (closes: #425143)
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Sun, 20 May 2007 13:36:41 +0200
+
 xindy (2.2~beta2-2.1) unstable; urgency=low
 
   * NMU of the sponsor to really fix the build issue
-  * make the build target in debian/rules emtpy, binary-arch and 
+  * make the build target in debian/rules emtpy, binary-arch and
     binary-indep does everything (Closes: #424976)
 
  -- Norbert Preining <preining@debian.org>  Sat, 19 May 2007 11:15:12 +0200
