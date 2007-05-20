@@ -63,7 +63,8 @@ config.status-with-latex: pre-config-stamp
 
 	ln config.status config.status-with-latex
 
-build: build-indep build-arch
+#build: build-indep build-arch
+build:
 
 build-indep: build-indep-stamp
 build-indep-stamp: config.status-with-latex
