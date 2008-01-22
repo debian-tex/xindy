@@ -19,7 +19,7 @@ else
 	CFLAGS += -O2
 endif
 
-export CLISP_DIR = /usr/lib/clisp
+export CLISP_DIR = $(shell dirname $$(readlink --canonicalize /usr/bin/clisp-link))
 export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
 
 arch_subdirs=rte binaries tex2xindy user-commands
