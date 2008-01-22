@@ -7,7 +7,9 @@ xindy (2.2~beta2-3) unstable; urgency=low
     maintainer had enabled FFI support, at least in version 1:2.41-1.
     (closes: #425143)
 
- -- Jörg Sommer <joerg@alea.gnuu.de>  Sun, 20 May 2007 13:36:41 +0200
+  * Upload is sponsored by Norbert Preining.
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Sun, 20 May 2007 21:45:21 +0200
 
 xindy (2.2~beta2-2.1) unstable; urgency=low
 
