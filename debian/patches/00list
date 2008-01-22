@@ -1,5 +1,4 @@
 latex-call
-fix-manpage
 fix-echo-expansion
 fix-FHS
 help-option
