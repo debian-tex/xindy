@@ -27,14 +27,12 @@ indep_subdirs=modules make-rules doc
 
 pre-config-stamp: configure patch-stamp
 	dh_testdir
-	for i in . rte/ordrules; do \
-	    for k in sub guess; do \
-	        test -r /usr/share/misc/config.$$k || continue; \
-	        if ! test -L $$i/config.$$k; then \
-	            mv $$i/config.$$k $$i/config.$$k.upstream; \
-	            ln -s /usr/share/misc/config.$$k $$i/config.$$k; \
-	        fi; \
-	    done \
+	for k in sub guess; do \
+	    test -r /usr/share/misc/config.$$k || continue; \
+	    if ! test -L config.$$k; then \
+	        mv config.$$k config.$$k.upstream; \
+	        ln -s /usr/share/misc/config.$$k config.$$k; \
+	    fi; \
 	done
 
 # Upstream did not disable the maintainer mode in aclocal.m4. Because the time
@@ -98,12 +96,10 @@ clean:
 
 	-$(MAKE) distclean
 
-	for i in . rte/ordrules; do \
-	    for k in sub guess; do \
-	        if test -e $$i/config.$$k.upstream; then \
-	            mv -f $$i/config.$$k.upstream $$i/config.$$k; \
-	        fi; \
-	    done \
+	for k in sub guess; do \
+	    if test -e config.$$k.upstream; then \
+	        mv -f config.$$k.upstream config.$$k; \
+	    fi; \
 	done
 
 	for i in tex2xindy/tex2xindy.1 \
