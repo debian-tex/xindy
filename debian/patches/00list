@@ -1,10 +1,6 @@
 latex-call
 fix-manpage
-external-clisp
 fix-echo-expansion
-fix-errors
-fix-cleanup
-fix-serbian
 fix-FHS
 help-option
 fix-stdout
