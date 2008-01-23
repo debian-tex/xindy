@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
 Build-Depends-Indep: texlive-latex-base, texlive-lang-cyrillic, texlive-latex-recommended, cm-super
 Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp-dev
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3.0
 Homepage: http://www.xindy.org/
 Vcs-Browser: http://git.debian.org/?p=users/jo-guest/xindy.git
 Vcs-Git: git://git.debian.org/~jo-guest/xindy.git
