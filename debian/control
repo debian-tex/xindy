@@ -5,6 +5,7 @@ Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
 Build-Depends-Indep: texlive-latex-base, texlive-lang-cyrillic, texlive-latex-recommended, cm-super
 Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp-dev
 Standards-Version: 3.7.2
+Homepage: http://www.xindy.org/
 
 Package: xindy
 Architecture: alpha amd64 hurd-i386 i386 kfreebsd-i386 kfreebsd-amd64 mips powerpc sparc
@@ -20,8 +21,6 @@ Description: index generator for structured documents like LaTeX or SGML
  In comparison to other index processors xindy has several powerful
  features that make it an ideal framework for describing and generating
  complex indices, addressing especially international indexing.
- .
-  Homepage: http://www.xindy.org/
 
 Package: xindy-rules
 Architecture: all
@@ -31,5 +30,3 @@ Description: rule files for xindy
  indexes for arbitrary document-preparation systems.
  .
  This package contains the rule files (the knowledge base) of xindy.
- .
-  Homepage: http://www.xindy.org/
