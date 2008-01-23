@@ -40,14 +40,6 @@ pre-config-stamp: configure patch-stamp
 	    fi; \
 	done
 
-# Upstream did not disable the maintainer mode in aclocal.m4. Because the time
-# stamps in the archive are set in an adversarial way, all Makefiles, configure
-# and the like get rebuild upon build. If you have a newer version of autotools
-# installed all makefiles are rebuild and my dpatches are lost.
-	find -name aclocal.m4 -print0 | xargs -0 touch --date="now-4sec"
-	find -name Makefile.in -print0 | xargs -0 touch --date="now-2sec"
-	find -name configure -print0 | xargs -0 touch
-
 	touch $@
 
 config.status: pre-config-stamp
