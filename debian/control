@@ -6,6 +6,8 @@ Build-Depends-Indep: texlive-latex-base, texlive-lang-cyrillic, texlive-latex-re
 Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp-dev
 Standards-Version: 3.7.2
 Homepage: http://www.xindy.org/
+Vcs-Browser: http://git.debian.org/?p=users/jo-guest/xindy.git
+Vcs-Git: git://git.debian.org/~jo-guest/xindy.git
 
 Package: xindy
 Architecture: alpha amd64 hurd-i386 i386 kfreebsd-i386 kfreebsd-amd64 mips powerpc sparc

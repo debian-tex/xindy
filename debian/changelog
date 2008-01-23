@@ -28,6 +28,8 @@ xindy (2.3-1) UNRELEASED; urgency=low
 
   * Used the (new) real header instead of the Homepage pseudo header.
 
+  * Added Vcs-Browser and Vcs-Git header.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 01:00:00 +0100
 
 xindy (2.2~beta2-3) unstable; urgency=low
