@@ -9,7 +9,7 @@ texindy --out-file $tmp --stdin <<__EOF__
 \indexentry{test}{1}
 __EOF__
 
-diff -u $tmp - <<__EOF__
+diff -u - $tmp <<__EOF__
 \begin{theindex}
 
   \textbf{T}
