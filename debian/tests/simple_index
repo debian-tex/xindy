@@ -9,10 +9,15 @@ texindy --out-file $tmp --stdin <<__EOF__
 \indexentry{test}{1}
 __EOF__
 
-diff -u $tmp - <<__EOF__
+diff -u - $tmp <<__EOF__
 \begin{theindex}
+  \providecommand*\lettergroupDefault[1]{}
+  \providecommand*\lettergroup[1]{%
+      \par\textbf{#1}\par
+      \nopagebreak
+  }
 
-  \textbf{T}
+  \lettergroup{T}
   \item test, 1
 
 \end{theindex}

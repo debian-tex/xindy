@@ -1,3 +1,48 @@
+xindy (2.3-1) unstable; urgency=low
+
+  * New upstream release
+
+  * Removed external-clisp.dpatch, fix-cleanup.dpatch, fix-serbian.dpatch
+    and fix-errors.dpatch. All are applied to the upstream source.
+
+  * Rebuilt the manual pages tex2xindy.1, texindy.1 and xindy.1 at
+    buildtime to fix the hyphen vs. minus sign problems. Removed the
+    patch fix-manpage.dpatch.
+
+  * Added a new patch fix-manpages.dpatch to correct the section of
+    xindy.v2.1; 1 instead of 1L.
+
+  * Adapted fix-FHS.dpatch to the new sources.
+
+  * Made the path to clisp more generic. (closes: #458883)
+
+  * Added workaround for broken clisp.
+    + Clisp generates a broken rte/ordrules/ordrulei.c which includes
+      undefined data types. Fixed by removing this lines from the
+      generated file.
+
+    + clisp-link calls the linker with -ldb, but a libdb.so doesn't
+      exist. Clisp itself is linked against libdb-4.6. Due to this I
+      replace the -ldb by -ldb-4.6 in the file makevars.
+
+    + clisp-link links the binary with libSM and libICE while
+      dpkg-shlibdeps complains no symbols are used from these libraries.
+      Removed them from the linker call.
+
+  * Used the (new) real header instead of the Homepage pseudo header.
+
+  * Added Vcs-Browser and Vcs-Git header.
+
+  * Bumped Standards-Version; no changes needed.
+
+  * Updated get-orig-source target in rules.
+
+  * Added a simple function test simple_index in debian/tests.
+
+  * Upload is sponsored by Norbert Preining.
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Wed, 23 Jan 2008 02:46:46 +0100
+
 xindy (2.2~beta2-3) unstable; urgency=low
 
   * Acknowledge NMU. (closes: #424976)
