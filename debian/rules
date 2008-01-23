@@ -104,7 +104,7 @@ clean:
 
 	rm -fr $(cl_src)
 
-	-$(MAKE) distclean
+	if [ -f Makefile ]; then $(MAKE) distclean; fi
 
 	for k in sub guess; do \
 	    if test -e config.$$k.upstream; then \
