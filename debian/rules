@@ -82,9 +82,24 @@ build-indep-stamp: config.status-with-latex
 
 	touch $@
 
+cl_src = $(CURDIR)/clisp-link-src
+
 build-arch: build-arch-stamp
 build-arch-stamp:  config.status
 	dh_testdir
+
+	rm -fr $(cl_src)
+	cp -Lr $(CLISP_DIR)/full $(cl_src)
+	sed -i '/^LIBS/!n; s/-ldb /-ldb-4.6 /; s/-l\(SM\|ICE\) //g' \
+	  $(cl_src)/makevars
+
+	rm -fr rte/xindy-build-dir
+	$(MAKE) -C rte/ordrules CLISP=/usr/bin/clisp ordrulei.c
+	sed -i '/register_foreign_inttype("\(tcflag\|speed\|cc\|__ipc_pid\|ptrdiff\)_t"/d' \
+	  rte/ordrules/ordrulei.c
+	cd rte && clisp-link add-module-set ordrules $(cl_src) xindy-build-dir
+	cp rte/xindy-build-dir/lisp.run binaries/xindy.run
+	cp rte/xindy-build-dir/lispinit.mem binaries/base.mem
 
 	for i in $(arch_subdirs); do $(MAKE) -C $$i all || exit 1; done
 
@@ -94,6 +109,8 @@ clean:
 	dh_testdir
 	rm -f build-arch-stamp build-indep-stamp pre-config-stamp \
 	  config.status-with-latex
+
+	rm -fr $(cl_src)
 
 	-$(MAKE) distclean
 

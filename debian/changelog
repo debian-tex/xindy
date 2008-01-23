@@ -13,6 +13,19 @@ xindy (2.3-1) UNRELEASED; urgency=low
 
   * Made the path to clisp more generic. (closes: #458883)
 
+  * Added workaround for broken clisp.
+    + Clisp generates a broken rte/ordrules/ordrulei.c which includes
+      undefined data types. Fixed by removing this lines from the
+      generated file.
+
+    + clisp-link calls the linker with -ldb, but a libdb.so doesn't
+      exist. Clisp itself is linked against libdb-4.6. Due to this I
+      replace the -ldb by -ldb-4.6 in the file makevars.
+
+    + clisp-link links the binary with libSM and libICE while
+      dpkg-shlibdeps complains no symbols are used from these libraries.
+      Removed them from the linker call.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 01:00:00 +0100
 
 xindy (2.2~beta2-3) unstable; urgency=low
