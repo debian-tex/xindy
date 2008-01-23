@@ -9,6 +9,9 @@ xindy (2.3-1) UNRELEASED; urgency=low
     buildtime to fix the hyphen vs. minus sign problems. Removed the
     patch fix-manpage.dpatch.
 
+  * Added a new patch fix-manpages.dpatch to correct the section of
+    xindy.v2.1; 1 instead of 1L.
+
   * Adapted fix-FHS.dpatch to the new sources.
 
   * Made the path to clisp more generic. (closes: #458883)

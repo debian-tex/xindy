@@ -3,3 +3,4 @@ fix-echo-expansion
 fix-FHS
 help-option
 fix-stdout
+fix-manpages
