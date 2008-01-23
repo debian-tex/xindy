@@ -22,6 +22,11 @@ endif
 export CLISP_DIR = $(shell dirname $$(readlink --canonicalize /usr/bin/clisp-link))
 export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
 
+configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
+  --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr \
+  --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
+  --enable-external-clisp --enable-clisp-dir=$(CLISP_DIR)
+
 arch_subdirs=rte binaries tex2xindy user-commands
 indep_subdirs=modules make-rules doc
 
@@ -46,18 +51,14 @@ pre-config-stamp: configure patch-stamp
 	touch $@
 
 config.status: pre-config-stamp
-	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
-	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
-	    --infodir=\$${prefix}/share/info --disable-make-rules --disable-docs
+	./configure $(configure_flags) --disable-make-rules --disable-docs
 
 config.status-with-latex: pre-config-stamp
 	if [ -e config.status ]; then \
 	    rm -f build-arch-stamp build-indep-stamp; \
 	    $(MAKE) distclean || true; \
 	fi
-	./configure LDFLAGS="$(LDFLAGS) -Wl,-z,defs" --host=$(DEB_HOST_GNU_TYPE) \
-	    --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man \
-	    --infodir=\$${prefix}/share/info
+	./configure $(configure_flags)
 
 	ln config.status config.status-with-latex
 
