@@ -104,6 +104,10 @@ clean:
 
 	rm -fr $(cl_src)
 
+	# fixme upstream: clisp-link creates this directory, but upstream
+        # doesn't remove it
+	rm -fr rte/dynmod
+
 	if [ -f Makefile ]; then $(MAKE) distclean; fi
 
 	for k in sub guess; do \
