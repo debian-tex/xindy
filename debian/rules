@@ -176,4 +176,9 @@ get-orig-source:
 	wget -O xindy_2.3.orig.tar.gz \
 	  http://surfnet.dl.sourceforge.net/sourceforge/xindy/xindy-2.3.tar.gz
 
-.PHONY: build build-arch build-indep clean binary-indep binary-arch binary get-orig-source
+test:
+	dh_testdir
+	set -e; for i in debian/tests/*; do $i; done
+
+.PHONY: build build-arch build-indep clean binary-indep binary-arch binary \
+  get-orig-source test
