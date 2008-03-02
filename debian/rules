@@ -83,7 +83,7 @@ clean:
 
 	if [ -f Makefile ]; then $(MAKE) distclean; fi
 
-	-$(MAKE) -f debian/rules unpatch
+	$(MAKE) -f debian/rules unpatch
 
 	dh_clean
 
