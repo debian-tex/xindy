@@ -113,6 +113,19 @@ diff -urNad xindy-2.2-beta2~/modules/rules/Makefile.in xindy-2.2-beta2/modules/r
  rulesdir = $(modulesdir)/rules
  RULES = \
  	isolatin1-exchange.xdy \
+diff --git a/modules/styles/Makefile.in b/modules/styles/Makefile.in
+index 8942131..7de4a85 100644
+--- a/modules/styles/Makefile.in
++++ b/modules/styles/Makefile.in
+@@ -156,7 +156,7 @@ sbindir = @sbindir@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ texdir = $(modulesdir)/styles
+ RULES = basic.xdy makeidx.xdy
+ EXTRA_DIST = $(RULES)
 diff --git a/user-commands/xindy.in b/user-commands/xindy.in
 index ce77027..bf5956c 100644
 --- a/user-commands/xindy.in
