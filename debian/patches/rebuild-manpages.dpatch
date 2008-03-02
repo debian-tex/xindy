@@ -1,0 +1,22 @@
+#! /bin/sh -e
+## rebuild-manpages.dpatch © Jörg Sommer <joerg@alea.gnuu.de>
+##
+## DP: Rebuild the manual pages to fix the hyphen vs. dash problem
+
+dpatch_patch ()
+{
+    tar vcf debian/patched/rebuild-manpages.tar tex2xindy/tex2xindy.1 \
+      user-commands/texindy.1 user-commands/xindy.1
+    pod2man --verbose tex2xindy/tex2xindy.l tex2xindy/tex2xindy.1 \
+      user-commands/texindy user-commands/texindy.1 \
+      user-commands/xindy.in user-commands/xindy.1
+}
+
+dpatch_unpatch ()
+{
+    tar xf debian/patched/rebuild-manpages.tar
+}
+
+DPATCH_LIB_NO_DEFAULT=1
+
+. /usr/share/dpatch/dpatch.lib.sh

@@ -53,15 +53,6 @@ build-indep-stamp: config.status-with-latex
 
 	for i in $(indep_subdirs); do $(MAKE) -C $$i all || exit 1; done
 
-	# Rebuild the manual pages to fix the hyphen vs. dash problem
-	mv tex2xindy/tex2xindy.1 tex2xindy/tex2xindy.1.upstream
-	pod2man tex2xindy/tex2xindy.l > tex2xindy/tex2xindy.1
-	for i in texindy xindy.in; do \
-	    man_file=user-commands/$${i%.in}.1; \
-	    mv $$man_file $$man_file.upstream; \
-	    pod2man user-commands/$$i > $$man_file; \
-	done
-
 	touch $@
 
 cl_src = $(CURDIR)/clisp-link-src
@@ -91,13 +82,6 @@ clean:
 	rm -fr rte/dynmod
 
 	if [ -f Makefile ]; then $(MAKE) distclean; fi
-
-	for i in tex2xindy/tex2xindy.1 \
-	  $(patsubst %,user-commands/%.1, texindy xindy); do \
-	    if [ -e $$i.upstream ]; then \
-	        mv $$i.upstream $$i; \
-	    fi; \
-	done
 
 	-$(MAKE) -f debian/rules unpatch
 

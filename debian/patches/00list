@@ -6,3 +6,4 @@ fix-stdout
 fix-manpages
 fix-clisp-problems
 config.guess+sub
+rebuild-manpages
