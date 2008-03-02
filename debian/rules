@@ -30,22 +30,12 @@ configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
 arch_subdirs=rte binaries tex2xindy user-commands
 indep_subdirs=modules make-rules doc
 
-pre-config-stamp: configure patch-stamp
+config.status: configure patch-stamp
 	dh_testdir
-	for k in sub guess; do \
-	    test -r /usr/share/misc/config.$$k || continue; \
-	    if ! test -L config.$$k; then \
-	        mv config.$$k config.$$k.upstream; \
-	        ln -s /usr/share/misc/config.$$k config.$$k; \
-	    fi; \
-	done
-
-	touch $@
-
-config.status: pre-config-stamp
 	./configure $(configure_flags) --disable-make-rules --disable-docs
 
-config.status-with-latex: pre-config-stamp
+config.status-with-latex: configure patch-stamp
+	dh_testdir
 	if [ -e config.status ]; then \
 	    rm -f build-arch-stamp build-indep-stamp; \
 	    $(MAKE) distclean || true; \
@@ -92,8 +82,7 @@ build-arch-stamp:  config.status
 
 clean:
 	dh_testdir
-	rm -f build-arch-stamp build-indep-stamp pre-config-stamp \
-	  config.status-with-latex
+	rm -f build-arch-stamp build-indep-stamp config.status-with-latex
 
 	rm -fr $(cl_src)
 
@@ -102,12 +91,6 @@ clean:
 	rm -fr rte/dynmod
 
 	if [ -f Makefile ]; then $(MAKE) distclean; fi
-
-	for k in sub guess; do \
-	    if test -e config.$$k.upstream; then \
-	        mv -f config.$$k.upstream config.$$k; \
-	    fi; \
-	done
 
 	for i in tex2xindy/tex2xindy.1 \
 	  $(patsubst %,user-commands/%.1, texindy xindy); do \
