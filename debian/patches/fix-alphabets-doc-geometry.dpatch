@@ -1,0 +1,30 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-alphabets-doc-geometry.dpatch © by Jörg Sommer <joerg@alea.gnuu.de>
+##
+## DP: This document uses zero borders to put as much as possible on a page.
+## DP: But the border adjustment is not correct and the first page is greater
+## DP: than the page size.
+
+@DPATCH@
+
+diff --git a/make-rules/alphabets/alphabets-doc.tex b/make-rules/alphabets/alphabets-doc.tex
+index ce55690..b9bacfd 100644
+--- a/make-rules/alphabets/alphabets-doc.tex
++++ b/make-rules/alphabets/alphabets-doc.tex
+@@ -1,5 +1,5 @@
+ \documentclass{report}
+-\usepackage{a4wide}
++\usepackage[noheadfoot,margin=.5cm]{geometry}
+ \usepackage[TS1,LGR,T2A,T1]{fontenc}
+ \usepackage[colorlinks]{hyperref}
+ \usepackage[cp1252,latin1,cp850,latin2,cp1250,latin3,latin4,latin5,latin9,cp1251]{inputenc}
+@@ -15,9 +15,6 @@
+  \small (\^{}) & \small (\~{}) & \small (\r{}) & \small (\"{}) &
+  \small (,) & \small (\c{}) & \small (k{}) & \small (\.{}) &
+  \small (-) & \small (\={}) & \small (?)\\}{\end{tabular}}
+-\setlength{\topskip}{0mm}
+-\setlength{\topmargin}{-15mm}
+-\setlength{\textheight}{260mm}
+ \setcounter{tocdepth}{2}
+ 
+ \renewcommand*{\contentsname}{\begin{center}
