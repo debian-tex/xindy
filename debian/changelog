@@ -24,6 +24,10 @@ xindy (2.4~pre1-1) UNRELEASED; urgency=low
     the document /u/s/d/x/alphabets-doc.pdf.
     Thanks to Simon Spiegel <simon@simifilm.ch> for reporting this issue.
 
+  * Added the file README.source to describe how to use dpatch (or better
+    said link to the defaul description in /usr/share/doc/dpatch). This
+    satisfies the requirement of the Debian policy 3.8.0.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.3-2) unstable; urgency=low
