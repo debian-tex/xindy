@@ -8,6 +8,8 @@ xindy (2.4~pre1-1) UNRELEASED; urgency=low
 
     + fix-clisp-problems is obsolate due to new upstream source structure
 
+  * New version requires build dependency on texlive-xetex.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.3-2) unstable; urgency=low
