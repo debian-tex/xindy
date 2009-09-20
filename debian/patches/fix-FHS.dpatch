@@ -9,9 +9,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/ma
 --- xindy-2.2-beta2~/make-rules/alphabets/Makefile.in	2006-04-18 01:29:21.443791000 +0200
 +++ xindy-2.2-beta2/make-rules/alphabets/Makefile.in	2006-04-18 01:30:02.199791000 +0200
 @@ -251,7 +251,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -langdir = $(pkglibdir)/modules/lang
 +langdir = $(pkgdatadir)/lang
  albaniandir = $(langdir)/albanian
@@ -21,9 +21,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/inputenc/Makefile.in xindy-2.2-beta2/mak
 --- xindy-2.2-beta2~/make-rules/inputenc/Makefile.in	2006-04-18 01:29:21.447791000 +0200
 +++ xindy-2.2-beta2/make-rules/inputenc/Makefile.in	2006-04-18 01:30:02.187791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  inputencdir = $(modulesdir)/tex/inputenc
@@ -33,9 +33,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/styles/Makefile.in xindy-2.2-beta2/make-
 --- xindy-2.2-beta2~/make-rules/styles/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/make-rules/styles/Makefile.in	2006-04-18 01:30:02.191791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  stylesdir = $(modulesdir)/styles
@@ -45,9 +45,9 @@ diff -urNad xindy-2.2-beta2~/modules/base/Makefile.in xindy-2.2-beta2/modules/ba
 --- xindy-2.2-beta2~/modules/base/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/base/Makefile.in	2006-04-18 01:30:02.183791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  basedir = $(modulesdir)/base
@@ -57,9 +57,9 @@ diff -urNad xindy-2.2-beta2~/modules/class/Makefile.in xindy-2.2-beta2/modules/c
 --- xindy-2.2-beta2~/modules/class/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/class/Makefile.in	2006-04-18 01:30:02.179791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  classdir = $(modulesdir)/class
@@ -69,9 +69,9 @@ diff -urNad xindy-2.2-beta2~/modules/lang/german/Makefile.in xindy-2.2-beta2/mod
 --- xindy-2.2-beta2~/modules/lang/german/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/lang/german/Makefile.in	2006-04-18 01:30:02.179791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -langdir = $(pkglibdir)/modules/lang
 +langdir = $(pkgdatadir)/lang
  germandir = $(langdir)/german
@@ -81,9 +81,9 @@ diff -urNad xindy-2.2-beta2~/modules/lang/latin/Makefile.in xindy-2.2-beta2/modu
 --- xindy-2.2-beta2~/modules/lang/latin/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/lang/latin/Makefile.in	2006-04-18 01:30:02.183791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -langdir = $(pkglibdir)/modules/lang
 +langdir = $(pkgdatadir)/lang
  latindir = $(langdir)/latin
@@ -93,9 +93,9 @@ diff -urNad xindy-2.2-beta2~/modules/ord/Makefile.in xindy-2.2-beta2/modules/ord
 --- xindy-2.2-beta2~/modules/ord/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/ord/Makefile.in	2006-04-18 01:30:02.187791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  orddir = $(modulesdir)/ord
@@ -105,9 +105,9 @@ diff -urNad xindy-2.2-beta2~/modules/rules/Makefile.in xindy-2.2-beta2/modules/r
 --- xindy-2.2-beta2~/modules/rules/Makefile.in	2005-09-29 17:30:44.000000000 +0200
 +++ xindy-2.2-beta2/modules/rules/Makefile.in	2006-04-18 01:30:02.175791000 +0200
 @@ -155,7 +155,7 @@
- subdirs = @subdirs@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  rulesdir = $(modulesdir)/rules
@@ -118,9 +118,9 @@ index 8942131..7de4a85 100644
 --- a/modules/styles/Makefile.in
 +++ b/modules/styles/Makefile.in
 @@ -156,7 +156,7 @@ sbindir = @sbindir@
- sharedstatedir = @sharedstatedir@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -modulesdir = $(pkglibdir)/modules
 +modulesdir = $(pkgdatadir)
  texdir = $(modulesdir)/styles
