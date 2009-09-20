@@ -1,80 +1,59 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
 ## help-option.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
 ##
-## DP: The commandline option --help of xindy and texindy returns with an
-## DP: exitcode != 0 which signals an error and prints the help message to
-## DP: stderr.
+## DP: The commandline option --help of xindy and texindy prints the help
+## DP: message to stderr.
 
 @DPATCH@
-diff -urNad xindy~/user-commands/texindy xindy/user-commands/texindy
---- xindy~/user-commands/texindy	2005-09-29 17:30:44.000000000 +0200
-+++ xindy/user-commands/texindy	2006-07-17 12:25:14.955404230 +0200
-@@ -299,9 +299,7 @@
+diff --git a/user-commands/texindy b/user-commands/texindy
+index e29e4e1..06dff2b 100755
+--- a/user-commands/texindy
++++ b/user-commands/texindy
+@@ -322,9 +322,9 @@ use Getopt::Long qw(:config bundling);
  
- # Check arguments, store them in proper variables.
- 
--sub usage ()
--{
+ sub usage ( ;$ )
+ {
+-    my $exit_code = shift;
+-    $exit_code += 0;			# turn undef into 0
 -    print STDERR <<_EOT_
-+my $usage_msg = <<_EOT_
++    my $signal_error = int shift;
++    my $output_handle = $signal_error ? *STDERR{IO} : *STDOUT{IO};
++    print $output_handle <<_EOT_
  
  usage: $cmd [-V?h] [-qv] [-iglr] [-d magic] [-o outfile.ind] [-t log] \\
-             [-L lang] [-C codepage] [-M module] [idx0 idx1 ...]
-@@ -325,7 +323,11 @@
-  -M / --module         (multiple times)
+             [-L lang] [-C codepage] [-M module] [-I input] [idx0 idx1 ...]
+@@ -350,7 +350,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
  
  _EOT_
--  ;
-+;
-+
-+sub usage ()
-+{
-+    print STDERR $usage_msg;
-     exit 1;
+   ;
+-    exit ($exit_code);
++    exit ($signal_error ? 1 : 0);
  }
  
-@@ -375,7 +377,7 @@
-     my ($german, $letter_ordering, $no_ranges);
-     GetOptions(
- 	       'version|V'          => \$output_version,
--	       'help|h|?'           => \&usage,
-+	       'help|h|?'           => sub { print $usage_msg; exit 0; },
- 	       'quiet|q'            => \$quiet,
- 	       'verbose|v'          => \$verbose,
- 	       'stdin|i'            => \$stdin,
-diff -urNad xindy~/user-commands/xindy.in xindy/user-commands/xindy.in
---- xindy~/user-commands/xindy.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy/user-commands/xindy.in	2006-07-17 12:27:53.623404230 +0200
-@@ -313,9 +313,7 @@
- # second-to-last has the extension ".xdy". Then, call the old driver
- # script with the original arguments...
+ our ($output_version, $quiet, $verbose, $stdin, @debug,
+diff --git a/user-commands/xindy.in b/user-commands/xindy.in
+index cfd399b..11c0009 100644
+--- a/user-commands/xindy.in
++++ b/user-commands/xindy.in
+@@ -335,9 +335,9 @@ use File::Spec;
  
--sub usage ()
--{
+ sub usage ( ;$ )
+ {
+-    my $exit_code = shift;
+-    $exit_code += 0;			# turn undef into 0
 -    print STDERR <<_EOT_
-+my $usage_msg = <<_EOT_
++    my $signal_error = int shift;
++    my $output_handle = $signal_error ? *STDERR{IO} : *STDOUT{IO};
++    print $output_handle <<_EOT_
  
  usage: $cmd [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \\
              [-L lang] [-C codepage] [-M module] [-I input] \\
-@@ -338,7 +336,11 @@
-  -I / --input-markup   (supported: latex, xindy)
+@@ -361,7 +361,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
  
  _EOT_
--  ;
-+;
-+
-+sub usage ()
-+{
-+    print STDERR $usage_msg;
-     exit 1;
+   ;
+-    exit ($exit_code);
++    exit ($signal_error ? 1 : 0);
  }
  
-@@ -405,7 +407,7 @@
-     GetOptions(
- 		'version|V'          => sub { output_version(0); },
- 		'internal-version'   => sub { output_version(1); },
--		'help|h|?'           => \&usage,
-+		'help|h|?'           => sub { print $usage_msg; exit 0; },
- 		'quiet|q'            => \$quiet,
- 		'verbose|v'          => \$verbose,
- 		'debug|d=s'          => \@debug,
+ our ($quiet, $verbose, %debug,
