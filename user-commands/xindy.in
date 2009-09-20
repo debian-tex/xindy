@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: xindy.pl,v 1.8 2006/07/30 10:30:42 jschrod Exp $
+# $Id: xindy.pl,v 1.13 2009/03/29 11:14:04 jschrod Exp $
 #------------------------------------------------------------
 # (history at end)
 
@@ -64,7 +64,7 @@ output usage message with options explanation.
 
 Don't output progress messages. Output only error messages.
 
-=item C<--version> / B<-v>
+=item C<--verbose> / B<-v>
 
 Output verbose progress messages.
 
@@ -222,7 +222,7 @@ F<usr>-installations.
 
 =item C<XINDY_LIBDIR>
 
-Library directory where F<xindy.run> and F<xindy.mem> are located.
+Library directory where F<xindy.mem> is located.
 
 The modules directory may be a subdirectory, too.
 
@@ -276,7 +276,7 @@ use strict;
 
 BEGIN {
     use vars qw($Revision $VERSION);
-    q$Revision: 1.8 $ =~ /: (\d+)\.(\d+)/ ;	# q wg. Emacs indent!
+    q$Revision: 1.13 $ =~ /: (\d+)\.(\d+)/ ;	# q wg. Emacs indent!
     my ($major, $minor) = ($1, $2);
     $VERSION = "$major." . ($minor<10 ? '0' : '') . $minor;
 }
@@ -300,7 +300,7 @@ BEGIN {
 	} else {
 	    $lib_dir = '@libdir@'; # /opt style
 	}
-    } elsif ( -f "$cmd_dir/../lib/xindy.run" ) { # /opt style
+    } elsif ( -f "$cmd_dir/../lib/xindy.mem" ) { # /opt style
 	$lib_dir = "$cmd_dir/../lib";
     } elsif ( -d "$cmd_dir/../lib/xindy" ) { # /usr style
 	$lib_dir = "$cmd_dir/../lib/xindy";
@@ -333,8 +333,10 @@ use File::Spec;
 # second-to-last has the extension ".xdy". Then, call the old driver
 # script with the original arguments...
 
-sub usage ()
+sub usage ( ;$ )
 {
+    my $exit_code = shift;
+    $exit_code += 0;			# turn undef into 0
     print STDERR <<_EOT_
 
 usage: $cmd [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \\
@@ -359,7 +361,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
 
 _EOT_
   ;
-    exit 1;
+    exit ($exit_code);
 }
 
 our ($quiet, $verbose, %debug,
@@ -444,7 +446,7 @@ sub parse_options() {
 		'interactive'        => \$interactive,
 		'mem-file=s'         => \$mem_file,
 	      )
-      or  usage();
+      or  usage(1);
 
     # Debug option values are easier to test in a hash. Clean up trace
     # level options, too.
@@ -466,7 +468,7 @@ sub parse_options() {
     if ( %debug_check ) {
 	my @magic = keys(%debug_check);
 	print STDERR "Unsupported argument for --debug: @magic\n";
-	usage();
+	usage(1);
     }
 
     # Script debugging implies running it verbose and not quiet.
@@ -480,8 +482,8 @@ sub parse_options() {
     unless ( $outfile  ||  $interactive ) {
 	if ( @ARGV == 0 ) {
 	    print STDERR
-"You need to specify --out-file if the raw index is read from standard input.\n\n";
-	    usage();
+"You need to specify --out-file if the raw index is read from standard input.\n";
+	    usage(1);
 	}
 	my ($name, $path, $suffix) = fileparse ($ARGV[0], '\.[^\.]+');
 	$outfile = "$path$name.ind";
@@ -498,8 +500,8 @@ sub parse_options() {
     if ( $input_markup  &&
 	 $input_markup ne 'latex' && $input_markup ne 'omega' &&
 	 $input_markup ne 'xindy' ) {
-	print STDERR "Unsupported input markup $input_markup.\n\n";
-	usage();
+	print STDERR "Unsupported input markup $input_markup.\n";
+	usage(1);
     }
     if ( $input_markup eq 'omega' ) {
 	@codepages = qw(utf8);
@@ -603,7 +605,7 @@ sub xindy_expression () {
 	    if ( $2 && -d "$ld/$1" ) { # $2 is not set if the regex didn't match
 		$language = $1;
 		$variant = "$2-"  unless ( $2 eq 'iso' );
-		$variant =~ s/din/din5007/ ;
+		$variant eq 'din-'  and  $variant = 'din5007-';
 	    }
 	}
 	# Let's guess the codepage. We take any that starts with
@@ -672,8 +674,7 @@ _EOT_
 sub call_xindy ( $$ ) {
     my ($mem_file, $xindy_exp) = @_;
 
-    my @command = ("$lib_dir/xindy.run", '-q',
-		   '-B', $lib_dir, '-M', $mem_file, '-E', 'iso-8859-1');
+    my @command = ('clisp', '-M', $mem_file, '-E', 'iso-8859-1');
     if ( $interactive ) {
 	print "Proposed xindy expression:\n\n$xindy_exp\n"  unless $quiet;
     } else {
@@ -744,6 +745,22 @@ sub quotify ( $ ) {
 #======================================================================
 #
 # $Log: xindy.pl,v $
+# Revision 1.13  2009/03/29 11:14:04  jschrod
+#     xindy.run does not exist any more, call clisp directly.
+#
+# Revision 1.12  2009/03/26 17:27:28  jschrod
+#  Checking for variant name din needs to take trailing hyphen into account.
+#
+# Revision 1.11  2009/03/22 11:08:18  jschrod
+#     man page: --v is --verbose, not --version.
+#
+# Revision 1.10  2009/03/21 18:05:11  jschrod
+#     Variant rename of din to din5007 made explicit. (Proposed by
+# Zdenek Wagner at 16 Mar 09.)
+#
+# Revision 1.9  2008/02/17 14:55:32  jschrod
+#     Use exitcode 0 when usage is explicitly demanded with --help et.al.
+#
 # Revision 1.8  2006/07/30 10:30:42  jschrod
 #     Check if an exec() error happened and output an error message.
 # (Ticket 1230801)

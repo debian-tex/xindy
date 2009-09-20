@@ -95,7 +95,6 @@ Mailing list archives are public and can be read at
 DISTRIBUTION CONTENT
 --------------------
 This distribution contains
- -- xindy run-time environment (rte/)
  -- xindy kernel (src/, tex2xindy/, user-commands/)
  -- sort-rules for many languages (make-rules/)
  -- base xindy styles, as described in the LaTeX Companion (modules/)

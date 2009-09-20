@@ -20,15 +20,14 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-bin_SCRIPTS = xindy xindy.v2
+bin_SCRIPTS = texindy xindy xindy.v2
 
-xindy: xindy.in
+xindy: xindy.in Makefile
 	sed -e 's:@libdir\@:$(libdir):' xindy.in >xindy
 
+# FIXME: Should get Perl location from autoconf
 xindy.v2: xindy.v2.in
 	sed -e 's:@XINDY_PERL\@:/usr/bin/perl:' xindy.v2.in >xindy.v2
-
-dist_bin_SCRIPTS = texindy
 
 man_MANS = texindy.1 xindy.1 xindy.v2.1
 

@@ -13,6 +13,7 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -29,7 +30,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = make-rules/alphabets/croatian
+pkglib_PROGRAMS = xindy.mem$(EXEEXT)
+subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ac_prog_latex.m4 \
@@ -39,7 +41,19 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
-SOURCES =
+am__installdirs = "$(DESTDIR)$(pkglibdir)"
+pkglibPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
+PROGRAMS = $(pkglib_PROGRAMS)
+am_xindy_mem_OBJECTS =
+dist_xindy_mem_OBJECTS =
+xindy_mem_OBJECTS = $(am_xindy_mem_OBJECTS) $(dist_xindy_mem_OBJECTS)
+xindy_mem_LDADD = $(LDADD)
+DEFAULT_INCLUDES = -I.@am__isrc@
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+SOURCES = $(xindy_mem_SOURCES) $(dist_xindy_mem_SOURCES)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AUTOCONF = @AUTOCONF@
@@ -49,7 +63,7 @@ AWK = @AWK@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
-CLISP = @CLISP@
+CLISP = @CLISP@ -q -E iso-8859-1
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
@@ -128,18 +142,36 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = cp1250.pl latin2.pl utf8.pl.in
-CLEANFILES = \
-	cp1250.raw \
-	cp1250-doc.tex \
-	latin2.raw \
-	latin2-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
 
+# Where the modules are found at runtime.
+MODULEDIR = $(pkglibdir)/modules
+
+# XXX
+AUTOMAKE_OPTIONS = no-exeext
+xindy_mem_SOURCES = 
+
+# Tell the dist target about our sources, define the object files for
+# our own rule and the .lib files for the clean definition. Don't use
+# gmake-isms.
+dist_xindy_mem_SOURCES = base.lsp ordrules.lsp locref.lsp idxstyle.lsp \
+			 index.lsp version.lsp markup.lsp
+
+FAS = base.fas ordrules.fas locref.fas idxstyle.fas \
+			 index.fas version.fas markup.fas
+
+FASLIBS = base.lib ordrules.lib locref.lib idxstyle.lib \
+			 index.lib version.lib markup.lib
+
+DEFAULTS = defaults.xdy
+DUMP_XINDY = dump-xindy.lsp
+MEMFILE = xindy.mem
+EXTRA_DIST = $(DEFAULTS).in
+SUFFIXES = .fas .lsp
+CLEANFILES = $(FAS) $(FASLIBS) $(DEFAULTS)
 all: all-am
 
 .SUFFIXES:
+.SUFFIXES: .fas .lsp
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -149,9 +181,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  make-rules/alphabets/croatian/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  src/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  make-rules/alphabets/croatian/Makefile
+	  $(AUTOMAKE) --foreign  src/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -169,6 +201,35 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-pkglibPROGRAMS: $(pkglib_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_PROGRAMS)'; for p in $$list; do \
+	  p1=`echo $$p|sed 's/$(EXEEXT)$$//'`; \
+	  if test -f $$p \
+	  ; then \
+	    f=`echo "$$p1" | sed 's,^.*/,,;$(transform);s/$$/$(EXEEXT)/'`; \
+	   echo " $(INSTALL_PROGRAM_ENV) $(pkglibPROGRAMS_INSTALL) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	   $(INSTALL_PROGRAM_ENV) $(pkglibPROGRAMS_INSTALL) "$$p" "$(DESTDIR)$(pkglibdir)/$$f" || exit 1; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_PROGRAMS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's,^.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/'`; \
+	  echo " rm -f '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(pkglibdir)/$$f"; \
+	done
+
+clean-pkglibPROGRAMS:
+	-test -z "$(pkglib_PROGRAMS)" || rm -f $(pkglib_PROGRAMS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
 tags: TAGS
 TAGS:
 
@@ -177,8 +238,11 @@ CTAGS:
 
 check-am: all-am
 check: check-am
-all-am: Makefile
+all-am: Makefile $(PROGRAMS)
 installdirs:
+	for dir in "$(DESTDIR)$(pkglibdir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -206,11 +270,11 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-pkglibPROGRAMS mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-compile distclean-generic
 
 dvi: dvi-am
 
@@ -226,7 +290,7 @@ install-data-am:
 
 install-dvi: install-dvi-am
 
-install-exec-am:
+install-exec-am: install-pkglibPROGRAMS
 
 install-html: install-html-am
 
@@ -246,7 +310,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-am
 
@@ -256,20 +320,33 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-pkglibPROGRAMS
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic distclean \
+.PHONY: all all-am check check-am clean clean-generic \
+	clean-pkglibPROGRAMS distclean distclean-compile \
 	distclean-generic dvi dvi-am html html-am info info-am install \
 	install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am
+	install-pdf install-pdf-am install-pkglibPROGRAMS install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-pkglibPROGRAMS
 
+
+xindy.mem: $(DEFAULTS) $(FAS) $(DUMP_XINDY)
+	rm -f $(MEMFILE)
+	$(CLISP) $(DUMP_XINDY)
+	gzip $(MEMFILE)
+	mv $(MEMFILE).gz $(MEMFILE)
+
+$(DEFAULTS): $(DEFAULTS).in Makefile
+	sed 's|@MODULEDIR[@]|$(MODULEDIR)|g' <$(DEFAULTS).in >$(DEFAULTS)
+.lsp.fas:
+	$(CLISP) -c $<
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

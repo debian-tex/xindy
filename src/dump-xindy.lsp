@@ -8,6 +8,7 @@
 
 (load 'base)
 (load 'locref)
+(load 'ordrules)
 (load 'idxstyle)
 (load 'index)
 (load 'version)

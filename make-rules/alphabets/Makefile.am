@@ -798,7 +798,6 @@ romanian/cp1250.pl : romanian/utf8.pl
 
 
 %-lang.xdy : %-test.xdy
-	echo '(require "lang/$*.xdy")' >$@
 	sed -n '1,10 p' <$< >$@
 
 %-test.xdy : %.pl
@@ -1150,10 +1149,8 @@ if BUILDRULES
 
 if BUILDDOCS
 alphabets-doc.pdf : alphabets-doc.tex alphabets-inc.tex
-	pdflatex alphabets-doc.tex
-	pdflatex alphabets-doc.tex
-
-docdir = $(datadir)/doc/$(PACKAGE_NAME)-$(PACKAGE_VERSION)
+	pdflatex -interaction batchmode alphabets-doc.tex
+	pdflatex -interaction batchmode alphabets-doc.tex
 
 PDFS = alphabets-doc.pdf
 

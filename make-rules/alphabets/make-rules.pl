@@ -29,7 +29,7 @@ $begin = 128;
 # $begin =  97 if ($script eq "cyrillic");
 # $begin = 150 if ($script eq "latin");
 # $begin =  65 if ($script eq "greek");
-  
+
 if (!$begin) {
     $begin = 65;
 }
@@ -37,7 +37,7 @@ if (!$begin) {
 print "Alphabet has " . @{$alphabet} . " elements.\n";
 
 for ($i = 0; $i < @{$alphabet}; $i++) {
-  if (defined($alphabet->[$i][0])) {  
+  if (defined($alphabet->[$i][0])) {
     $letter = $alphabet->[$i][0];
     $lout = $letter;
     $lout =~ s/\~/~~/g;
@@ -45,7 +45,7 @@ for ($i = 0; $i < @{$alphabet}; $i++) {
     $token = chr($i+$begin);
     $token =~ s/\~/~~/g;
     $token =~ s/\"/~\"/g;
-    if ($after ne $letter) {
+    if ($after ne $lout) {
       print XDY "\"))\n" if ($i);
       print XDY "(define-letter-group \"$lout\"";
       print XDY " :after \"$after\"" if ($i);
@@ -54,7 +54,7 @@ for ($i = 0; $i < @{$alphabet}; $i++) {
       print XDY "\" \"";
     }
     print XDY "$token";
-    $after = $letter;
+    $after = $lout;
   }
 }
 
@@ -85,10 +85,10 @@ make_tokens();
 
 for ($i = 0; $i < @{$ligatures}; $i++) {
   if ($ligatures->[$i][1] eq "before") {
-    $token = chr(161); 
+    $token = chr(161);
   } else {
     $token = chr(255);
-  }      
+  }
   foreach $ligature_variant (@{$ligatures->[$i][0]}) {
     $tokens{$ligature_variant} = $token;
   }
@@ -138,7 +138,7 @@ print_tokens($prefix . "resolve-special");
     for ($j = 1; $j < @{$alphabet->[$i]}; $j++) {
         push @l,join("\\,", (@{$alphabet->[$i][$j]}));
     }
-    if ((@l)) {  
+    if ((@l)) {
 	push @m, join(" & ", (@l));
     }
 #    push @m, "`".$alphabet->[$i][0]."':\\>".join(" -- ", (@l));
@@ -178,7 +178,7 @@ print_tokens($prefix . "resolve-special");
     print DOC "Capitalized or uppercase words are sorted \\emph{after} ";
     print DOC "otherwise equal lowercase words.\n";
   }
-  
+
 # special
 print DOC "\n\\subsubsection{Special characters}\n";
 print DOC "The order of special characters and letters is:\n";

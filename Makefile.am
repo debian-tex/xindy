@@ -5,7 +5,7 @@
 # Makefile for xindy
 
 ## Copyright (C) 2004-2005 by Gour.
-## Copyright (C) 2008 by Joachim Schrod.
+## Copyright (C) 2008,2009 by Joachim Schrod.
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -26,19 +26,23 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
+SUBDIRS = src tex2xindy modules user-commands
+
 # do we build make-rules?
 if BUILDRULES
-  MAKE_RULES = make-rules
+  SUBDIRS += make-rules
 endif
 
 # do we build docs?
 if BUILDDOCS
-  DOCS = doc
+  SUBDIRS += doc
 endif
 
-SUBDIRS = rte binaries tex2xindy modules user-commands $(MAKE_RULES) $(DOCS)
+EXTRA_DIST = setup.sh ChangeLog.Gour VERSION
 
-EXTRA_DIST = src setup.sh ChangeLog.Gour
+versiondir = ${prefix}
+version_DATA = VERSION
+
 
 distclean-local:
 	rm -rf autom4te.cache
