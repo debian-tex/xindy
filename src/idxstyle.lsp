@@ -8,6 +8,7 @@
 
 #+CLISP (lisp:require "base")
 #+CLISP (lisp:require "locref")
+#+CLISP (lisp:require "ordrules")
 
 (eval-when (compile load eval)
   (lisp:use-package "CLOS")
@@ -445,16 +446,13 @@ NIL in cases where no switch keyword was found in EXPR.
           ((null replacement)
              (error "~&Missing argument <replacement> in:~&~S!" whole))
           (t `(PROGN
-               (UNLESS
-                   (ZEROP
-                    (ORDRULES:ADD-KEYWORD-MERGE-RULE ,pattern ,replacement
-                                                     ,(if again 1 0)
-                                                     ,(cond (string 1)
-                                                            (basic-regexp 2)
-                                                            (extended-regexp 3)
-                                                            (t 0))))
-                 (OOPS "~&Wrong regular expression ~S in:~%~S." ',pattern ',whole))
-               (FLUSH-ORDRULES-MESSAGE-BUFFER))))))
+                (ORDRULES:ADD-KEYWORD-MERGE-RULE ,pattern ,replacement
+						 ,(if again 1 0)
+						 ,(cond (string 1)
+							(basic-regexp 2)
+							(extended-regexp 3)
+							(t 0)))
+                (FLUSH-ORDRULES-MESSAGE-BUFFER))))))
 
 #-:ORDRULES
 (defmacro merge-rule (&rest args)
@@ -555,16 +553,13 @@ NIL in cases where no switch keyword was found in EXPR.
           ((null replacement)
              (error "missing argument <replacement> !"))
           (t `(PROGN
-               (UNLESS
-                   (ZEROP
-                    (ORDRULES:ADD-KEYWORD-SORT-RULE ,run ,pattern ,replacement
-                                                    ,(if again 1 0)
-                                                    ,(cond (string 1)
-                                                           (basic-regexp 2)
-                                                           (extended-regexp 3)
-                                                           (t 0))))
-                 (OOPS "~&Wrong regular expression ~S in:~%~S." ',pattern ',whole))
-               (FLUSH-ORDRULES-MESSAGE-BUFFER))))))
+	        (ORDRULES:ADD-KEYWORD-SORT-RULE ,run ,pattern ,replacement
+		                                ,(if again 1 0)
+		                                ,(cond (string 1)
+                                                       (basic-regexp 2)
+                                                       (extended-regexp 3)
+                                                       (t 0)))
+                (FLUSH-ORDRULES-MESSAGE-BUFFER))))))
 
 #-:ORDRULES
 (defmacro define-sort-rule-orientations (&rest args)

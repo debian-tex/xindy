@@ -8,6 +8,8 @@
 #+CLISP (lisp:require "locref")
 #+CLISP (lisp:require "idxstyle")
 #+CLISP (lisp:require "index")
+#+CLISP (lisp:require "ordrules")
+#+CLISP (lisp:require "version")
 
 (eval-when (compile load eval)
   (lisp:use-package "CLOS")
@@ -17,7 +19,6 @@
   #-CLISP (lisp:require "locref")
   #-CLISP (lisp:require "idxstyle")
   #-CLISP (lisp:require "index")
-  (lisp:require "version")
   (lisp:use-package "BASE")
   (lisp:use-package "LOCREF")
   (lisp:use-package "IDXSTYLE")
@@ -1150,8 +1151,6 @@ T
 ;; line 44 "startup.nw"
 (defun issue-startup-message ()
   (info "xindy kernel version: ~A~%" *xindy-kernel-version*)
-  (info "xindy run time engine: ~A, version ~A~%"
-	*xindy-platform* xindy::*xindy-rte-version*)
   (info "~A version ~A~%    architecture: ~A~%"
 	(lisp-implementation-type) (lisp-implementation-version)
 	(machine-version))
@@ -1176,8 +1175,7 @@ T
 ;; line 70 "startup.nw"
 (defun do-startup (idxstyle raw-index output logfile trace-level)
   (set-searchpath-by-environment)
-  (setq custom:*default-file-encoding* charset:iso-8859-1
-	custom:*foreign-encoding* charset:iso-8859-1)
+  (setq custom:*default-file-encoding* charset:iso-8859-1)
   (when logfile
     (info "~&Opening logfile ~S " logfile)
     (handler-case
@@ -1286,6 +1284,6 @@ T
 (eval-when (compile load eval)
 
 ;; line 135 "startup.nw"
-(export '(startup *xindy-core-version* *xindy-platform*))
+(export '(startup *xindy-kernel-version*))
 ;; line 232 "startup.nw"
   )

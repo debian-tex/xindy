@@ -8,6 +8,7 @@
 #+CLISP (lisp:require "base")
 #+CLISP (lisp:require "locref")
 #+CLISP (lisp:require "idxstyle")
+#+CLISP (lisp:require "ordrules")
 
 (eval-when (compile load eval)
   (lisp:use-package "CLOS")

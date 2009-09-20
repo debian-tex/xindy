@@ -4,7 +4,7 @@
 ## Or, call `autoconf' to create only configure.
 
 ## Copyright (C) 2004-2005 by Gour.
-## Copyright (C) 2008 by Joachim Schrod.
+## Copyright (C) 2008,2009 by Joachim Schrod.
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -22,92 +22,67 @@
 ## Boston, MA 02110-1301 USA.
 
 AC_PREREQ(2.59)
-AC_INIT([xindy], [2.3], [xindy-discuss@lists.sourceforge.net])
+dnl Get version string from file; need to discard training newline
+dnl Note: patsubst() or translit() don't work here, it's not possible
+dnl to specify substitution of \n, so we use substr. This won't work
+dnl if file VERSION is missing its trailing newline...
+m4_define([VERSION_NL],m4_include([VERSION]))
+m4_define([XINDY_VERSION],m4_substr(VERSION_NL,0,m4_eval(m4_len(VERSION_NL)-1)))
+AC_INIT([xindy], XINDY_VERSION, [xindy-discuss@lists.sourceforge.net])
 
-## make dist doesn't work yet, since configure makes CLISP.
-AM_INIT_AUTOMAKE([foreign no-dist])
+# Automake's dist target needs all to-be-distributed files flagged in
+# Makefile.am files; we have not done that yet. Since we don't do C
+# programs, automake's defaults are not usable for us, too.
+AM_INIT_AUTOMAKE([foreign no-dist no-define])
 
-# Checks for programs.
-# FIXME: not used: CXX, CPP, YACC, LN_S. Why are they tested here?
-AC_PROG_CXX
-AC_PROG_CC
-AC_PROG_CPP
-AC_PROG_LEX
-AC_PROG_YACC
-AC_PROG_INSTALL
-AC_PROG_LN_S
-AC_PROG_MAKE_SET
-AC_PROG_GCC_TRADITIONAL
-
-dnl test for building make-rules
+# Test for building make-rules
 AC_ARG_ENABLE(make-rules, AS_HELP_STRING([--enable-make-rules ],[build and install make-rules package (default is YES)]),[BUILDRULES=$enableval],[BUILDRULES=yes])
-
-if test "$BUILDRULES" = "yes"; then
-    AC_PROG_LATEX
-fi
-
+test "$BUILDRULES" = "yes"  &&  AC_PROG_LATEX
 AM_CONDITIONAL(BUILDRULES, test "$BUILDRULES" = "yes")
 
-dnl test for building Documentation
+# Test for building Documentation
 AC_ARG_ENABLE(docs, AS_HELP_STRING([--enable-docs ],[build and install documentation (default is YES)]),[BUILDDOCS=$enableval],[BUILDDOCS=yes])
-
-if test "$BUILDDOCS" = "yes"; then
-    AC_PROG_PDFLATEX
-fi
-
+test "$BUILDDOCS" = "yes"  &&  AC_PROG_PDFLATEX
 AM_CONDITIONAL(BUILDDOCS, test "$BUILDDOCS" = "yes")
 
-dnl use external or internal CLISP
-AC_ARG_ENABLE(external-clisp, AS_HELP_STRING([--enable-external-clisp],[Use an external CLISP instead of the one in rte/]),[EXT_CLISP=$enableval],[EXT_CLISP=no])
+# Checks for programs:
+# make and install are needed in all Makefiles.
+AC_PROG_MAKE_SET
+AC_PROG_INSTALL
+# CLISP for src/
+AC_PATH_PROG([CLISP],[clisp])
+# flex for tex2xindy
+# FIXME: lex actually must really be flex. But there is no AC_PROG_FLEX!?
+AM_PROG_LEX
+AC_PROG_CC
 
-dnl test for CLISP
-AC_ARG_ENABLE(clisp-path, AS_HELP_STRING([--clisp-path],[Where to search the external CLISP]),[CLISP_PATH=$enableval],[CLISP_PATH=$(which clisp)])
+# Check that CLISP was found.
+# FIXME: Should we also check for latex in the buildrules case?
+# What about a C compiler? install?
+test "$CLISP"  ||  AC_MSG_ERROR([CLISP is needed to build and run xindy])
 
-dnl test for CLISP linkkit
-AC_ARG_ENABLE(clisp-dir, AS_HELP_STRING([--clisp-dir],[Where to seach the external CLISP library]),[CLISP_DIR=$enableval],[CLISP_DIR=/usr/lib/clisp])
-
-if test "$EXT_CLISP" != no; then
-    AM_CONDITIONAL(EXT_CLISP, test -x "$CLISP_PATH" -a -x "$CLISP_DIR/clisp-link" -a -d "$CLISP_DIR/full" -a -d "$CLISP_DIR/linkkit")
-    AC_SUBST(CLISP_PATH)
-    AC_SUBST(CLISP_DIR)
-
-    if test -n "$EXT_CLISP_TRUE"; then
-        if test "$EXT_CLISP" = yes; then
-            echo Help me! I should use an external CLISP, but I can\'t find it. >&2
-            exit 1
-        else
-            echo Using internal clisp
-            EXT_CLISP=no
-        fi
-    else
-        echo Using external clisp
-    fi
-else
-    AM_CONDITIONAL(EXT_CLISP, false)
-fi
-
-# Checks for libraries.
+# Check for flex library, the function to test for in this lib is main().
+# FIXME: Is this really needed; ain't that done by AM_PROG_LEX automatically?
 AC_CHECK_LIB([fl], [main])
 
-# Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS([stdlib.h string.h])
+# No checks for header files. We use stdio.h, unistd.h, and string.h.
+# Today, they are universally available if a C compiler is installed.
 
-dnl check system type
-AC_CANONICAL_HOST
-AC_SUBST(host_cpu)
-AC_SUBST(host_os)
+dnl # Check system type
+dnl # FIXME: Is that needed for TeX Live compilation? Leave it in comments...
+dnl AC_CANONICAL_HOST
+dnl AC_SUBST(host_cpu)
+dnl AC_SUBST(host_os)
 
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
-AC_CHECK_FUNCS([strrchr strtoul])
+# The code in tex2indy.l simply assumes that strtoul() is there, would
+# need a replacement.
+AC_CHECK_FUNCS([strtoul],[],AC_MSG_ERROR([strtoul() is needed]))
 
 AC_CONFIG_FILES([Makefile \
-		rte/Makefile \
-		rte/ordrules/Makefile \
-		rte/ordrules/version.lisp \
-		binaries/Makefile \
+		src/Makefile \
 		tex2xindy/Makefile \
 		modules/Makefile \
 		modules/base/Makefile \

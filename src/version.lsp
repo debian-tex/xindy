@@ -3,9 +3,11 @@
 ;; version identification of xindy kernel
 ;; src/version.lsp.
 
-(in-package :xindy-version)
 (lisp:provide "version")
 
-(export '*xindy-kernel-version*)
+(defpackage :xindy-version
+    (:export *xindy-kernel-version*))
 
-(defparameter *xindy-kernel-version* "2.3")
+(in-package :xindy-version)
+
+(defconstant *xindy-kernel-version* "3.0")
