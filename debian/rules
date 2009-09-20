@@ -54,17 +54,9 @@ build-indep-stamp: config.status-with-latex
 
 	touch $@
 
-cl_src = $(CURDIR)/clisp-link-src
-
 build-arch: build-arch-stamp
 build-arch-stamp:  config.status
 	dh_testdir
-
-	rm -fr $(cl_src)
-	cp -Lr $(CLISP_DIR)/full $(cl_src)
-	sed -i '/^LIBS/!n; s/-ldb /-ldb-4.6 /; s/-l\(SM\|ICE\) //g' \
-	  $(cl_src)/makevars
-	$(MAKE) -C rte fulldir=$(cl_src) all
 
 	for i in $(arch_subdirs); do $(MAKE) -C $$i all || exit 1; done
 
@@ -73,8 +65,6 @@ build-arch-stamp:  config.status
 clean:
 	dh_testdir
 	rm -f build-arch-stamp build-indep-stamp config.status-with-latex
-
-	rm -fr $(cl_src)
 
 	# fixme upstream: clisp-link creates this directory, but upstream
         # doesn't remove it
