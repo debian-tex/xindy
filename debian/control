@@ -9,6 +9,7 @@ Standards-Version: 3.7.3.0
 Homepage: http://www.xindy.org/
 Vcs-Browser: http://git.debian.org/?p=users/jo-guest/xindy.git
 Vcs-Git: git://git.debian.org/~jo-guest/xindy.git
+DM-Upload-Allowed: yes
 
 Package: xindy
 Architecture: any
