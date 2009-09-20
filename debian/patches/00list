@@ -1,9 +1,6 @@
-latex-call
 fix-echo-expansion
 fix-FHS
 help-option
-fix-stdout
 fix-manpages
-fix-clisp-problems
 config.guess+sub
 rebuild-manpages
