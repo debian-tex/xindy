@@ -14,6 +14,10 @@ xindy (2.4~pre1-1) UNRELEASED; urgency=low
     clisp, because the new version doesn't use an external clisp module,
     anymore.
 
+  * Mark the xindy package buildable on any architecture, because we
+    aren't limited to the architectures with external linking support
+    anymore. We can build everywhere where CLISP is.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.3-2) unstable; urgency=low
