@@ -29,6 +29,8 @@ configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
 arch_subdirs=src tex2xindy user-commands
 indep_subdirs=modules make-rules doc
 
+xindy_dir=debian/xindy
+
 config.status: configure patch-stamp
 	dh_testdir
 	./configure $(configure_flags) --disable-make-rules --disable-docs
@@ -107,6 +109,7 @@ binary-arch: build-arch
 	dh_link -a usr/share/doc/xindy-rules usr/share/doc/xindy
 	dh_strip -a
 	dh_compress -a
+	chmod -x $(xindy_dir)/usr/lib/xindy/xindy.mem
 	dh_fixperms -a
 	dh_perl -a
 	dh_installdeb -a
