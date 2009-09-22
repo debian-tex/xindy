@@ -1,4 +1,4 @@
-xindy (2.4~pre1-1) UNRELEASED; urgency=low
+xindy (2.4~pre1-1) unstable; urgency=low
 
   * New upstream release; downloaded from
     http://www.xindy.org/xindy-2.4-SNAPSHOT.tar.gz on 2009-09-20.
@@ -30,7 +30,9 @@ xindy (2.4~pre1-1) UNRELEASED; urgency=low
 
   * Bump policy version to 3.8.3
 
- -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
+  * Upload is sponsored by Norbert Preining.
+
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Tue, 22 Sep 2009 12:50:30 +0200
 
 xindy (2.3-2) unstable; urgency=low
 
