@@ -1,5 +1,8 @@
 xindy (2.4~pre1-2) UNRELEASED; urgency=low
 
+  * Added a workaround for the broken check around
+    --disable-(make-rules|docs) in configure. (closes: #548451)
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.4~pre1-1) unstable; urgency=low

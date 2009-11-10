@@ -5,3 +5,4 @@ fix-manpages
 config.guess+sub
 rebuild-manpages
 fix-alphabets-doc-geometry
+fix-configure
