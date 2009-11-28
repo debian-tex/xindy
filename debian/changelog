@@ -1,8 +1,8 @@
-xindy (2.4~pre1-3) UNRELEASED; urgency=low
+xindy (2.4~pre1-3) unstable; urgency=low
 
   * Added clisp to the list of dependencies of xindy. (closes: #558167)
 
- -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
+ -- Jörg Sommer <joerg@alea.gnuu.de>  Sat, 28 Nov 2009 01:46:29 +0100
 
 xindy (2.4~pre1-2) unstable; urgency=low
 
