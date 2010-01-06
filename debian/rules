@@ -19,9 +19,6 @@ else
 	CFLAGS += -O2
 endif
 
-export CLISP_DIR = $(shell dirname $$(readlink --canonicalize /usr/bin/clisp-link))
-export CLISP_LINKKIT = $(CLISP_DIR)/linkkit
-
 configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
   --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr \
   --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
