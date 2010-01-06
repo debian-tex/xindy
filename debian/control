@@ -13,7 +13,8 @@ DM-Upload-Allowed: yes
 
 Package: xindy
 Architecture: any
-Depends: xindy-rules, clisp, ${shlibs:Depends}, ${perl:Depends}
+Depends: xindy-rules, clisp, ${shlibs:Depends}, ${perl:Depends},
+  ${misc:Depends}
 Description: index generator for structured documents like LaTeX or SGML
  xindy is an index processor that can be used to generate book-like
  indexes for arbitrary document-preparation systems. This includes
@@ -28,6 +29,7 @@ Description: index generator for structured documents like LaTeX or SGML
 
 Package: xindy-rules
 Architecture: all
+Depends: ${misc:Depends}
 Recommends: xindy
 Description: rule files for xindy
  xindy is an index processor that can be used to generate book-like
