@@ -21,7 +21,8 @@ endif
 
 configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
   --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr \
-  --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
+  --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
+  --docdir=\$${prefix}/share/doc/xindy-rules
 
 arch_subdirs=src tex2xindy user-commands
 indep_subdirs=modules make-rules doc
@@ -77,10 +78,9 @@ binary-indep: build-indep
 	dh_clean -k -i
 	dh_installdirs -i
 
-#       docdir is /usr/share/doc/xindy-rules instead of …/doc/xindy-VERSION
 	for i in $(indep_subdirs); do \
 	    $(MAKE) -C $$i install DESTDIR=$(CURDIR)/debian/xindy-rules \
-	      docdir='$$(datadir)/doc/xindy-rules' || exit 1; \
+	      || exit 1; \
 	done
 	find debian/xindy-rules/usr/share/xindy/lang -name \*.pl -delete
 
