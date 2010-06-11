@@ -1,5 +1,5 @@
 
-#line 3 "tex2xindy.c"
+#line 3 "<stdout>"
 
 #define  YY_INT_ALIGNED short int
 
@@ -550,7 +550,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "tex2xindy.l"
 #line 2 "tex2xindy.l"
-  /* $Id: tex2xindy.l,v 1.21 2006/07/30 09:44:04 jschrod Exp $
+  /* $Id: tex2xindy.l,v 1.24 2010/05/10 23:02:17 jschrod Exp $
      ============================================================
      (history at end)
 
@@ -668,7 +668,7 @@ int range = NO_RANGE;
 
 /* This function quotes a character, if necessary. */
 
-void qc( char ch ) {
+static void qc( char ch ) {
   switch (ch) {
     case '\\' :
     case '"'  :
@@ -680,7 +680,7 @@ void qc( char ch ) {
 
 /* Quote an entire string. */
 
-void qs( char* str ) {
+static void qs( char* str ) {
   while ( *str ) {
     qc( *str++ );
   }
@@ -691,7 +691,7 @@ void qs( char* str ) {
    The parameter gets passed the amount of hex digits in the ^^-notation.
    In front of the hex digits are the same amount of ^ chars.
 */
-void omega_output_utf8 ( int width )
+static void omega_output_utf8 ( int width )
 {
     unsigned long int c = strtoul (yytext+width, NULL, 16);
     if (c < 0x80) {
@@ -735,7 +735,7 @@ void omega_output_utf8 ( int width )
 }
 
 
-#line 739 "tex2xindy.c"
+#line 739 "<stdout>"
 
 #define INITIAL 0
 #define key 1
@@ -928,7 +928,7 @@ YY_DECL
 #line 207 "tex2xindy.l"
 
 
-#line 932 "tex2xindy.c"
+#line 932 "<stdout>"
 
 	if ( !(yy_init) )
 		{
@@ -1301,7 +1301,7 @@ YY_RULE_SETUP
 #line 363 "tex2xindy.l"
 ECHO;
 	YY_BREAK
-#line 1305 "tex2xindy.c"
+#line 1305 "<stdout>"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(key):
 case YY_STATE_EOF(print):
@@ -2311,9 +2311,9 @@ void yyfree (void * ptr )
 
 
 
-void usage ()
+static void usage (void)
 {
-    fputs("This is tex2xindy, $Revision: 1.21 $.\n", stderr);
+    fputs("This is tex2xindy, $Revision: 1.24 $.\n", stderr);
     fputs("usage: tex2xindy [-o] [attr_file]\n", stderr);
     exit (1);
 }
@@ -2357,9 +2357,27 @@ main(int argc, char* argv[])
 }
 
 
+/*
+ *  Define dummy yywrap so we no longer depend on `libfl.a'.
+ */
+int yywrap (void)
+{
+    return 1;
+}
+
+
 /* ============================================================
 
   $Log: tex2xindy.l,v $
+  Revision 1.24  2010/05/10 23:02:17  jschrod
+      Use ANSI C function definitions. (Patch from peb.)
+
+  Revision 1.23  2009/12/03 00:42:14  jschrod
+      Define internal functions as static to silence gcc warnings.
+
+  Revision 1.22  2009/12/03 00:36:09  jschrod
+      Define yywrap(), to be independent from libfl.
+
   Revision 1.21  2006/07/30 09:44:04  jschrod
       While quote is not output, escape+quote *is* output.
 

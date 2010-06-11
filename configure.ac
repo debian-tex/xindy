@@ -33,7 +33,12 @@ AC_INIT([xindy], XINDY_VERSION, [xindy-discuss@lists.sourceforge.net])
 # Automake's dist target needs all to-be-distributed files flagged in
 # Makefile.am files; we have not done that yet. Since we don't do C
 # programs, automake's defaults are not usable for us, too.
-AM_INIT_AUTOMAKE([foreign no-dist no-define])
+AM_INIT_AUTOMAKE([foreign no-define])
+
+# Installation directories for standalone xindy.
+memdir='$(pkglibdir)'
+AC_SUBST([memdir])
+AM_CONDITIONAL([TEXLIVE_BUILD], [false])
 
 # Test for building make-rules
 AC_ARG_ENABLE(make-rules, AS_HELP_STRING([--enable-make-rules ],[build and install make-rules package (default is YES)]),[BUILDRULES=$enableval],[BUILDRULES=yes])
@@ -51,28 +56,38 @@ AC_PROG_MAKE_SET
 AC_PROG_INSTALL
 # CLISP for src/
 AC_PATH_PROG([CLISP],[clisp])
+AC_PATH_PROG([PERL], [perl])
 # flex for tex2xindy
 # FIXME: lex actually must really be flex. But there is no AC_PROG_FLEX!?
-AM_PROG_LEX
+AC_PROG_LEX
 AC_PROG_CC
+AC_PROG_LN_S
+
+# Check system type. This is needed to detect mingw32 environment,
+# then CLISP .mem files must not be compressed.
+AC_CANONICAL_HOST
+
+# On some systems without working iconv, we must use recode.
+AC_ARG_WITH([xindy-recode],
+            AS_HELP_STRING([--with-xindy-recode],
+                           [Use `recode' instead of `iconv' @<:@default is NO@:>@]))
+if test "x$with_xindy_recode" != xyes; then
+  CONVERT_FROM_UTF8='iconv -f UTF-8 -t #' # May need the trailing blank
+else
+  AC_CHECK_PROG(CONVERT_FROM_UTF8, recode, [recode UTF-8..])
+  if test "x$CONVERT_FROM_UTF8" != 'xrecode UTF-8..'; then
+    AC_MSG_ERROR([--with-xindy-recode specified, but `recode' not found])
+  fi
+fi
+AC_SUBST([CONVERT_FROM_UTF8])
 
 # Check that CLISP was found.
 # FIXME: Should we also check for latex in the buildrules case?
 # What about a C compiler? install?
 test "$CLISP"  ||  AC_MSG_ERROR([CLISP is needed to build and run xindy])
 
-# Check for flex library, the function to test for in this lib is main().
-# FIXME: Is this really needed; ain't that done by AM_PROG_LEX automatically?
-AC_CHECK_LIB([fl], [main])
-
 # No checks for header files. We use stdio.h, unistd.h, and string.h.
 # Today, they are universally available if a C compiler is installed.
-
-dnl # Check system type
-dnl # FIXME: Is that needed for TeX Live compilation? Leave it in comments...
-dnl AC_CANONICAL_HOST
-dnl AC_SUBST(host_cpu)
-dnl AC_SUBST(host_os)
 
 # Checks for typedefs, structures, and compiler characteristics.
 

@@ -21,18 +21,22 @@
 
 langdir	= $(pkglibdir)/modules/lang
 
+DISTCLEANFILES =
+
 albaniandir = $(langdir)/albanian
 
 ALBANIAN = \
 	albanian/latin1-lang.xdy \
 	albanian/latin1-test.xdy \
 	albanian/latin1.xdy \
-	albanian/utf8.pl \
 	albanian/utf8-lang.xdy \
 	albanian/utf8-test.xdy \
 	albanian/utf8.xdy
 
 nodist_albanian_DATA = $(ALBANIAN)
+
+DISTCLEANFILES += \
+	albanian/utf8.pl
 
 belarusiandir = $(langdir)/belarusian
 
@@ -46,13 +50,14 @@ BELARUSIAN = \
 	belarusian/isoir111-lang.xdy \
 	belarusian/isoir111-test.xdy \
 	belarusian/isoir111.xdy \
-	belarusian/utf8.pl \
 	belarusian/utf8-lang.xdy \
 	belarusian/utf8-test.xdy \
 	belarusian/utf8.xdy
 
 nodist_belarusian_DATA = $(BELARUSIAN)
 
+DISTCLEANFILES += \
+	belarusian/utf8.pl
 
 bulgariandir = $(langdir)/bulgarian
 
@@ -66,12 +71,14 @@ BULGARIAN = \
 	bulgarian/koi8-r-lang.xdy \
 	bulgarian/koi8-r-test.xdy \
 	bulgarian/koi8-r.xdy \
-	bulgarian/utf8.pl \
 	bulgarian/utf8-lang.xdy \
 	bulgarian/utf8-test.xdy \
 	bulgarian/utf8.xdy
 
 nodist_bulgarian_DATA = $(BULGARIAN)
+
+DISTCLEANFILES += \
+	bulgarian/utf8.pl
 
 croatiandir = $(langdir)/croatian
 
@@ -82,12 +89,14 @@ CROATIAN = \
 	croatian/latin2-lang.xdy \
 	croatian/latin2-test.xdy \
 	croatian/latin2.xdy \
-	croatian/utf8.pl \
 	croatian/utf8-lang.xdy \
 	croatian/utf8-test.xdy \
 	croatian/utf8.xdy
 
 nodist_croatian_DATA = $(CROATIAN)
+
+DISTCLEANFILES += \
+	croatian/utf8.pl
 
 czechdir = $(langdir)/czech
 
@@ -98,13 +107,14 @@ CZECH = \
 	czech/latin2-lang.xdy \
 	czech/latin2-test.xdy \
 	czech/latin2.xdy \
-	czech/utf8.pl \
 	czech/utf8-lang.xdy \
 	czech/utf8-test.xdy \
 	czech/utf8.xdy
 
 nodist_czech_DATA = $(CZECH)
 
+DISTCLEANFILES += \
+	czech/utf8.pl
 
 danishdir = $(langdir)/danish
 
@@ -115,12 +125,14 @@ DANISH = \
 	danish/latin9-lang.xdy \
 	danish/latin9-test.xdy \
 	danish/latin9.xdy \
-	danish/utf8.pl \
 	danish/utf8-lang.xdy \
 	danish/utf8-test.xdy \
 	danish/utf8.xdy
 
 nodist_danish_DATA = $(DANISH)
+
+DISTCLEANFILES += \
+	danish/utf8.pl
 
 dutchdir = $(langdir)/dutch
 
@@ -128,17 +140,18 @@ DUTCH = \
 	dutch/ij-as-ij-latin1-lang.xdy \
 	dutch/ij-as-ij-latin1-test.xdy \
 	dutch/ij-as-ij-latin1.xdy \
-	dutch/ij-as-ij-utf8.pl \
 	dutch/ij-as-ij-utf8-lang.xdy \
 	dutch/ij-as-ij-utf8-test.xdy \
 	dutch/ij-as-ij-utf8.xdy \
-	dutch/ij-as-y-utf8.pl \
-	dutch/ij-as-y-utf8.xdy \
 	dutch/ij-as-y-utf8-lang.xdy \
 	dutch/ij-as-y-utf8-test.xdy \
 	dutch/ij-as-y-utf8.xdy
 
 nodist_dutch_DATA = $(DUTCH)
+
+DISTCLEANFILES += \
+	dutch/ij-as-ij-utf8.pl \
+	dutch/ij-as-y-utf8.pl
 
 englishdir = $(langdir)/english
 
@@ -149,12 +162,14 @@ ENGLISH = \
 	english/latin9-lang.xdy  \
 	english/latin9-test.xdy \
 	english/latin9.xdy \
-	english/utf8.pl \
 	english/utf8-lang.xdy \
 	english/utf8-test.xdy \
 	english/utf8.xdy
 
 nodist_english_DATA = $(ENGLISH)
+
+DISTCLEANFILES += \
+	english/utf8.pl
 
 esperantodir = $(langdir)/esperanto
 
@@ -162,12 +177,14 @@ ESPERANTO = \
 	esperanto/latin3-lang.xdy \
 	esperanto/latin3-test.xdy \
 	esperanto/latin3.xdy \
-	esperanto/utf8.pl \
 	esperanto/utf8-lang.xdy \
 	esperanto/utf8-test.xdy \
 	esperanto/utf8.xdy
 
 nodist_esperanto_DATA = $(ESPERANTO)
+
+DISTCLEANFILES += \
+	esperanto/utf8.pl
 
 estoniandir = $(langdir)/estonian
 
@@ -178,12 +195,14 @@ ESTONIAN = \
 	estonian/latin9-lang.xdy \
 	estonian/latin9-test.xdy \
 	estonian/latin9.xdy \
-	estonian/utf8.pl \
 	estonian/utf8-lang.xdy \
 	estonian/utf8-test.xdy \
 	estonian/utf8.xdy
 
 nodist_estonian_DATA = $(ESTONIAN)
+
+DISTCLEANFILES += \
+	estonian/utf8.pl
 
 finnishdir = $(langdir)/finnish
 
@@ -194,12 +213,14 @@ FINNISH = \
 	finnish/latin9-lang.xdy \
 	finnish/latin9-test.xdy \
 	finnish/latin9.xdy \
-	finnish/utf8.pl \
 	finnish/utf8-lang.xdy \
 	finnish/utf8-test.xdy \
 	finnish/utf8.xdy
 
 nodist_finnish_DATA = $(FINNISH)
+
+DISTCLEANFILES += \
+	finnish/utf8.pl
 
 frenchdir = $(langdir)/french
 
@@ -210,12 +231,14 @@ FRENCH = \
 	french/latin9-lang.xdy \
 	french/latin9-test.xdy \
 	french/latin9.xdy \
-	french/utf8.pl \
 	french/utf8-lang.xdy \
 	french/utf8-test.xdy \
 	french/utf8.xdy
 
 nodist_french_DATA = $(FRENCH)
+
+DISTCLEANFILES += \
+	french/utf8.pl
 
 generaldir = $(langdir)/general
 
@@ -229,46 +252,52 @@ GENERAL = \
 	general/latin9-lang.xdy \
 	general/latin9-test.xdy \
 	general/latin9.xdy \
-	general/utf8.pl \
 	general/utf8-lang.xdy \
 	general/utf8-test.xdy \
 	general/utf8.xdy
 
 nodist_general_DATA = $(GENERAL)
 
+DISTCLEANFILES += \
+	general/utf8.pl
+
 georgiandir = $(langdir)/georgian
 
 GEORGIAN = \
-	georgian/utf8.pl \
 	georgian/utf8-lang.xdy \
 	georgian/utf8-test.xdy \
 	georgian/utf8.xdy
 
 nodist_georgian_DATA = $(GEORGIAN)
 
+DISTCLEANFILES += \
+	georgian/utf8.pl
+
 germandir = $(langdir)/german
 
 GERMAN = \
-	german/braille-utf8.pl \
 	german/braille-utf8-lang.xdy \
 	german/braille-utf8-test.xdy \
 	german/braille-utf8.xdy \
 	german/din5007-latin1-lang.xdy \
 	german/din5007-latin1-test.xdy \
 	german/din5007-latin1.xdy \
-	german/din5007-utf8.pl \
 	german/din5007-utf8-lang.xdy \
 	german/din5007-utf8-test.xdy \
 	german/din5007-utf8.xdy \
 	german/duden-latin1-lang.xdy \
 	german/duden-latin1-test.xdy \
 	german/duden-latin1.xdy \
-	german/duden-utf8.pl \
 	german/duden-utf8-lang.xdy \
 	german/duden-utf8-test.xdy \
 	german/duden-utf8.xdy
 
 nodist_german_DATA = $(GERMAN)
+
+DISTCLEANFILES += \
+	german/braille-utf8.pl \
+	german/din5007-utf8.pl \
+	german/duden-utf8.pl
 
 greekdir = $(langdir)/greek
 
@@ -276,43 +305,49 @@ GREEK = \
 	greek/iso88597-lang.xdy \
 	greek/iso88597-test.xdy \
 	greek/iso88597.xdy \
-	greek/polytonic-utf8.pl \
 	greek/polytonic-utf8-lang.xdy \
 	greek/polytonic-utf8-test.xdy \
 	greek/polytonic-utf8.xdy \
 	greek/translit-latin4-lang.xdy \
 	greek/translit-latin4-test.xdy \
 	greek/translit-latin4.xdy \
-	greek/translit-utf8.pl \
 	greek/translit-utf8-lang.xdy \
 	greek/translit-utf8-test.xdy \
 	greek/translit-utf8.xdy \
-	greek/utf8.pl \
 	greek/utf8-lang.xdy \
 	greek/utf8-test.xdy \
 	greek/utf8.xdy
 
 nodist_greek_DATA = $(GREEK)
 
+DISTCLEANFILES += \
+	greek/polytonic-utf8.pl \
+	greek/translit-utf8.pl \
+	greek/utf8.pl
+
 gypsydir = $(langdir)/gypsy
 
 GYPSY = \
-	gypsy/northrussian-utf8.pl \
 	gypsy/northrussian-utf8-lang.xdy \
 	gypsy/northrussian-utf8-test.xdy \
 	gypsy/northrussian-utf8.xdy
 
 nodist_gypsy_DATA = $(GYPSY)
 
+DISTCLEANFILES += \
+	gypsy/northrussian-utf8.pl
+
 hausadir = $(langdir)/hausa
 
 HAUSA = \
-	hausa/utf8.pl \
 	hausa/utf8-lang.xdy \
 	hausa/utf8-test.xdy \
 	hausa/utf8.xdy
 
 nodist_hausa_DATA = $(HAUSA)
+
+DISTCLEANFILES += \
+	hausa/utf8.pl
 
 hebrewdir = $(langdir)/hebrew
 
@@ -320,12 +355,14 @@ HEBREW = \
 	hebrew/iso88598-lang.xdy \
 	hebrew/iso88598-test.xdy \
 	hebrew/iso88598.xdy \
-	hebrew/utf8.pl \
 	hebrew/utf8-lang.xdy \
 	hebrew/utf8-test.xdy \
 	hebrew/utf8.xdy
 
 nodist_hebrew_DATA = $(HEBREW)
+
+DISTCLEANFILES += \
+	hebrew/utf8.pl
 
 hungariandir = $(langdir)/hungarian
 
@@ -336,12 +373,14 @@ HUNGARIAN = \
 	hungarian/latin2-lang.xdy \
 	hungarian/latin2-test.xdy \
 	hungarian/latin2.xdy \
-	hungarian/utf8.pl \
 	hungarian/utf8-lang.xdy \
 	hungarian/utf8-test.xdy \
 	hungarian/utf8.xdy
 
 nodist_hungarian_DATA = $(HUNGARIAN)
+
+DISTCLEANFILES += \
+	hungarian/utf8.pl
 
 icelandicdir = $(langdir)/icelandic
 
@@ -352,12 +391,14 @@ ICELANDIC = \
 	icelandic/latin9-lang.xdy \
 	icelandic/latin9-test.xdy \
 	icelandic/latin9.xdy \
-	icelandic/utf8.pl \
 	icelandic/utf8-lang.xdy \
 	icelandic/utf8-test.xdy \
 	icelandic/utf8.xdy
 
 nodist_icelandic_DATA = $(ICELANDIC)
+
+DISTCLEANFILES += \
+	icelandic/utf8.pl
 
 italiandir = $(langdir)/italian
 
@@ -365,22 +406,26 @@ ITALIAN = \
 	italian/latin1-lang.xdy \
 	italian/latin1-test.xdy \
 	italian/latin1.xdy \
-	italian/utf8.pl \
 	italian/utf8-lang.xdy \
 	italian/utf8-test.xdy \
 	italian/utf8.xdy
 
 nodist_italian_DATA = $(ITALIAN)
 
+DISTCLEANFILES += \
+	italian/utf8.pl
+
 klingondir = $(langdir)/klingon
 
 KLINGON = \
-	klingon/utf8.pl \
 	klingon/utf8-lang.xdy \
 	klingon/utf8-test.xdy \
 	klingon/utf8.xdy
 
 nodist_klingon_DATA = $(KLINGON)
+
+DISTCLEANFILES += \
+	klingon/utf8.pl
 
 kurdishdir = $(langdir)/kurdish
 
@@ -388,29 +433,33 @@ KURDISH = \
 	kurdish/bedirxan-latin5-lang.xdy \
 	kurdish/bedirxan-latin5-test.xdy \
 	kurdish/bedirxan-latin5.xdy \
-	kurdish/bedirxan-utf8.pl \
 	kurdish/bedirxan-utf8-lang.xdy \
 	kurdish/bedirxan-utf8-test.xdy \
 	kurdish/bedirxan-utf8.xdy \
 	kurdish/turkish-i-latin5-lang.xdy \
 	kurdish/turkish-i-latin5-test.xdy \
 	kurdish/turkish-i-latin5.xdy \
-	kurdish/turkish-i-utf8.pl \
 	kurdish/turkish-i-utf8-lang.xdy \
 	kurdish/turkish-i-utf8-test.xdy \
 	kurdish/turkish-i-utf8.xdy
 
 nodist_kurdish_DATA = $(KURDISH)
 
+DISTCLEANFILES += \
+	kurdish/bedirxan-utf8.pl \
+	kurdish/turkish-i-utf8.pl
+
 latindir = $(langdir)/latin
 
 LATIN = \
-	latin/utf8.pl \
 	latin/utf8-lang.xdy \
 	latin/utf8-test.xdy \
 	latin/utf8.xdy
 
 nodist_latin_DATA = $(LATIN)
+
+DISTCLEANFILES += \
+	latin/utf8.pl
 
 latviandir = $(langdir)/latvian
 
@@ -418,12 +467,14 @@ LATVIAN = \
 	latvian/latin4-lang.xdy \
 	latvian/latin4-test.xdy \
 	latvian/latin4.xdy \
-	latvian/utf8.pl \
 	latvian/utf8-lang.xdy \
 	latvian/utf8-test.xdy \
 	latvian/utf8.xdy
 
 nodist_latvian_DATA = $(LATVIAN)
+
+DISTCLEANFILES += \
+	latvian/utf8.pl
 
 lithuaniandir = $(langdir)/lithuanian
 
@@ -431,12 +482,14 @@ LITHUANIAN = \
 	lithuanian/latin4-lang.xdy \
 	lithuanian/latin4-test.xdy \
 	lithuanian/latin4.xdy \
-	lithuanian/utf8.pl \
 	lithuanian/utf8-lang.xdy \
 	lithuanian/utf8-test.xdy \
 	lithuanian/utf8.xdy
 
 nodist_lithuanian_DATA = $(LITHUANIAN)
+
+DISTCLEANFILES += \
+	lithuanian/utf8.pl
 
 lower_sorbiandir = $(langdir)/lower-sorbian
 
@@ -447,12 +500,14 @@ LOWER_SORBIAN = \
 	lower-sorbian/latin2-lang.xdy \
 	lower-sorbian/latin2-test.xdy \
 	lower-sorbian/latin2.xdy \
-	lower-sorbian/utf8.pl \
 	lower-sorbian/utf8-lang.xdy \
 	lower-sorbian/utf8-test.xdy \
 	lower-sorbian/utf8.xdy
 
 nodist_lower_sorbian_DATA = $(LOWER_SORBIAN)
+
+DISTCLEANFILES += \
+	lower-sorbian/utf8.pl
 
 macedoniandir = $(langdir)/macedonian
 
@@ -466,22 +521,26 @@ MACEDONIAN = \
 	macedonian/isoir111-lang.xdy \
 	macedonian/isoir111-test.xdy \
 	macedonian/isoir111.xdy \
-	macedonian/utf8.pl \
 	macedonian/utf8-lang.xdy \
 	macedonian/utf8-test.xdy \
 	macedonian/utf8.xdy
 
 nodist_macedonian_DATA = $(MACEDONIAN)
 
+DISTCLEANFILES += \
+	macedonian/utf8.pl
+
 mongoliandir = $(langdir)/mongolian
 
 MONGOLIAN = \
-	mongolian/cyrillic-utf8.pl \
 	mongolian/cyrillic-utf8-lang.xdy \
 	mongolian/cyrillic-utf8-test.xdy \
 	mongolian/cyrillic-utf8.xdy
 
 nodist_mongolian_DATA = $(MONGOLIAN)
+
+DISTCLEANFILES += \
+	mongolian/cyrillic-utf8.pl
 
 norwegiandir = $(langdir)/norwegian
 
@@ -489,12 +548,14 @@ NORWEGIAN = \
 	norwegian/latin1-lang.xdy \
 	norwegian/latin1-test.xdy \
 	norwegian/latin1.xdy \
-	norwegian/utf8.pl \
 	norwegian/utf8-lang.xdy \
 	norwegian/utf8-test.xdy \
 	norwegian/utf8.xdy
 
 nodist_norwegian_DATA = $(NORWEGIAN)
+
+DISTCLEANFILES += \
+	norwegian/utf8.pl
 
 polishdir = $(langdir)/polish
 
@@ -505,12 +566,14 @@ POLISH = \
 	polish/latin2-lang.xdy \
 	polish/latin2-test.xdy \
 	polish/latin2.xdy \
-	polish/utf8.pl \
 	polish/utf8-lang.xdy \
 	polish/utf8-test.xdy \
 	polish/utf8.xdy
 
 nodist_polish_DATA = $(POLISH)
+
+DISTCLEANFILES += \
+	polish/utf8.pl
 
 portuguesedir = $(langdir)/portuguese
 
@@ -518,12 +581,14 @@ PORTUGUESE = \
 	portuguese/latin1-lang.xdy \
 	portuguese/latin1-test.xdy \
 	portuguese/latin1.xdy \
-	portuguese/utf8.pl \
 	portuguese/utf8-lang.xdy \
 	portuguese/utf8-test.xdy \
 	portuguese/utf8.xdy
 
 nodist_portuguese_DATA = $(PORTUGUESE)
+
+DISTCLEANFILES += \
+	portuguese/utf8.pl
 
 romaniandir = $(langdir)/romanian
 
@@ -531,12 +596,14 @@ ROMANIAN = \
 	romanian/latin2-lang.xdy \
 	romanian/latin2-test.xdy \
 	romanian/latin2.xdy \
-	romanian/utf8.pl \
 	romanian/utf8-lang.xdy \
 	romanian/utf8-test.xdy \
 	romanian/utf8.xdy
 
 nodist_romanian_DATA = $(ROMANIAN)
+
+DISTCLEANFILES += \
+	romanian/utf8.pl
 
 russiandir = $(langdir)/russian
 
@@ -550,16 +617,18 @@ RUSSIAN = \
 	russian/koi8-r-lang.xdy \
 	russian/koi8-r-test.xdy \
 	russian/koi8-r.xdy \
-	russian/translit-iso-utf8.pl \
 	russian/translit-iso-utf8-lang.xdy \
 	russian/translit-iso-utf8-test.xdy \
 	russian/translit-iso-utf8.xdy \
-	russian/utf8.pl \
 	russian/utf8-lang.xdy \
 	russian/utf8-test.xdy \
 	russian/utf8.xdy
 
 nodist_russian_DATA = $(RUSSIAN)
+
+DISTCLEANFILES += \
+	russian/translit-iso-utf8.pl \
+	russian/utf8.pl
 
 serbiandir = $(langdir)/serbian
 
@@ -573,12 +642,14 @@ SERBIAN = \
 	serbian/isoir111-lang.xdy \
 	serbian/isoir111-test.xdy \
 	serbian/isoir111.xdy \
-	serbian/utf8.pl \
 	serbian/utf8-lang.xdy \
 	serbian/utf8-test.xdy \
 	serbian/utf8.xdy
 
 nodist_serbian_DATA = $(SERBIAN)
+
+DISTCLEANFILES += \
+	serbian/utf8.pl
 
 slovakdir = $(langdir)/slovak
 
@@ -589,7 +660,6 @@ SLOVAK = \
 	slovak/large-latin2-lang.xdy \
 	slovak/large-latin2-test.xdy \
 	slovak/large-latin2.xdy \
-	slovak/large-utf8.pl \
 	slovak/large-utf8-lang.xdy \
 	slovak/large-utf8-test.xdy \
 	slovak/large-utf8.xdy \
@@ -599,12 +669,15 @@ SLOVAK = \
 	slovak/small-latin2-lang.xdy \
 	slovak/small-latin2-test.xdy \
 	slovak/small-latin2.xdy \
-	slovak/small-utf8.pl \
 	slovak/small-utf8-lang.xdy \
 	slovak/small-utf8-test.xdy \
 	slovak/small-utf8.xdy
 
 nodist_slovak_DATA = $(SLOVAK)
+
+DISTCLEANFILES += \
+	slovak/large-utf8.pl \
+	slovak/small-utf8.pl
 
 sloveniandir = $(langdir)/slovenian
 
@@ -615,12 +688,14 @@ SLOVENIAN = \
 	slovenian/latin2-lang.xdy \
 	slovenian/latin2-test.xdy \
 	slovenian/latin2.xdy \
-	slovenian/utf8.pl \
 	slovenian/utf8-lang.xdy \
 	slovenian/utf8-test.xdy \
 	slovenian/utf8.xdy
 
 nodist_slovenian_DATA = $(SLOVENIAN)
+
+DISTCLEANFILES += \
+	slovenian/utf8.pl
 
 spanishdir = $(langdir)/spanish
 
@@ -628,19 +703,21 @@ SPANISH = \
 	spanish/modern-latin1-lang.xdy \
 	spanish/modern-latin1-test.xdy \
 	spanish/modern-latin1.xdy \
-	spanish/modern-utf8.pl \
 	spanish/modern-utf8-lang.xdy \
 	spanish/modern-utf8-test.xdy \
 	spanish/modern-utf8.xdy \
 	spanish/traditional-latin1-lang.xdy \
 	spanish/traditional-latin1-test.xdy \
 	spanish/traditional-latin1.xdy \
-	spanish/traditional-utf8.pl \
 	spanish/traditional-utf8-lang.xdy \
 	spanish/traditional-utf8-test.xdy \
 	spanish/traditional-utf8.xdy
 
 nodist_spanish_DATA = $(SPANISH)
+
+DISTCLEANFILES += \
+	spanish/modern-utf8.pl \
+	spanish/traditional-utf8.pl
 
 swedishdir = $(langdir)/swedish
 
@@ -651,12 +728,14 @@ SWEDISH = \
 	swedish/latin9-lang.xdy \
 	swedish/latin9-test.xdy \
 	swedish/latin9.xdy \
-	swedish/utf8.pl \
 	swedish/utf8-lang.xdy \
 	swedish/utf8-test.xdy \
 	swedish/utf8.xdy
 
 nodist_swedish_DATA = $(SWEDISH)
+
+DISTCLEANFILES += \
+	swedish/utf8.pl
 
 turkishdir = $(langdir)/turkish
 
@@ -667,12 +746,14 @@ TURKISH = \
 	turkish/latin5-lang.xdy \
 	turkish/latin5-test.xdy \
 	turkish/latin5.xdy \
-	turkish/utf8.pl \
 	turkish/utf8-lang.xdy \
 	turkish/utf8-test.xdy \
 	turkish/utf8.xdy
 
 nodist_turkish_DATA = $(TURKISH)
+
+DISTCLEANFILES += \
+	turkish/utf8.pl
 
 ukrainiandir = $(langdir)/ukrainian
 
@@ -683,12 +764,14 @@ UKRAINIAN = \
 	ukrainian/koi8-u-lang.xdy \
 	ukrainian/koi8-u-test.xdy \
 	ukrainian/koi8-u.xdy \
-	ukrainian/utf8.pl \
 	ukrainian/utf8-lang.xdy \
 	ukrainian/utf8-test.xdy \
 	ukrainian/utf8.xdy
 
 nodist_ukrainian_DATA = $(UKRAINIAN)
+
+DISTCLEANFILES += \
+	ukrainian/utf8.pl
 
 upper_sorbiandir = $(langdir)/upper-sorbian
 
@@ -699,115 +782,134 @@ UPPER_SORBIAN = \
 	upper-sorbian/latin2-lang.xdy \
 	upper-sorbian/latin2-test.xdy \
 	upper-sorbian/latin2.xdy \
-	upper-sorbian/utf8.pl \
 	upper-sorbian/utf8-lang.xdy \
 	upper-sorbian/utf8-test.xdy \
 	upper-sorbian/utf8.xdy
 
 nodist_upper_sorbian_DATA = $(UPPER_SORBIAN)
 
+DISTCLEANFILES += \
+	upper-sorbian/utf8.pl
+
 vietnamesedir = $(langdir)/vietnamese
 
 VIETNAMESE = \
-	vietnamese/utf8.pl \
 	vietnamese/utf8-lang.xdy \
 	vietnamese/utf8-test.xdy \
 	vietnamese/utf8.xdy
 
 nodist_vietnamese_DATA = $(VIETNAMESE)
 
+DISTCLEANFILES += \
+	vietnamese/utf8.pl
 
 %utf8.pl : %utf8.pl.in
 	sed -e 's/@.{\([^}]*\)}/\1/g;' <$< >$@
 
 %latin1.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO8859-1 >$@
+	$(CONVERT_FROM_UTF8)ISO8859-1 >$@
 
 %cp850.pl : %utf8.pl.in
 	sed -e 's/@.{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t CP850 >$@
+	$(CONVERT_FROM_UTF8)CP850 >$@
 
 romanian/latin2.pl : romanian/utf8.pl
-	sed -e 's/@u{\([^}]*\)}//g;' -f rom-comma-kludge.sed <$< | \
-	iconv -f UTF-8 -t ISO8859-2 >$@
+	sed -e 's/@u{\([^}]*\)}//g;' -f $(srcdir)/rom-comma-kludge.sed <$< | \
+	$(CONVERT_FROM_UTF8)ISO8859-2 >$@
+
+DISTCLEANFILES += \
+	romanian/latin2.pl
 
 %latin2.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO8859-2 >$@
+	$(CONVERT_FROM_UTF8)ISO8859-2 >$@
 
 %latin3.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO8859-3 >$@
+	$(CONVERT_FROM_UTF8)ISO8859-3 >$@
 
 %latin4.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO8859-4 >$@
+	$(CONVERT_FROM_UTF8)ISO8859-4 >$@
 
 %iso88595.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO-8859-5 >$@
+	$(CONVERT_FROM_UTF8)ISO-8859-5 >$@
 
 %iso88597.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO-8859-7 >$@
+	$(CONVERT_FROM_UTF8)ISO-8859-7 >$@
 
 %iso88598.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO-8859-8 >$@
+	$(CONVERT_FROM_UTF8)ISO-8859-8 >$@
 
 %latin5.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO8859-5 >$@
+	$(CONVERT_FROM_UTF8)ISO-8859-9 >$@
 
 %latin9.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;s/@9{\([^}]*\)}/\1/g;' <$< | \
-	iconv -f UTF-8 -t ISO-8859-15 >$@
+	$(CONVERT_FROM_UTF8)ISO-8859-15 >$@
 
 romanian/cp1250.pl : romanian/utf8.pl
-	sed -e 's/@u{\([^}]*\)}//g;' -f rom-comma-kludge.sed <$< | \
-	iconv -f UTF-8 -t CP1250 >$@
+	sed -e 's/@u{\([^}]*\)}//g;' -f $(srcdir)/rom-comma-kludge.sed <$< | \
+	$(CONVERT_FROM_UTF8)CP1250 >$@
+
+DISTCLEANFILES += \
+	romanian/cp1250.pl
 
 %cp1250.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t CP1250 >$@
+	$(CONVERT_FROM_UTF8)CP1250 >$@
 
 %cp1251.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t CP1251 >$@
+	$(CONVERT_FROM_UTF8)CP1251 >$@
 
 %cp1252.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;s/@9{\([^}]*\)}/\1/g;' <$< | \
-	iconv -f UTF-8 -t CP1252 >$@
+	$(CONVERT_FROM_UTF8)CP1252 >$@
 
 %isoir111.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t ISO-IR-111 >$@
+	$(CONVERT_FROM_UTF8)ISO-IR-111 >$@
 
 %koi8-r.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t KOI8-R >$@
+	$(CONVERT_FROM_UTF8)KOI8-R >$@
 
 %koi8-u.pl : %utf8.pl.in
 	sed -e 's/@u{\([^}]*\)}//g;' <$< | \
-	iconv -f UTF-8 -t KOI8-U >$@
+	$(CONVERT_FROM_UTF8)KOI8-U >$@
 
 # %tex.pl : %utf8.pl utf8-to-tex.sed
-#	sed -f utf8-to-tex.sed <$< >$@
+#	sed -f $(srcdir)/utf8-to-tex.sed <$< >$@
 
 
 
 %-lang.xdy : %-test.xdy
 	sed -n '1,10 p' <$< >$@
 
+# Running "$(PERL) -I$(srcdir) $< $*" creates %-test.xdy, %-doc.tex, %.raw,
+# and %.xdy; %-test.xdy is finished first.  We must not run this command
+# several times simultaneously (for details see Automake manual 27.9).
 %-test.xdy : %.pl
-	perl $< $*
+	$(PERL) -I$(srcdir) $< $*
 
-%-doc.tex : %.pl
-	perl $< $*
-
-%.xdy :	%.pl
-	perl $< $*
+%-doc.tex %.xdy : %-test.xdy
+	@if test -f $@; then :; else \
+	  trap 'rm -rf $*.lock $<' 1 2 13 15; \
+	  if mkdir $*.lock 2>/dev/null; then \
+	    rm -f $<; \
+	    $(MAKE) $(AM_MAKEFLAGS) $<; \
+	    result=$$?; rm -rf $*.lock; exit $$result; \
+	  else \
+	    while test -d $*.lock; do sleep 1; done; \
+	    test -f $<; \
+	  fi; \
+	fi
 
 SUBDIRS = \
 	albanian \
@@ -1149,8 +1251,8 @@ if BUILDRULES
 
 if BUILDDOCS
 alphabets-doc.pdf : alphabets-doc.tex alphabets-inc.tex
-	pdflatex -interaction batchmode alphabets-doc.tex
-	pdflatex -interaction batchmode alphabets-doc.tex
+	pdflatex -interaction batchmode $(srcdir)/alphabets-doc.tex
+	pdflatex -interaction batchmode $(srcdir)/alphabets-doc.tex
 
 PDFS = alphabets-doc.pdf
 
@@ -1168,7 +1270,7 @@ DOC_CLEAN = \
 	alphabets-inc.tex \
 	alphabets-doc.toc
 
-EXTRA_DIST = $(SCRS) test.xdy
+EXTRA_DIST = $(SCRS) test.xdy rom-comma-kludge.sed
 
 CLEANFILES = $(ALPHABETS) $(DOC_CLEAN)
 

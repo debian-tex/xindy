@@ -38,9 +38,9 @@ if BUILDDOCS
   SUBDIRS += doc
 endif
 
-EXTRA_DIST = setup.sh ChangeLog.Gour VERSION
+EXTRA_DIST = ChangeLog.Gour VERSION TODO.autoconf
 
-versiondir = ${prefix}
+versiondir = ${pkglibdir}
 version_DATA = VERSION
 
 

@@ -132,7 +132,7 @@
 .\" ========================================================================
 .\"
 .IX Title "xindy 1"
-.TH xindy 1 "2009-03-26" "Version 1.12" "xindy"
+.TH xindy 1 "2010-05-10" "Version 1.16" "xindy"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -350,16 +350,53 @@ Or it's \fI../lib/xindy/modules\fR, that's the case for
 .ie n .IP """XINDY_LIBDIR""" 4
 .el .IP "\f(CWXINDY_LIBDIR\fR" 4
 .IX Item "XINDY_LIBDIR"
-Library directory where \fIxindy.run\fR and \fIxindy.mem\fR are located.
+Library directory where \fIxindy.mem\fR is located.
 .Sp
 The modules directory may be a subdirectory, too.
-.SH "KNOWN BUGS"
-.IX Header "KNOWN BUGS"
+.SH "COMPATIBILITY TO MAKEINDEX"
+.IX Header "COMPATIBILITY TO MAKEINDEX"
+\&\fBxindy\fR does not claim to be completely compatible with MakeIndex,
+that would prevent some of its enhancements. That said, we strive to
+deliver as much compatibility as possible. The most important
+incompatibilities are
+.IP "\(bu" 4
+For raw index entries in LaTeX syntax, \f(CW\*(C`\eindex{aaa|bbb}\*(C'\fR is
+interpreted differently. For MakeIndex \f(CW\*(C`bbb\*(C'\fR is markup that is output
+as a LaTeX tag for this page number. For \fBxindy\fR, this is a location
+attribute, an abstract identifier that will be later associated with
+markup that should be output for that attribute.
+.Sp
+For straight-forward usage, when \f(CW\*(C`bbb\*(C'\fR is \f(CW\*(C`textbf\*(C'\fR or similar, we
+supply location attribute definitions that mimic MakeIndex's
+behaviour.
+.Sp
+For more complex usage, when \f(CW\*(C`bbb\*(C'\fR is not an identifier, no such
+compatibility definitions exist and may also not been created with
+current \fBxindy\fR. In particular, this means that by default the LaTeX
+package \f(CW\*(C`hyperref\*(C'\fR will create raw index files that cannot be
+processed with \fBxindy\fR. This is not a bug, this is the unfortunate
+result of an intented incompatibility. It is currently not possible to
+get both hyperref's index links and use \fBxindy\fR.
+.Sp
+A similar situation is reported to exist for the \f(CW\*(C`memoir\*(C'\fR LaTeX
+class.
+.Sp
+Programmers who know Common Lisp and Lex and want to work on a remedy
+should please contact the author.
+.IP "\(bu" 4
+The MakeIndex compatibility definitions support only the default raw
+index syntax and markup definition. It is not possible to configure
+raw index parsing or use a MakeIndex style file to describe output
+markup.
+.SH "KNOWN ISSUES"
+.IX Header "KNOWN ISSUES"
 Option \fB\-q\fR also prevents output of error messages. Error messages
 should be output on stderr, progress messages on stdout.
 .PP
 There should be a way to output the final index to stdout. This would
 imply \fB\-q\fR, of course.
+.PP
+LaTeX raw index parsing should be configurable.
 .PP
 Codepage \f(CW\*(C`utf8\*(C'\fR should be supported for all languages, and should be
 used as internal codepage for LaTeX inputenc re-encoding.
@@ -372,7 +409,7 @@ used as internal codepage for LaTeX inputenc re-encoding.
 Joachim Schrod
 .SH "LEGALESE"
 .IX Header "LEGALESE"
-Copyright (c) 2004\-2006 by Joachim Schrod.
+Copyright (c) 2004\-2010 by Joachim Schrod.
 .PP
 \&\fBxindy\fR is free software; you can redistribute it and/or modify it
 under the terms of the \s-1GNU\s0 General Public License as published by the

@@ -41,6 +41,9 @@ fit into TeX-Live, first for TL 2008. He also created the first
 Windows and Mac OS X versions that way. He is also the TeX Live
 package maintainer of xindy.
 
+Peter Breitenlohner improved xindy's autoconf mechanism for better
+integration in TeX-Live 2010 and better maintainability.
+
 
 Email addresses for the authors are best looked up in the mailing list
 archives; for spam-protection reasons I don't want to list them here.

@@ -132,7 +132,7 @@
 .\" ========================================================================
 .\"
 .IX Title "texindy 1"
-.TH texindy 1 "2009-03-22" "Version 1.8" "xindy"
+.TH texindy 1 "2010-05-10" "Version 1.11" "xindy"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -388,6 +388,41 @@ specific effect.
 \& german\-sty      Add\-on    Handles umlaut markup of babel\*(Aqs german
 \&                           and ngerman options.
 .Ve
+.SH "COMPATIBILITY TO MAKEINDEX"
+.IX Header "COMPATIBILITY TO MAKEINDEX"
+\&\fBxindy\fR does not claim to be completely compatible with MakeIndex,
+that would prevent some of its enhancements. That said, we strive to
+deliver as much compatibility as possible. The most important
+incompatibilities are
+.IP "\(bu" 4
+For raw index entries in LaTeX syntax, \f(CW\*(C`\eindex{aaa|bbb}\*(C'\fR is
+interpreted differently. For MakeIndex \f(CW\*(C`bbb\*(C'\fR is markup that is output
+as a LaTeX tag for this page number. For \fBxindy\fR, this is a location
+attribute, an abstract identifier that will be later associated with
+markup that should be output for that attribute.
+.Sp
+For straight-forward usage, when \f(CW\*(C`bbb\*(C'\fR is \f(CW\*(C`textbf\*(C'\fR or similar, we
+supply location attribute definitions that mimic MakeIndex's
+behaviour.
+.Sp
+For more complex usage, when \f(CW\*(C`bbb\*(C'\fR is not an identifier, no such
+compatibility definitions exist and may also not been created with
+current \fBxindy\fR. In particular, this means that by default the LaTeX
+package \f(CW\*(C`hyperref\*(C'\fR will create raw index files that cannot be
+processed with \fBxindy\fR. This is not a bug, this is the unfortunate
+result of an intented incompatibility. It is currently not possible to
+get both hyperref's index links and use \fBxindy\fR.
+.Sp
+A similar situation is reported to exist for the \f(CW\*(C`memoir\*(C'\fR LaTeX
+class.
+.Sp
+Programmers who know Common Lisp and Lex and want to work on a remedy
+should please contact the author.
+.IP "\(bu" 4
+The MakeIndex compatibility definitions support only the default raw
+index syntax and markup definition. It is not possible to configure
+raw index parsing or use a MakeIndex style file to describe output
+markup.
 .SH "ENVIRONMENT"
 .IX Header "ENVIRONMENT"
 .ie n .IP """TEXINDY_AUTO_MODULE""" 4

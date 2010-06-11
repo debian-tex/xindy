@@ -23,20 +23,15 @@
 # Where the modules are found at runtime.
 MODULEDIR = $(pkglibdir)/modules
 
-# XXX
-AUTOMAKE_OPTIONS = no-exeext
 
-
-# Since automake has no CLISP support, we need to explicitly add make
-# rules to create the xindy kernel below and stop automake from
-# looking for C sources.
-pkglib_PROGRAMS = xindy.mem
-xindy_mem_SOURCES =
+# Automake has no CLISP support; moreover xindy.mem is not a binary
+# to be stripped upon 'make install-strip'.  We define it as DATA.
+mem_DATA = xindy.mem
 
 # Tell the dist target about our sources, define the object files for
 # our own rule and the .lib files for the clean definition. Don't use
 # gmake-isms.
-dist_xindy_mem_SOURCES = base.lsp ordrules.lsp locref.lsp idxstyle.lsp \
+FASSRC                 = base.lsp ordrules.lsp locref.lsp idxstyle.lsp \
 			 index.lsp version.lsp markup.lsp
 FAS                    = base.fas ordrules.fas locref.fas idxstyle.fas \
 			 index.fas version.fas markup.fas
@@ -50,20 +45,27 @@ CLISP      = @CLISP@ -q -E iso-8859-1
 
 xindy.mem: $(DEFAULTS) $(FAS) $(DUMP_XINDY)
 	rm -f $(MEMFILE)
-	$(CLISP) $(DUMP_XINDY)
-	gzip $(MEMFILE)
-	mv $(MEMFILE).gz $(MEMFILE)
+	$(CLISP) $(srcdir)/$(DUMP_XINDY)
+	if test "$(host_os)" != "mingw32"; then \
+	  gzip -9n $@; \
+	  mv $@.gz $@; \
+	fi
 
 $(DEFAULTS): $(DEFAULTS).in Makefile
-	sed 's|@MODULEDIR[@]|$(MODULEDIR)|g' <$(DEFAULTS).in >$(DEFAULTS)
+	sed 's|@MODULEDIR[@]|$(MODULEDIR)|g' <$(srcdir)/$(DEFAULTS).in >$(DEFAULTS)
 
-EXTRA_DIST = $(DEFAULTS).in
+EXTRA_DIST = $(DEFAULTS).in $(FASSRC) dump-xindy.lsp
 
 SUFFIXES = .fas .lsp
 .lsp.fas:
-	$(CLISP) -c $<
+	$(CLISP) -c $< -o $@
 
 
-CLEANFILES = $(FAS) $(FASLIBS) $(DEFAULTS)
+CLEANFILES = $(FAS) $(FASLIBS) $(DEFAULTS) xindy.mem
 
+# Dependencies required for parallel make.
+markup.fas: index.fas version.fas
+index.fas: idxstyle.fas ordrules.fas
+idxstyle.fas: locref.fas
+locref.fas: base.fas
 
