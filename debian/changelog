@@ -1,4 +1,6 @@
-xindy (2.4~pre1-4) UNRELEASED; urgency=low
+xindy (2.4-1) UNRELEASED; urgency=low
+
+  * New upstream release (closes: #555947)
 
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
