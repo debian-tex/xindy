@@ -23,7 +23,11 @@ print TESTXDY "	      :rule-set (\"".$prefix."resolve-case\" \"".$prefix."ignore
 print TESTXDY "(use-rule-set :run 3\n";
 print TESTXDY "	      :rule-set (\"".$prefix."resolve-special\"))\n";
 close TESTXDY;
-system("cat test.xdy >> $ARGV[0]-test.xdy");
+
+$fn = "test.xdy";
+! -f $fn && -f "$INC[0]/$fn"  and  $fn = "$INC[0]/$fn";
+-f $fn  or  die "$fn: $!";
+system("cat $fn >> $ARGV[0]-test.xdy");
 
 $begin = 128;
 # $begin =  97 if ($script eq "cyrillic");

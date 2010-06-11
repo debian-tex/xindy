@@ -2,29 +2,25 @@
 [Check]		FIXMEs in configure.ac
 
  -- flex for tex2indy?
- -- Does one really need to look for -fl?
-
- -- Are the canonical system type defs needed for TeX Live?
-    They're commented out at the moment.
+ -- latex must be available
 
 Sat Mar 28 18:07:07 2009   schrod
 ----------------------------------------------------------------------
 
-[Missing]	Changes from Vladimir for TeX Live
+[Problem]	abort while building documentation
 
-Review and apply.
+Folks on Mac OS X had aborts while make-rules documentation should
+have been created. There exists a ticket from Yannis with logs.
 
-Sun Mar 29 13:50:45 2009   schrod
+Tue May 11 02:08:07 2010   schrod
 ----------------------------------------------------------------------
 
-[Change]	Determine path of Perl by autoconf
+[Missing]	Changes from Vladimir/Peter for TeX Live
 
-AC_PATH_PROG
-and substitute it
+TL install dirs
+Reorg of alphabets Makefile.am
 
-Windozify the Perl scripts
-
-Sat Mar 28 18:15:05 2009   schrod
+Sun Mar 29 13:50:45 2009   schrod
 ----------------------------------------------------------------------
 
 [Change]	strtoul() might not exist
@@ -46,10 +42,10 @@ TBD: make-rules
 Sat Mar 28 18:18:03 2009   schrod
 ----------------------------------------------------------------------
 
-[Proposal]	make dist via automake
+[Change]	Use maintainer mode
 
-Don't know if that's worth the hassle...
+autoconf builds are triggered too often without reason...
 
-Sun Mar 29 12:39:52 2009   schrod
+Tue May 11 02:06:04 2010   schrod
 ----------------------------------------------------------------------
 

@@ -30,9 +30,10 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-pkglib_PROGRAMS = xindy.mem$(EXEEXT)
+build_triplet = @build@
+host_triplet = @host@
 subdir = src
-DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ac_prog_latex.m4 \
 	$(top_srcdir)/m4/ac_prog_pdflatex.m4 $(top_srcdir)/VERSION \
@@ -41,19 +42,18 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(pkglibdir)"
-pkglibPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
-PROGRAMS = $(pkglib_PROGRAMS)
-am_xindy_mem_OBJECTS =
-dist_xindy_mem_OBJECTS =
-xindy_mem_OBJECTS = $(am_xindy_mem_OBJECTS) $(dist_xindy_mem_OBJECTS)
-xindy_mem_LDADD = $(LDADD)
-DEFAULT_INCLUDES = -I.@am__isrc@
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(xindy_mem_SOURCES) $(dist_xindy_mem_SOURCES)
+SOURCES =
+DIST_SOURCES =
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+am__installdirs = "$(DESTDIR)$(memdir)"
+memDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(mem_DATA)
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AUTOCONF = @AUTOCONF@
@@ -64,6 +64,7 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CLISP = @CLISP@ -q -E iso-8859-1
+CONVERT_FROM_UTF8 = @CONVERT_FROM_UTF8@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
@@ -83,6 +84,7 @@ LEXLIB = @LEXLIB@
 LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
+LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -94,6 +96,7 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PERL = @PERL@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -109,14 +112,22 @@ am__quote = @am__quote@
 am__tar = @am__tar@
 am__untar = @am__untar@
 bindir = @bindir@
+build = @build@
 build_alias = @build_alias@
+build_cpu = @build_cpu@
+build_os = @build_os@
+build_vendor = @build_vendor@
 builddir = @builddir@
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+host = @host@
 host_alias = @host_alias@
+host_cpu = @host_cpu@
+host_os = @host_os@
+host_vendor = @host_vendor@
 htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
@@ -127,6 +138,7 @@ libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
+memdir = @memdir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
@@ -146,14 +158,14 @@ top_srcdir = @top_srcdir@
 # Where the modules are found at runtime.
 MODULEDIR = $(pkglibdir)/modules
 
-# XXX
-AUTOMAKE_OPTIONS = no-exeext
-xindy_mem_SOURCES = 
+# Automake has no CLISP support; moreover xindy.mem is not a binary
+# to be stripped upon 'make install-strip'.  We define it as DATA.
+mem_DATA = xindy.mem
 
 # Tell the dist target about our sources, define the object files for
 # our own rule and the .lib files for the clean definition. Don't use
 # gmake-isms.
-dist_xindy_mem_SOURCES = base.lsp ordrules.lsp locref.lsp idxstyle.lsp \
+FASSRC = base.lsp ordrules.lsp locref.lsp idxstyle.lsp \
 			 index.lsp version.lsp markup.lsp
 
 FAS = base.fas ordrules.fas locref.fas idxstyle.fas \
@@ -165,9 +177,9 @@ FASLIBS = base.lib ordrules.lib locref.lib idxstyle.lib \
 DEFAULTS = defaults.xdy
 DUMP_XINDY = dump-xindy.lsp
 MEMFILE = xindy.mem
-EXTRA_DIST = $(DEFAULTS).in
+EXTRA_DIST = $(DEFAULTS).in $(FASSRC) dump-xindy.lsp
 SUFFIXES = .fas .lsp
-CLEANFILES = $(FAS) $(FASLIBS) $(DEFAULTS)
+CLEANFILES = $(FAS) $(FASLIBS) $(DEFAULTS) xindy.mem
 all: all-am
 
 .SUFFIXES:
@@ -201,46 +213,61 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-pkglibPROGRAMS: $(pkglib_PROGRAMS)
+install-memDATA: $(mem_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
-	@list='$(pkglib_PROGRAMS)'; for p in $$list; do \
-	  p1=`echo $$p|sed 's/$(EXEEXT)$$//'`; \
-	  if test -f $$p \
-	  ; then \
-	    f=`echo "$$p1" | sed 's,^.*/,,;$(transform);s/$$/$(EXEEXT)/'`; \
-	   echo " $(INSTALL_PROGRAM_ENV) $(pkglibPROGRAMS_INSTALL) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
-	   $(INSTALL_PROGRAM_ENV) $(pkglibPROGRAMS_INSTALL) "$$p" "$(DESTDIR)$(pkglibdir)/$$f" || exit 1; \
-	  else :; fi; \
+	test -z "$(memdir)" || $(MKDIR_P) "$(DESTDIR)$(memdir)"
+	@list='$(mem_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(memDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(memdir)/$$f'"; \
+	  $(memDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(memdir)/$$f"; \
 	done
 
-uninstall-pkglibPROGRAMS:
+uninstall-memDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkglib_PROGRAMS)'; for p in $$list; do \
-	  f=`echo "$$p" | sed 's,^.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/'`; \
-	  echo " rm -f '$(DESTDIR)$(pkglibdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(pkglibdir)/$$f"; \
+	@list='$(mem_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(memdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(memdir)/$$f"; \
 	done
-
-clean-pkglibPROGRAMS:
-	-test -z "$(pkglib_PROGRAMS)" || rm -f $(pkglib_PROGRAMS)
-
-mostlyclean-compile:
-	-rm -f *.$(OBJEXT)
-
-distclean-compile:
-	-rm -f *.tab.c
 tags: TAGS
 TAGS:
 
 ctags: CTAGS
 CTAGS:
 
+
+distdir: $(DISTFILES)
+	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
+	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
+	list='$(DISTFILES)'; \
+	  dist_files=`for file in $$list; do echo $$file; done | \
+	  sed -e "s|^$$srcdirstrip/||;t" \
+	      -e "s|^$$topsrcdirstrip/|$(top_builddir)/|;t"`; \
+	case $$dist_files in \
+	  */*) $(MKDIR_P) `echo "$$dist_files" | \
+			   sed '/\//!d;s|^|$(distdir)/|;s,/[^/]*$$,,' | \
+			   sort -u` ;; \
+	esac; \
+	for file in $$dist_files; do \
+	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
+	  if test -d $$d/$$file; then \
+	    dir=`echo "/$$file" | sed -e 's,/[^/]*$$,,'`; \
+	    if test -d $(srcdir)/$$file && test $$d != $(srcdir); then \
+	      cp -pR $(srcdir)/$$file $(distdir)$$dir || exit 1; \
+	    fi; \
+	    cp -pR $$d/$$file $(distdir)$$dir || exit 1; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || cp -p $$d/$$file $(distdir)/$$file \
+	    || exit 1; \
+	  fi; \
+	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)"; do \
+	for dir in "$(DESTDIR)$(memdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -270,11 +297,11 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-pkglibPROGRAMS mostlyclean-am
+clean-am: clean-generic mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-compile distclean-generic
+distclean-am: clean-am distclean-generic
 
 dvi: dvi-am
 
@@ -286,11 +313,11 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-memDATA
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-pkglibPROGRAMS
+install-exec-am:
 
 install-html: install-html-am
 
@@ -310,7 +337,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic
+mostlyclean-am: mostlyclean-generic
 
 pdf: pdf-am
 
@@ -320,33 +347,40 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-pkglibPROGRAMS
+uninstall-am: uninstall-memDATA
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic \
-	clean-pkglibPROGRAMS distclean distclean-compile \
-	distclean-generic dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-dvi \
+.PHONY: all all-am check check-am clean clean-generic distclean \
+	distclean-generic distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-pkglibPROGRAMS install-ps \
+	install-memDATA install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
-	ps ps-am uninstall uninstall-am uninstall-pkglibPROGRAMS
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
+	uninstall-am uninstall-memDATA
 
 
 xindy.mem: $(DEFAULTS) $(FAS) $(DUMP_XINDY)
 	rm -f $(MEMFILE)
-	$(CLISP) $(DUMP_XINDY)
-	gzip $(MEMFILE)
-	mv $(MEMFILE).gz $(MEMFILE)
+	$(CLISP) $(srcdir)/$(DUMP_XINDY)
+	if test "$(host_os)" != "mingw32"; then \
+	  gzip -9n $@; \
+	  mv $@.gz $@; \
+	fi
 
 $(DEFAULTS): $(DEFAULTS).in Makefile
-	sed 's|@MODULEDIR[@]|$(MODULEDIR)|g' <$(DEFAULTS).in >$(DEFAULTS)
+	sed 's|@MODULEDIR[@]|$(MODULEDIR)|g' <$(srcdir)/$(DEFAULTS).in >$(DEFAULTS)
 .lsp.fas:
-	$(CLISP) -c $<
+	$(CLISP) -c $< -o $@
+
+# Dependencies required for parallel make.
+markup.fas: index.fas version.fas
+index.fas: idxstyle.fas ordrules.fas
+idxstyle.fas: locref.fas
+locref.fas: base.fas
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

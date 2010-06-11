@@ -41,14 +41,14 @@ INPUTENCS = \
 	latin3.xdy
 
 latin.xdy : latin1.xdy latin2.xdy latin3.xdy
-	echo ';; Generated at' `date` 'from latin?.xdy' >latin.xdy
+	echo ';; Generated from latin?.xdy' >latin.xdy
 	echo >>latin.xdy
 	sort -u latin?.xdy | grep -v '^;' >>latin.xdy
 
 %.xdy %.idx :
-	perl ./make-testidx.pl TS1,T2A,T1 $* >$*.tex
+	$(PERL) $(srcdir)/make-testidx.pl TS1,T2A,T1 $* >$*.tex
 	latex -interaction batchmode $*.tex
-	perl ./make-inp-rules.pl <$*.idx >$*.xdy
+	$(PERL) $(srcdir)/make-inp-rules.pl <$*.idx >$*.xdy
 
 PERLSCRIPTS = \
 	make-inp-rules.pl \

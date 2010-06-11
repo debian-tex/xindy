@@ -147,26 +147,33 @@ values: the 1st is the final prefix with the replacement
 string and the 2nd is the rest of SOURCE that's left after the matched
 text. If the rule's again flag is true, FINAL will be the empty string
 and the replacement will be at the start of SOURCE-REST.
+An ordrule is not allowed to turn a source completely into an empty string.
+If that would happen, a warning is output and nothing is returned.
+That situation would exist, if AT-START is true and both FINAL and
+SOURCE-REST would be empty.
 AT-START tells if we are at the start to process the source string."))
 
 (defmethod try-rule ((rule ordrule-char) source &key at-start)
-  (declare (ignore at-start))
   (if (char= (char source 0) (match rule))
-      (maybe-again rule (repl rule) (subseq source 1))
+      (maybe-again-maybe-no rule source at-start
+			    (repl rule) (subseq source 1))
     (values)))
 
-(defun maybe-again (rule repl source-rest)
-  (if (again rule)
-      (values "" (concatenate 'string repl source-rest))
-    (values repl source-rest)))
+(defun maybe-again-maybe-no (rule source at-start repl source-rest)
+  (cond ((and at-start (string= repl "") (string= source-rest ""))
+	   (warn "Would replace complete index key by empty string, ignoring ~S" rule)
+	   (values source ""))
+	((again rule)
+	   (values "" (concatenate 'string repl source-rest)))
+	(t (values repl source-rest))))
 
 (defmethod try-rule ((rule ordrule-string) source &key at-start)
-  (declare (ignore at-start))
   (let* ((match-string (match rule))
 	 (match-length (length match-string)))
     (cond ((> match-length (length source)) (values))
 	  ((string= source match-string :end1 match-length)
-	     (maybe-again rule (repl rule) (subseq source match-length)))
+	     (maybe-again-maybe-no rule source at-start
+				   (repl rule) (subseq source match-length)))
 	  (t (values)))))
 
 (defmethod try-rule ((rule ordrule-regexp) source &key at-start)
@@ -174,7 +181,7 @@ AT-START tells if we are at the start to process the source string."))
       nil
     (let ((match-regexp (multiple-value-list (regexp-exec (match rule) source))))
       (if match-regexp
-	  (maybe-again rule
+	  (maybe-again-maybe-no rule source at-start
 		       (maybe-repl-subexpr (repl rule) (rest match-regexp) source)
 		       (subseq source (match-end (first match-regexp))))
 	(values)))))
@@ -185,13 +192,13 @@ AT-START tells if we are at the start to process the source string."))
   nil
   "Compiled regexp that matches a backpattern in a regexp replacement text.")
 
-;; We need to substitute all \x constructs in the replacement text by
+;; We need to substitute all \x and & constructs in the replacement text by
 ;; the respective subexpression from source's matches. They are
 ;; located with a regexp in a loop and we collect in 'final-repl the
 ;; strings in front of each \x and the actual subexpression.
 (defun maybe-repl-subexpr (repl source-matches source)
   (or *REPL-PATTERN*
-      (setq *REPL-PATTERN* (regexp-compile "\\\\([&1-9])" :extended t)))
+      (setq *REPL-PATTERN* (regexp-compile "\\\\([1-9])|&" :extended t)))
   (do* ((start 0 (match-end (first subexpr-match)))
 	(subexpr-match (multiple-value-list (regexp-exec *REPL-PATTERN* repl))
 		       (multiple-value-list (regexp-exec *REPL-PATTERN* repl
@@ -202,13 +209,17 @@ AT-START tells if we are at the start to process the source string."))
 	 ;; index is now in 'start.
 	 (concatenate 'string final-repl (subseq repl start)))
     ;; OK, need a subexpr replacement. First, we determine which subexpression
-    ;; this shall be. Then we get that subexpression from the source string.
-    ;; Finally, we add the 'repl string part in front of \x and the respective
-    ;; subexpression to 'final-repl and are ready to look for our next \x
-    ;; construct.
-    (let* ((subexpr (match-string repl (second subexpr-match)))
+    ;; this shall be: If it's "&", the second match subexpression will be nil,
+    ;; as the parenthesis did not match anything. Otherwise the 2nd match
+    ;; subexpr will be the digit. Then we get that subexpression from the
+    ;; source string. Finally, we add the 'repl string part in front of \x and
+    ;; the respective subexpression to 'final-repl and are ready to look for
+    ;; our next \x construct.
+    (let* ((subexpr-match-struct (second subexpr-match))
+	   (subexpr (and subexpr-match-struct
+			 (match-string repl subexpr-match-struct)))
 	   (subexpr-repl (match-string source
-				       (nth (if (string= subexpr "&")
+				       (nth (if (null subexpr)
 						0
 					      (read-from-string subexpr))
 					    source-matches))))

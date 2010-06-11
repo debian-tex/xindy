@@ -19,11 +19,11 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
+AM_CFLAGS = $(WARNING_CFLAGS)
+
 bin_PROGRAMS = tex2xindy
 
 tex2xindy_SOURCES = tex2xindy.l
-
-## tex2xindy_LDADD = @LEXLIB@
 
 man_MANS = tex2xindy.1
 

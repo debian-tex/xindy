@@ -20,18 +20,54 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-bin_SCRIPTS = texindy xindy xindy.v2
+scripts = texindy xindy
+
+bin_SCRIPTS =
+
+if TEXLIVE_BUILD
+
+scriptspath = texmf/scripts/xindy
+scriptsdir = ${prefix}/$(scriptspath)
+install-exec-hook:
+	$(MKDIR_P) "$(DESTDIR)$(scriptsdir)"
+	@for f in $(scripts); do \
+	  $(INSTALL_SCRIPT) "$(srcdir)/$$f.in" "$(DESTDIR)$(scriptsdir)/$$f.pl"; \
+	done
+	case "$(bindir)" in \
+	  */bin) $(MAKE) $(AM_MAKEFLAGS) REL=.. install-links;; \
+	  */bin/*) $(MAKE) $(AM_MAKEFLAGS) REL=../.. install-links;; \
+	  *) echo "strange directory '$(bindir)' for linked scripts" >&2; \
+	     exit 1;; \
+	esac
+.PHONY: install-links
+install-links:
+	@cd "$(DESTDIR)$(bindir)" && \
+	for f in $(scripts); do \
+	  rm -f $$f; \
+	  echo "creating link '$$f' -> '$(REL)/$(scriptspath)/$$f.pl'"; \
+	  $(LN_S) $(REL)/$(scriptspath)/$$f.pl $$f; \
+	done
+uninstall-hook:
+	@for f in $(scripts); do \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+	  rm -f "$(DESTDIR)$(scriptsdir)/$$f.pl"; \
+	done
+
+else !TEXLIVE_BUILD
+
+bin_SCRIPTS += $(scripts)
+
+texindy: texindy.in Makefile
+	sed -e 's:@libdir\@:$(libdir):' $(srcdir)/texindy.in >texindy
 
 xindy: xindy.in Makefile
-	sed -e 's:@libdir\@:$(libdir):' xindy.in >xindy
+	sed -e 's:@libdir\@:$(libdir):' $(srcdir)/xindy.in >xindy
 
-# FIXME: Should get Perl location from autoconf
-xindy.v2: xindy.v2.in
-	sed -e 's:@XINDY_PERL\@:/usr/bin/perl:' xindy.v2.in >xindy.v2
+endif !TEXLIVE_BUILD
 
-man_MANS = texindy.1 xindy.1 xindy.v2.1
+man_MANS = texindy.1 xindy.1
 
-EXTRA_DIST = $(man_MANS)
+EXTRA_DIST = $(man_MANS) texindy.in xindy.in
 
-CLEANFILES = xindy xindy.v2
+CLEANFILES = $(scripts)
 
