@@ -82,7 +82,6 @@ binary-indep: build-indep
 	    $(MAKE) -C $$i install DESTDIR=$(CURDIR)/debian/xindy-rules \
 	      || exit 1; \
 	done
-	find debian/xindy-rules/usr/share/xindy/lang -name \*.pl -delete
 
 	dh_installchangelogs -i NEWS
 	dh_installdocs -i
