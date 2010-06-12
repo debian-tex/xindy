@@ -1,8 +1,6 @@
 fix-echo-expansion
 fix-FHS
 help-option
-fix-manpages
 config.guess+sub
-rebuild-manpages
 fix-alphabets-doc-geometry
 fix-configure

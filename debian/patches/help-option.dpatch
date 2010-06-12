@@ -7,8 +7,8 @@
 @DPATCH@
 diff --git a/user-commands/texindy b/user-commands/texindy
 index e29e4e1..06dff2b 100755
---- a/user-commands/texindy
-+++ b/user-commands/texindy
+--- a/user-commands/texindy.in
++++ b/user-commands/texindy.in
 @@ -322,9 +322,9 @@ use Getopt::Long qw(:config bundling);
  
  sub usage ( ;$ )

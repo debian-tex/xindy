@@ -14,9 +14,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/ma
  top_srcdir = @top_srcdir@
 -langdir = $(pkglibdir)/modules/lang
 +langdir = $(pkgdatadir)/lang
- albaniandir = $(langdir)/albanian
- ALBANIAN = \
- 	albanian/latin1-lang.xdy \
+ DISTCLEANFILES = albanian/utf8.pl belarusian/utf8.pl bulgarian/utf8.pl \
+ 	croatian/utf8.pl czech/utf8.pl danish/utf8.pl \
+ 	dutch/ij-as-ij-utf8.pl dutch/ij-as-y-utf8.pl english/utf8.pl \
 diff -urNad xindy-2.2-beta2~/make-rules/inputenc/Makefile.in xindy-2.2-beta2/make-rules/inputenc/Makefile.in
 --- xindy-2.2-beta2~/make-rules/inputenc/Makefile.in	2006-04-18 01:29:21.447791000 +0200
 +++ xindy-2.2-beta2/make-rules/inputenc/Makefile.in	2006-04-18 01:30:02.187791000 +0200

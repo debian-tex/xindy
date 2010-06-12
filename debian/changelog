@@ -2,6 +2,12 @@ xindy (2.4-1) UNRELEASED; urgency=low
 
   * New upstream release (closes: #555947)
 
+  * Removed patches from the Debian package:
+    + fix-manpages: the manpage in question was removed
+
+    + rebuild-manpages: upstream updated the manpages, hence the
+      problem with hyphen vs. dash is gone.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.4~pre1-3) unstable; urgency=low
