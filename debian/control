@@ -3,7 +3,7 @@ Section: text
 Priority: optional
 Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
 Build-Depends-Indep: texlive-latex-base, texlive-lang-cyrillic,
- texlive-latex-recommended, texlive-xetex, cm-super
+ texlive-latex-recommended, cm-super
 Build-Depends: debhelper (>= 5), dpatch, autotools-dev, flex, clisp
 Standards-Version: 3.9.1
 Homepage: http://www.xindy.org/
