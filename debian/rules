@@ -119,7 +119,8 @@ binary: binary-indep binary-arch
 
 test:
 	dh_testdir
-	set -e; for i in debian/tests/*; do $$i; done
+	set -e; for i in debian/tests/*; do test -x "$$i" || continue; \
+	  echo "$$i"; "$$i"; done
 
 .PHONY: build build-arch build-indep clean binary-indep binary-arch binary \
   get-orig-source test
