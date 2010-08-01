@@ -4,3 +4,4 @@ help-option
 config.guess+sub
 fix-alphabets-doc-geometry
 fix-configure
+fix-entry-with-command.dpatch
