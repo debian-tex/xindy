@@ -8,6 +8,10 @@ xindy (2.4-1) UNRELEASED; urgency=low
     + rebuild-manpages: upstream updated the manpages, hence the
       problem with hyphen vs. dash is gone.
 
+  * Set dependency on clisp-fasl-loader to ensure the correct clisp
+    version is installed, because clisp's memory dumps depend on the
+    version used for the dump. (closes: #580762)
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.4~pre1-3) unstable; urgency=low
