@@ -1,0 +1,3 @@
+version=3
+
+ftp://ctan.org/tex-archive/indexing/xindy/xindy-([\d.]*)\.tar\.gz

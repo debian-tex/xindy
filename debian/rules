@@ -117,10 +117,6 @@ binary-arch: build-arch
 
 binary: binary-indep binary-arch
 
-get-orig-source:
-	wget -O xindy_2.4~pre1.orig.tar.gz \
-	  http://www.xindy.org/xindy-2.4-SNAPSHOT.tar.gz
-
 test:
 	dh_testdir
 	set -e; for i in debian/tests/*; do $$i; done

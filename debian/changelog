@@ -18,6 +18,8 @@ xindy (2.4-1) UNRELEASED; urgency=low
     format version 1.0, because we use dpatch with the script patch
     config.guess+sub.
 
+  * Provided watch file.
+
  -- Jörg Sommer <joerg@alea.gnuu.de>  Thu, 01 Jan 1970 00:00:00 +0000
 
 xindy (2.4~pre1-3) unstable; urgency=low
