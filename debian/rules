@@ -11,15 +11,11 @@ include /usr/share/dpatch/dpatch.make
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-CFLAGS += -Wall -g
+CPPFLAGS :=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS   :=$(shell dpkg-buildflags --get CFLAGS)
+LDFLAGS  :=$(shell dpkg-buildflags --get LDFLAGS) -Wl,-z,defs
 
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-
-configure_flags = LDFLAGS="$(LDFLAGS) -Wl,-z,defs" CFLAGS="$(CFLAGS)" \
+configure_flags = LDFLAGS="$(LDFLAGS)" CFLAGS="$(CFLAGS)" CPPFLAGS=$(CPPFLAGS)\
   --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr \
   --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
   --docdir=\$${prefix}/share/doc/xindy-rules
