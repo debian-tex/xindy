@@ -1,3 +1,10 @@
+xindy (2.4-1.4) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * fix FTBFS due to missing quotes around CPPFLAGS (Closes: #809053)
+
+ -- Norbert Preining <preining@debian.org>  Sun, 27 Dec 2015 12:02:17 +0900
+
 xindy (2.4-1.3) unstable; urgency=medium
 
   * Non-maintainer upload.

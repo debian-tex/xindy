@@ -15,7 +15,7 @@ CPPFLAGS :=$(shell dpkg-buildflags --get CPPFLAGS)
 CFLAGS   :=$(shell dpkg-buildflags --get CFLAGS)
 LDFLAGS  :=$(shell dpkg-buildflags --get LDFLAGS) -Wl,-z,defs
 
-configure_flags = LDFLAGS="$(LDFLAGS)" CFLAGS="$(CFLAGS)" CPPFLAGS=$(CPPFLAGS)\
+configure_flags = LDFLAGS="$(LDFLAGS)" CFLAGS="$(CFLAGS)" CPPFLAGS="$(CPPFLAGS)"\
   --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr \
   --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
   --docdir=\$${prefix}/share/doc/xindy-rules
