@@ -91,7 +91,7 @@ binary-indep: build-indep
 binary-arch: build-arch
 	dh_testdir
 	dh_testroot
-	dh_clean -k -a
+	dh_prep -a
 	dh_installdirs -a
 
 	for i in $(arch_subdirs); do \
