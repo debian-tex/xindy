@@ -1,7 +1,7 @@
 fix-echo-expansion
 fix-FHS
 help-option
-config.guess+sub
+#config.guess+sub
 fix-alphabets-doc-geometry
 fix-configure
-fix-entry-with-command.dpatch
+fix-entry-with-command

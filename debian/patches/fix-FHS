@@ -5,10 +5,23 @@
 ## DP: and therefor need to be below /usr/share/ as forced by the FHS.
 
 @DPATCH@
-diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/make-rules/alphabets/Makefile.in
---- xindy-2.2-beta2~/make-rules/alphabets/Makefile.in	2006-04-18 01:29:21.443791000 +0200
-+++ xindy-2.2-beta2/make-rules/alphabets/Makefile.in	2006-04-18 01:30:02.199791000 +0200
-@@ -251,7 +251,7 @@
+---
+ make-rules/alphabets/Makefile.in |    2 +-
+ make-rules/inputenc/Makefile.in  |    2 +-
+ make-rules/styles/Makefile.in    |    2 +-
+ modules/base/Makefile.in         |    2 +-
+ modules/class/Makefile.in        |    2 +-
+ modules/lang/german/Makefile.in  |    2 +-
+ modules/lang/latin/Makefile.in   |    2 +-
+ modules/ord/Makefile.in          |    2 +-
+ modules/rules/Makefile.in        |    2 +-
+ modules/styles/Makefile.in       |    2 +-
+ user-commands/xindy.in           |   12 +++++++-----
+ 11 files changed, 17 insertions(+), 15 deletions(-)
+
+--- xindy.git.orig/make-rules/alphabets/Makefile.in
++++ xindy.git/make-rules/alphabets/Makefile.in
+@@ -253,7 +253,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -17,10 +30,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/alphabets/Makefile.in xindy-2.2-beta2/ma
  DISTCLEANFILES = albanian/utf8.pl belarusian/utf8.pl bulgarian/utf8.pl \
  	croatian/utf8.pl czech/utf8.pl danish/utf8.pl \
  	dutch/ij-as-ij-utf8.pl dutch/ij-as-y-utf8.pl english/utf8.pl \
-diff -urNad xindy-2.2-beta2~/make-rules/inputenc/Makefile.in xindy-2.2-beta2/make-rules/inputenc/Makefile.in
---- xindy-2.2-beta2~/make-rules/inputenc/Makefile.in	2006-04-18 01:29:21.447791000 +0200
-+++ xindy-2.2-beta2/make-rules/inputenc/Makefile.in	2006-04-18 01:30:02.187791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/make-rules/inputenc/Makefile.in
++++ xindy.git/make-rules/inputenc/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -29,10 +41,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/inputenc/Makefile.in xindy-2.2-beta2/mak
  inputencdir = $(modulesdir)/tex/inputenc
  INPUTENCS = \
  	cp1250.xdy \
-diff -urNad xindy-2.2-beta2~/make-rules/styles/Makefile.in xindy-2.2-beta2/make-rules/styles/Makefile.in
---- xindy-2.2-beta2~/make-rules/styles/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/make-rules/styles/Makefile.in	2006-04-18 01:30:02.191791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/make-rules/styles/Makefile.in
++++ xindy.git/make-rules/styles/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -41,10 +52,9 @@ diff -urNad xindy-2.2-beta2~/make-rules/styles/Makefile.in xindy-2.2-beta2/make-
  stylesdir = $(modulesdir)/styles
  STYLES = \
  	example.xdy \
-diff -urNad xindy-2.2-beta2~/modules/base/Makefile.in xindy-2.2-beta2/modules/base/Makefile.in
---- xindy-2.2-beta2~/modules/base/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/base/Makefile.in	2006-04-18 01:30:02.183791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/base/Makefile.in
++++ xindy.git/modules/base/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -53,10 +63,9 @@ diff -urNad xindy-2.2-beta2~/modules/base/Makefile.in xindy-2.2-beta2/modules/ba
  basedir = $(modulesdir)/base
  RULES = \
  	book-order.xdy \
-diff -urNad xindy-2.2-beta2~/modules/class/Makefile.in xindy-2.2-beta2/modules/class/Makefile.in
---- xindy-2.2-beta2~/modules/class/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/class/Makefile.in	2006-04-18 01:30:02.179791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/class/Makefile.in
++++ xindy.git/modules/class/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -65,10 +74,9 @@ diff -urNad xindy-2.2-beta2~/modules/class/Makefile.in xindy-2.2-beta2/modules/c
  classdir = $(modulesdir)/class
  RULES = \
  	pagenums.xdy
-diff -urNad xindy-2.2-beta2~/modules/lang/german/Makefile.in xindy-2.2-beta2/modules/lang/german/Makefile.in
---- xindy-2.2-beta2~/modules/lang/german/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/lang/german/Makefile.in	2006-04-18 01:30:02.179791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/lang/german/Makefile.in
++++ xindy.git/modules/lang/german/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -77,10 +85,9 @@ diff -urNad xindy-2.2-beta2~/modules/lang/german/Makefile.in xindy-2.2-beta2/mod
  germandir = $(langdir)/german
  RULES = \
  	din5007.xdy \
-diff -urNad xindy-2.2-beta2~/modules/lang/latin/Makefile.in xindy-2.2-beta2/modules/lang/latin/Makefile.in
---- xindy-2.2-beta2~/modules/lang/latin/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/lang/latin/Makefile.in	2006-04-18 01:30:02.183791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/lang/latin/Makefile.in
++++ xindy.git/modules/lang/latin/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -89,10 +96,9 @@ diff -urNad xindy-2.2-beta2~/modules/lang/latin/Makefile.in xindy-2.2-beta2/modu
  latindir = $(langdir)/latin
  RULES = \
  	caseisrt.xdy \
-diff -urNad xindy-2.2-beta2~/modules/ord/Makefile.in xindy-2.2-beta2/modules/ord/Makefile.in
---- xindy-2.2-beta2~/modules/ord/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/ord/Makefile.in	2006-04-18 01:30:02.187791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/ord/Makefile.in
++++ xindy.git/modules/ord/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -101,10 +107,9 @@ diff -urNad xindy-2.2-beta2~/modules/ord/Makefile.in xindy-2.2-beta2/modules/ord
  orddir = $(modulesdir)/ord
  RULES = \
  	letorder.xdy
-diff -urNad xindy-2.2-beta2~/modules/rules/Makefile.in xindy-2.2-beta2/modules/rules/Makefile.in
---- xindy-2.2-beta2~/modules/rules/Makefile.in	2005-09-29 17:30:44.000000000 +0200
-+++ xindy-2.2-beta2/modules/rules/Makefile.in	2006-04-18 01:30:02.175791000 +0200
-@@ -155,7 +155,7 @@
+--- xindy.git.orig/modules/rules/Makefile.in
++++ xindy.git/modules/rules/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -113,11 +118,9 @@ diff -urNad xindy-2.2-beta2~/modules/rules/Makefile.in xindy-2.2-beta2/modules/r
  rulesdir = $(modulesdir)/rules
  RULES = \
  	isolatin1-exchange.xdy \
-diff --git a/modules/styles/Makefile.in b/modules/styles/Makefile.in
-index 8942131..7de4a85 100644
---- a/modules/styles/Makefile.in
-+++ b/modules/styles/Makefile.in
-@@ -156,7 +156,7 @@ sbindir = @sbindir@
+--- xindy.git.orig/modules/styles/Makefile.in
++++ xindy.git/modules/styles/Makefile.in
+@@ -154,7 +154,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -126,11 +129,9 @@ index 8942131..7de4a85 100644
  texdir = $(modulesdir)/styles
  RULES = basic.xdy makeidx.xdy
  EXTRA_DIST = $(RULES)
-diff --git a/user-commands/xindy.in b/user-commands/xindy.in
-index ce77027..bf5956c 100644
---- a/user-commands/xindy.in
-+++ b/user-commands/xindy.in
-@@ -309,11 +309,13 @@ BEGIN {
+--- xindy.git.orig/user-commands/xindy.in
++++ xindy.git/user-commands/xindy.in
+@@ -414,11 +414,13 @@
      }
  
      # modules directory
@@ -148,4 +149,4 @@ index ce77027..bf5956c 100644
 +    #} else {
  	die "$cmd: Cannot locate xindy modules directory";
      }
- }
+ 

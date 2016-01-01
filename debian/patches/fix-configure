@@ -9,10 +9,13 @@
 
 @DPATCH@
 
-diff --git a/configure b/configure
---- a/configure
-+++ b/configure
-@@ -2286,7 +2286,7 @@ else
+---
+ configure |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- xindy.git.orig/configure
++++ xindy.git/configure
+@@ -2322,7 +2322,7 @@
    BUILDRULES=yes
  fi
  
@@ -21,7 +24,7 @@ diff --git a/configure b/configure
  for ac_prog in latex elatex lambda
  do
    # Extract the first word of "$ac_prog", so it can be a program name with args.
-@@ -2337,7 +2337,7 @@ then
+@@ -2373,7 +2373,7 @@
  $as_echo "$as_me: error: Unable to find a LaTeX application" >&2;}
     { (exit 1); exit 1; }; };
  fi
@@ -30,7 +33,7 @@ diff --git a/configure b/configure
  
   if test "$BUILDRULES" = "yes"; then
    BUILDRULES_TRUE=
-@@ -2356,7 +2356,7 @@ else
+@@ -2392,7 +2392,7 @@
    BUILDDOCS=yes
  fi
  
@@ -39,7 +42,7 @@ diff --git a/configure b/configure
  for ac_prog in pdflatex
  do
    # Extract the first word of "$ac_prog", so it can be a program name with args.
-@@ -2407,7 +2407,7 @@ then
+@@ -2443,7 +2443,7 @@
  $as_echo "$as_me: error: Unable to find a PDFLaTeX application" >&2;}
     { (exit 1); exit 1; }; };
  fi

@@ -2,8 +2,12 @@ xindy (2.4-1.4) UNRELEASED; urgency=medium
 
   * Non-maintainer upload.
   * fix FTBFS due to missing quotes around CPPFLAGS (Closes: #809053)
+  * switch to quilt format from dpatch
+    - rename patches
+    - disable config.* dpatch scripts, replace by dh_autotools-dev_updateconfig
+    - remove dpatch dependency, change source format
 
- -- Norbert Preining <preining@debian.org>  Sun, 27 Dec 2015 12:02:17 +0900
+ -- Norbert Preining <preining@debian.org>  Fri, 01 Jan 2016 18:29:05 +0900
 
 xindy (2.4-1.3) unstable; urgency=medium
 

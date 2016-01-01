@@ -5,11 +5,14 @@
 ## DP: message to stderr.
 
 @DPATCH@
-diff --git a/user-commands/texindy b/user-commands/texindy
-index e29e4e1..06dff2b 100755
---- a/user-commands/texindy.in
-+++ b/user-commands/texindy.in
-@@ -322,9 +322,9 @@ use Getopt::Long qw(:config bundling);
+---
+ user-commands/texindy.in |    8 ++++----
+ user-commands/xindy.in   |    8 ++++----
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+--- xindy.git.orig/user-commands/texindy.in
++++ xindy.git/user-commands/texindy.in
+@@ -413,9 +413,9 @@
  
  sub usage ( ;$ )
  {
@@ -22,7 +25,7 @@ index e29e4e1..06dff2b 100755
  
  usage: $cmd [-V?h] [-qv] [-iglr] [-d magic] [-o outfile.ind] [-t log] \\
              [-L lang] [-C codepage] [-M module] [-I input] [idx0 idx1 ...]
-@@ -350,7 +350,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
+@@ -441,7 +441,7 @@
  
  _EOT_
    ;
@@ -31,11 +34,9 @@ index e29e4e1..06dff2b 100755
  }
  
  our ($output_version, $quiet, $verbose, $stdin, @debug,
-diff --git a/user-commands/xindy.in b/user-commands/xindy.in
-index cfd399b..11c0009 100644
---- a/user-commands/xindy.in
-+++ b/user-commands/xindy.in
-@@ -335,9 +335,9 @@ use File::Spec;
+--- xindy.git.orig/user-commands/xindy.in
++++ xindy.git/user-commands/xindy.in
+@@ -431,9 +431,9 @@
  
  sub usage ( ;$ )
  {
@@ -48,7 +49,7 @@ index cfd399b..11c0009 100644
  
  usage: $cmd [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \\
              [-L lang] [-C codepage] [-M module] [-I input] \\
-@@ -361,7 +361,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
+@@ -457,7 +457,7 @@
  
  _EOT_
    ;
