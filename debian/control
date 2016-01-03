@@ -1,7 +1,8 @@
 Source: xindy
 Section: text
 Priority: optional
-Maintainer: Jörg Sommer <joerg@alea.gnuu.de>
+Maintainer: Debian TeX maintainers <debian-tex-maint@lists.debian.org>
+Uploaders: Norbert Preining <preining@debian.org>
 Build-Depends-Indep: texlive-latex-base,
  texlive-lang-cyrillic, texlive-lang-greek,
  texlive-latex-recommended, texlive-fonts-recommended, cm-super
