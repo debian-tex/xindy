@@ -6,11 +6,14 @@
 
 @DPATCH@
 ---
+ make-rules/alphabets/Makefile.am |    2 +-
  make-rules/alphabets/Makefile.in |    2 +-
+ make-rules/inputenc/Makefile.am  |    2 +-
  make-rules/inputenc/Makefile.in  |    2 +-
+ modules/Makefile.am              |    2 +-
  modules/Makefile.in              |    2 +-
  user-commands/xindy.in           |   12 +++++++-----
- 4 files changed, 10 insertions(+), 8 deletions(-)
+ 7 files changed, 13 insertions(+), 11 deletions(-)
 
 --- xindy.git.orig/make-rules/alphabets/Makefile.in
 +++ xindy.git/make-rules/alphabets/Makefile.in
@@ -66,3 +69,36 @@
  nobase_modules_DATA = base/book-order.xdy base/ff-ranges-only.xdy \
  	base/ff-ranges.xdy base/german-sty.xdy base/ignore-hyphen.xdy \
  	base/ignore-punctuation.xdy base/keep-blanks.xdy \
+--- xindy.git.orig/make-rules/alphabets/Makefile.am
++++ xindy.git/make-rules/alphabets/Makefile.am
+@@ -19,7 +19,7 @@
+ ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ ## Boston, MA 02110-1301 USA.
+ 
+-langdir	= $(pkglibdir)/modules/lang
++langdir	= $(pkgdatadir)/lang
+ 
+ nobase_nodist_lang_DATA =
+ EXTRA_DIST =
+--- xindy.git.orig/make-rules/inputenc/Makefile.am
++++ xindy.git/make-rules/inputenc/Makefile.am
+@@ -19,7 +19,7 @@
+ ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ ## Boston, MA 02110-1301 USA.
+ 
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ 
+ inputencdir = $(modulesdir)/tex/inputenc
+ 
+--- xindy.git.orig/modules/Makefile.am
++++ xindy.git/modules/Makefile.am
+@@ -21,7 +21,7 @@
+ ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ ## Boston, MA 02110-1301 USA.
+ 
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ 
+ nobase_modules_DATA =
+ 
