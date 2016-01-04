@@ -6,26 +6,27 @@
 
 @DPATCH@
 ---
- user-commands/texindy.in |    8 ++++----
- user-commands/xindy.in   |    8 ++++----
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ user-commands/texindy.in |    9 ++++-----
+ user-commands/xindy.in   |    9 ++++-----
+ 2 files changed, 8 insertions(+), 10 deletions(-)
 
 --- xindy.git.orig/user-commands/texindy.in
 +++ xindy.git/user-commands/texindy.in
-@@ -413,9 +413,9 @@
+@@ -456,10 +456,9 @@
  
  sub usage ( ;$ )
  {
 -    my $exit_code = shift;
 -    $exit_code += 0;			# turn undef into 0
--    print STDERR <<_EOT_
+-    my $out = ( $exit_code ? *STDERR : *STDOUT );
+-    print $out <<_EOT_
 +    my $signal_error = int shift;
 +    my $output_handle = $signal_error ? *STDERR{IO} : *STDOUT{IO};
 +    print $output_handle <<_EOT_
  
  usage: $cmd [-V?h] [-qv] [-iglr] [-d magic] [-o outfile.ind] [-t log] \\
              [-L lang] [-C codepage] [-M module] [-I input] [idx0 idx1 ...]
-@@ -441,7 +441,7 @@
+@@ -485,7 +484,7 @@
  
  _EOT_
    ;
@@ -36,20 +37,21 @@
  our ($output_version, $quiet, $verbose, $stdin, @debug,
 --- xindy.git.orig/user-commands/xindy.in
 +++ xindy.git/user-commands/xindy.in
-@@ -431,9 +431,9 @@
+@@ -473,10 +473,9 @@
  
  sub usage ( ;$ )
  {
 -    my $exit_code = shift;
 -    $exit_code += 0;			# turn undef into 0
--    print STDERR <<_EOT_
+-    my $out = ( $exit_code ? *STDERR : *STDOUT );
+-    print $out <<_EOT_
 +    my $signal_error = int shift;
 +    my $output_handle = $signal_error ? *STDERR{IO} : *STDOUT{IO};
 +    print $output_handle <<_EOT_
  
  usage: $cmd [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \\
              [-L lang] [-C codepage] [-M module] [-I input] \\
-@@ -457,7 +457,7 @@
+@@ -500,7 +499,7 @@
  
  _EOT_
    ;

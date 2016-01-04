@@ -8,31 +8,24 @@
 ---
  make-rules/alphabets/Makefile.in |    2 +-
  make-rules/inputenc/Makefile.in  |    2 +-
- make-rules/styles/Makefile.in    |    2 +-
- modules/base/Makefile.in         |    2 +-
- modules/class/Makefile.in        |    2 +-
- modules/lang/german/Makefile.in  |    2 +-
- modules/lang/latin/Makefile.in   |    2 +-
- modules/ord/Makefile.in          |    2 +-
- modules/rules/Makefile.in        |    2 +-
- modules/styles/Makefile.in       |    2 +-
+ modules/Makefile.in              |    2 +-
  user-commands/xindy.in           |   12 +++++++-----
- 11 files changed, 17 insertions(+), 15 deletions(-)
+ 4 files changed, 10 insertions(+), 8 deletions(-)
 
 --- xindy.git.orig/make-rules/alphabets/Makefile.in
 +++ xindy.git/make-rules/alphabets/Makefile.in
-@@ -253,7 +253,7 @@
+@@ -285,7 +285,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
 -langdir = $(pkglibdir)/modules/lang
 +langdir = $(pkgdatadir)/lang
- DISTCLEANFILES = albanian/utf8.pl belarusian/utf8.pl bulgarian/utf8.pl \
- 	croatian/utf8.pl czech/utf8.pl danish/utf8.pl \
- 	dutch/ij-as-ij-utf8.pl dutch/ij-as-y-utf8.pl english/utf8.pl \
+ nobase_nodist_lang_DATA = albanian/latin1-lang.xdy \
+ 	albanian/latin1-test.xdy albanian/latin1.xdy \
+ 	albanian/utf8-lang.xdy albanian/utf8-test.xdy \
 --- xindy.git.orig/make-rules/inputenc/Makefile.in
 +++ xindy.git/make-rules/inputenc/Makefile.in
-@@ -154,7 +154,7 @@
+@@ -259,7 +259,7 @@
  top_build_prefix = @top_build_prefix@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
@@ -41,97 +34,9 @@
  inputencdir = $(modulesdir)/tex/inputenc
  INPUTENCS = \
  	cp1250.xdy \
---- xindy.git.orig/make-rules/styles/Makefile.in
-+++ xindy.git/make-rules/styles/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- stylesdir = $(modulesdir)/styles
- STYLES = \
- 	example.xdy \
---- xindy.git.orig/modules/base/Makefile.in
-+++ xindy.git/modules/base/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- basedir = $(modulesdir)/base
- RULES = \
- 	book-order.xdy \
---- xindy.git.orig/modules/class/Makefile.in
-+++ xindy.git/modules/class/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- classdir = $(modulesdir)/class
- RULES = \
- 	pagenums.xdy
---- xindy.git.orig/modules/lang/german/Makefile.in
-+++ xindy.git/modules/lang/german/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--langdir = $(pkglibdir)/modules/lang
-+langdir = $(pkgdatadir)/lang
- germandir = $(langdir)/german
- RULES = \
- 	din5007.xdy \
---- xindy.git.orig/modules/lang/latin/Makefile.in
-+++ xindy.git/modules/lang/latin/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--langdir = $(pkglibdir)/modules/lang
-+langdir = $(pkgdatadir)/lang
- latindir = $(langdir)/latin
- RULES = \
- 	caseisrt.xdy \
---- xindy.git.orig/modules/ord/Makefile.in
-+++ xindy.git/modules/ord/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- orddir = $(modulesdir)/ord
- RULES = \
- 	letorder.xdy
---- xindy.git.orig/modules/rules/Makefile.in
-+++ xindy.git/modules/rules/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- rulesdir = $(modulesdir)/rules
- RULES = \
- 	isolatin1-exchange.xdy \
---- xindy.git.orig/modules/styles/Makefile.in
-+++ xindy.git/modules/styles/Makefile.in
-@@ -154,7 +154,7 @@
- top_build_prefix = @top_build_prefix@
- top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
--modulesdir = $(pkglibdir)/modules
-+modulesdir = $(pkgdatadir)
- texdir = $(modulesdir)/styles
- RULES = basic.xdy makeidx.xdy
- EXTRA_DIST = $(RULES)
 --- xindy.git.orig/user-commands/xindy.in
 +++ xindy.git/user-commands/xindy.in
-@@ -414,11 +414,13 @@
+@@ -456,11 +456,13 @@
      }
  
      # modules directory
@@ -150,3 +55,14 @@
  	die "$cmd: Cannot locate xindy modules directory";
      }
  
+--- xindy.git.orig/modules/Makefile.in
++++ xindy.git/modules/Makefile.in
+@@ -263,7 +263,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-modulesdir = $(pkglibdir)/modules
++modulesdir = $(pkgdatadir)
+ nobase_modules_DATA = base/book-order.xdy base/ff-ranges-only.xdy \
+ 	base/ff-ranges.xdy base/german-sty.xdy base/ignore-hyphen.xdy \
+ 	base/ignore-punctuation.xdy base/keep-blanks.xdy \
