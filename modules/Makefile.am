@@ -3,6 +3,8 @@
 ## Or, call `automake Makefile' to create only Makefile.in.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 by Joachim Schrod.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,4 +21,19 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-SUBDIRS = base class lang ord rules styles
+modulesdir = $(pkglibdir)/modules
+
+nobase_modules_DATA =
+
+EXTRA_DIST = $(nobase_modules_DATA)
+
+## Include all Makefile.am fragments.
+##
+include base/Makefile.am
+include class/Makefile.am
+include lang/german/Makefile.am
+include lang/korean/Makefile.am
+include lang/latin/Makefile.am
+include ord/Makefile.am
+include rules/Makefile.am
+include styles/Makefile.am

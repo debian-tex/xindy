@@ -1,8 +1,8 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/russian/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
+##
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,22 +19,42 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-    cp1251.pl iso88595.pl koi8-r.pl translit-iso-utf8.pl.in utf8.pl.in \
-    translit-iso-tex.xdy translit-tex.xdy translit-tgl-tex.xdy
+nobase_nodist_lang_DATA += \
+	russian/cp1251-lang.xdy \
+	russian/cp1251-test.xdy \
+	russian/cp1251.xdy \
+	russian/iso88595-lang.xdy \
+	russian/iso88595-test.xdy \
+	russian/iso88595.xdy \
+	russian/koi8-r-lang.xdy \
+	russian/koi8-r-test.xdy \
+	russian/koi8-r.xdy \
+	russian/translit-iso-utf8-lang.xdy \
+	russian/translit-iso-utf8-test.xdy \
+	russian/translit-iso-utf8.xdy \
+	russian/utf8-lang.xdy \
+	russian/utf8-test.xdy \
+	russian/utf8.xdy
 
-CLEANFILES = \
-	cp1251.raw \
-	cp1251-doc.tex \
-	iso88595.raw \
-	iso88595-doc.tex \
-	koi8-r.raw \
-	koi8-r-doc.tex \
-	translit-iso-utf8.raw \
-	translit-iso-utf8-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	russian/cp1251.pl \
+	russian/iso88595.pl \
+	russian/koi8-r.pl \
+	russian/translit-iso-utf8.pl.in \
+	russian/utf8.pl.in
 
+DISTCLEANFILES += \
+	russian/translit-iso-utf8.pl \
+	russian/utf8.pl
 
-
+DOCS_CYR_1251 += \
+	russian/cp1251-doc.tex
+DOCS_CYR_ISO88595 += \
+	russian/iso88595-doc.tex
+DOCS_CYR_KOI8_R += \
+	russian/koi8-r-doc.tex
+DOCS_UTF8_LAT += \
+	russian/translit-iso-utf8-doc.tex
+DOCS_UTF8_CYR += \
+	russian/utf8-doc.tex
 

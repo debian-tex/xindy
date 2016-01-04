@@ -1,8 +1,8 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/slovenian/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
+##
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,16 +19,29 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = cp1250.pl latin2.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	slovenian/cp1250-lang.xdy \
+	slovenian/cp1250-test.xdy \
+	slovenian/cp1250.xdy \
+	slovenian/latin2-lang.xdy \
+	slovenian/latin2-test.xdy \
+	slovenian/latin2.xdy \
+	slovenian/utf8-lang.xdy \
+	slovenian/utf8-test.xdy \
+	slovenian/utf8.xdy
 
-CLEANFILES = \
-	cp1250.raw \
-	cp1250-doc.tex \
-	latin2.raw \
-	latin2-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	slovenian/cp1250.pl \
+	slovenian/latin2.pl \
+	slovenian/utf8.pl.in
 
+DISTCLEANFILES += \
+	slovenian/utf8.pl
 
-
+DOCS_CP1250 += \
+	slovenian/cp1250-doc.tex
+DOCS_LATIN2 += \
+	slovenian/latin2-doc.tex
+DOCS_UTF8_LAT += \
+	slovenian/utf8-doc.tex
 

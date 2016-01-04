@@ -1,5 +1,20 @@
+#line 95 "tex2xindy.l"
+#include <stdio.h>
+#include <stdlib.h>
+#ifdef WIN32
+# include <fcntl.h>
+# ifndef __MINGW32__  /* this should be W32TeX */
+#  include <kpathsea/getopt.h>
+#  define YY_NO_UNISTD_H 1
+#  define __STDC_VERSION__ 199901L
+# endif
+#else
+# include <unistd.h>
+#endif
 
-#line 3 "<stdout>"
+
+
+#line 18 "tex2xindy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -549,7 +564,7 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "tex2xindy.l"
-#line 2 "tex2xindy.l"
+#line 4 "tex2xindy.l"
   /* $Id: tex2xindy.l,v 1.24 2010/05/10 23:02:17 jschrod Exp $
      ============================================================
      (history at end)
@@ -639,10 +654,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
+#line 110 "tex2xindy.l"
 #define QUOTE_ECHO qs(yytext)
 
 FILE* attrfd = NULL;
@@ -735,7 +747,7 @@ static void omega_output_utf8 ( int width )
 }
 
 
-#line 739 "<stdout>"
+#line 751 "tex2xindy.c"
 
 #define INITIAL 0
 #define key 1
@@ -925,10 +937,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 207 "tex2xindy.l"
+#line 222 "tex2xindy.l"
 
 
-#line 932 "<stdout>"
+#line 944 "tex2xindy.c"
 
 	if ( !(yy_init) )
 		{
@@ -987,16 +999,12 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 263 );
+		while ( yy_current_state != 115 );
+		yy_cp = (yy_last_accepting_cpos);
+		yy_current_state = (yy_last_accepting_state);
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
-		if ( yy_act == 0 )
-			{ /* have to back up */
-			yy_cp = (yy_last_accepting_cpos);
-			yy_current_state = (yy_last_accepting_state);
-			yy_act = yy_accept[yy_current_state];
-			}
 
 		YY_DO_BEFORE_ACTION;
 
@@ -1013,7 +1021,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 209 "tex2xindy.l"
+#line 224 "tex2xindy.l"
 {
 			  printf("(indexentry :tkey ((\"");
 			  xref_mode = 0;
@@ -1023,7 +1031,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 216 "tex2xindy.l"
+#line 231 "tex2xindy.l"
 {
 			  printf("(indexentry :tkey ((\"");
 			  xref_mode = 0;
@@ -1033,23 +1041,23 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 223 "tex2xindy.l"
+#line 238 "tex2xindy.l"
 { QUOTE_ECHO; }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 224 "tex2xindy.l"
+#line 239 "tex2xindy.l"
 { qc(yytext[1]); lineno++; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 225 "tex2xindy.l"
+#line 240 "tex2xindy.l"
 { qc(yytext[1]); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 226 "tex2xindy.l"
+#line 241 "tex2xindy.l"
 {
 			 printf("\")) :attr \"");
                          range = NO_RANGE;
@@ -1058,7 +1066,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 231 "tex2xindy.l"
+#line 246 "tex2xindy.l"
 {
 			 if ( glos_mode ) {
                              printf("\")) :attr \"is\" :xref (\"");
@@ -1072,22 +1080,22 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 241 "tex2xindy.l"
+#line 256 "tex2xindy.l"
 { printf("\") (\""); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 242 "tex2xindy.l"
+#line 257 "tex2xindy.l"
 { printf("\") (\""); BEGIN(key); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 243 "tex2xindy.l"
+#line 258 "tex2xindy.l"
 { ECHO; braces++; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 244 "tex2xindy.l"
+#line 259 "tex2xindy.l"
 {
 			 if ( braces > 0 ) {
 			     ECHO;
@@ -1100,32 +1108,32 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 254 "tex2xindy.l"
+#line 269 "tex2xindy.l"
 { printf("\" \""); BEGIN(print); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 255 "tex2xindy.l"
+#line 270 "tex2xindy.l"
 { multiple_err; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 257 "tex2xindy.l"
+#line 272 "tex2xindy.l"
 { multiple_err; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 258 "tex2xindy.l"
+#line 273 "tex2xindy.l"
 { range = OPEN_RANGE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 259 "tex2xindy.l"
+#line 274 "tex2xindy.l"
 { range = CLOSE_RANGE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 260 "tex2xindy.l"
+#line 275 "tex2xindy.l"
 { /* close :attr "... */
                          printf("\" :xref (\"");
 			 if (attrfd) fprintf(attrfd, "\txref\n");
@@ -1135,7 +1143,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 266 "tex2xindy.l"
+#line 281 "tex2xindy.l"
 {
 			 if ( braces > 0 ) {
 			     ECHO;
@@ -1158,7 +1166,7 @@ YY_RULE_SETUP
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 284 "tex2xindy.l"
+#line 299 "tex2xindy.l"
 {
 			 QUOTE_ECHO;
                          if (attrfd)  fwrite(yytext, sizeof(char), 1, attrfd);
@@ -1167,17 +1175,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 292 "tex2xindy.l"
+#line 307 "tex2xindy.l"
 { printf("\" \""); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 293 "tex2xindy.l"
+#line 308 "tex2xindy.l"
 { ECHO; braces++; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 294 "tex2xindy.l"
+#line 309 "tex2xindy.l"
 {
 			 if ( braces > 1 ) {
 			     ECHO;
@@ -1193,7 +1201,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 306 "tex2xindy.l"
+#line 321 "tex2xindy.l"
 {
 			 if ( braces > 0 ) {
 			     ECHO;
@@ -1207,7 +1215,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 317 "tex2xindy.l"
+#line 332 "tex2xindy.l"
 {
                          if (xref_mode) {
 			     BEGIN(skiplocation);
@@ -1219,22 +1227,22 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 325 "tex2xindy.l"
+#line 340 "tex2xindy.l"
 { printf("\")\n"); BEGIN(0); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 327 "tex2xindy.l"
+#line 342 "tex2xindy.l"
 { printf(")\n"); BEGIN(0); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 328 "tex2xindy.l"
+#line 343 "tex2xindy.l"
 { ; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 330 "tex2xindy.l"
+#line 345 "tex2xindy.l"
 {
 			if ( omega_mode ) {
 			    omega_output_utf8(2);
@@ -1245,7 +1253,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 337 "tex2xindy.l"
+#line 352 "tex2xindy.l"
 {
 			if ( omega_mode ) {
 			    omega_output_utf8(4);
@@ -1256,7 +1264,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 344 "tex2xindy.l"
+#line 359 "tex2xindy.l"
 {
 			if ( omega_mode ) {
 			    omega_output_utf8(8);
@@ -1268,28 +1276,28 @@ YY_RULE_SETUP
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 352 "tex2xindy.l"
+#line 367 "tex2xindy.l"
 { ECHO; lineno++; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 353 "tex2xindy.l"
+#line 368 "tex2xindy.l"
 { QUOTE_ECHO; }
 	YY_BREAK
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 355 "tex2xindy.l"
+#line 370 "tex2xindy.l"
 { lineno++; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 356 "tex2xindy.l"
+#line 371 "tex2xindy.l"
 { ; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 357 "tex2xindy.l"
+#line 372 "tex2xindy.l"
 {
 			fprintf(stderr,
 				"Encountered unexpected char '%c' on line %d\n",
@@ -1298,10 +1306,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 363 "tex2xindy.l"
+#line 378 "tex2xindy.l"
 ECHO;
 	YY_BREAK
-#line 1305 "<stdout>"
+#line 1313 "tex2xindy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(key):
 case YY_STATE_EOF(print):
@@ -1376,7 +1384,8 @@ case YY_STATE_EOF(skiplocation):
 
 			else
 				{
-				yy_cp = (yy_c_buf_p);
+				yy_cp = (yy_last_accepting_cpos);
+				yy_current_state = (yy_last_accepting_state);
 				goto yy_find_action;
 				}
 			}
@@ -1859,10 +1868,6 @@ static void yy_load_buffer_state  (void)
 	yyfree((void *) b  );
 }
 
-#ifndef __cplusplus
-extern int isatty (int );
-#endif /* __cplusplus */
-    
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
  * such as during a yyrestart() or at EOF.
@@ -1886,7 +1891,7 @@ extern int isatty (int );
         b->yy_bs_column = 0;
     }
 
-        b->yy_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
+        b->yy_is_interactive = 0;
     
 	errno = oerrno;
 }
@@ -2307,7 +2312,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 363 "tex2xindy.l"
+#line 378 "tex2xindy.l"
 
 
 
@@ -2322,8 +2327,13 @@ int
 main(int argc, char* argv[])
 {
     int option;
+
+#ifdef WIN32
+    setmode (fileno(stdout), _O_BINARY);
+#else
     extern char *optarg;
     extern int optind, optopt;
+#endif
 
     while ( (option=getopt(argc, argv, ":o")) != -1 ) {
 	switch (option) {
@@ -2345,7 +2355,7 @@ main(int argc, char* argv[])
     if ( optind == argc - 1 ) {
 	fprintf(stderr, "Writing attribute names to file \"%s\".\n",
 		argv[optind]);
-	if ( (attrfd = fopen(argv[optind], "w")) == NULL ) {
+	if ( (attrfd = fopen(argv[optind], "wb")) == NULL ) {
 	    perror (argv[optind]);
 	    exit (1);
 	}

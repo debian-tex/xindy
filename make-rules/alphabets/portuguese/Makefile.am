@@ -1,8 +1,8 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/portuguese/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
+##
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,14 +19,23 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = latin1.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	portuguese/latin1-lang.xdy \
+	portuguese/latin1-test.xdy \
+	portuguese/latin1.xdy \
+	portuguese/utf8-lang.xdy \
+	portuguese/utf8-test.xdy \
+	portuguese/utf8.xdy
 
-CLEANFILES = \
-	latin1.raw \
-	latin1-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	portuguese/latin1.pl \
+	portuguese/utf8.pl.in
 
+DISTCLEANFILES += \
+	portuguese/utf8.pl
 
-
+DOCS_LATIN1 += \
+	portuguese/latin1-doc.tex
+DOCS_UTF8_LAT += \
+	portuguese/utf8-doc.tex
 

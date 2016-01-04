@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for modules/base/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,30 +18,21 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-modulesdir = $(pkglibdir)/modules
-
-basedir = $(modulesdir)/base
-
-RULES = \
-	book-order.xdy \
-	ff-ranges-only.xdy \
-	ff-ranges.xdy \
-	german-sty.xdy \
-	ignore-hyphen.xdy \
-	ignore-punctuation.xdy \
-	keep-blanks.xdy \
-	latex-loc-fmts.xdy \
-	latex.xdy \
-	latin-lettergroups.xdy \
-	letter-order.xdy \
-	makeindex.xdy \
-	numeric-sort.xdy \
-	page-ranges.xdy \
-	texindy.xdy \
-	tex.xdy \
-	word-order.xdy
-
-EXTRA_DIST = $(RULES)
-
-base_DATA = $(RULES)
-
+nobase_modules_DATA += \
+	base/book-order.xdy \
+	base/ff-ranges-only.xdy \
+	base/ff-ranges.xdy \
+	base/german-sty.xdy \
+	base/ignore-hyphen.xdy \
+	base/ignore-punctuation.xdy \
+	base/keep-blanks.xdy \
+	base/latex-loc-fmts.xdy \
+	base/latex.xdy \
+	base/latin-lettergroups.xdy \
+	base/letter-order.xdy \
+	base/makeindex.xdy \
+	base/numeric-sort.xdy \
+	base/page-ranges.xdy \
+	base/texindy.xdy \
+	base/tex.xdy \
+	base/word-order.xdy
