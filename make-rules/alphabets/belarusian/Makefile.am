@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/belarusian/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,19 +18,35 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = cp1251.pl iso88595.pl isoir111.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	belarusian/cp1251-lang.xdy \
+	belarusian/cp1251-test.xdy \
+	belarusian/cp1251.xdy \
+	belarusian/iso88595-lang.xdy \
+	belarusian/iso88595-test.xdy \
+	belarusian/iso88595.xdy \
+	belarusian/isoir111-lang.xdy \
+	belarusian/isoir111-test.xdy \
+	belarusian/isoir111.xdy \
+	belarusian/utf8-lang.xdy \
+	belarusian/utf8-test.xdy \
+	belarusian/utf8.xdy
 
-CLEANFILES = \
-	cp1251.raw \
-	cp1251-doc.tex \
-	iso88595.raw \
-	iso88595-doc.tex \
-	isoir111.raw \
-	isoir111-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	belarusian/cp1251.pl \
+	belarusian/iso88595.pl \
+	belarusian/isoir111.pl \
+	belarusian/utf8.pl.in
 
+DISTCLEANFILES += \
+	belarusian/utf8.pl
 
-
-
+DOCS_CYR_1251 += \
+	belarusian/cp1251-doc.tex
+DOCS_CYR_ISO88595 += \
+	belarusian/iso88595-doc.tex
+DOCS_CYR_ISOIR111 += \
+	belarusian/isoir111-doc.tex
+DOCS_UTF8_CYR += \
+	belarusian/utf8-doc.tex
 

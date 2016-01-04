@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for doc/style-tutorial/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -21,16 +20,11 @@
 
 tutorialdir = $(docdir)/style-tutorial
 
-FILES = \
-	ex1.raw \
-	ex1.tex \
-	ex2.raw \
-	ex2.tex \
-	index.tex \
-	style1.xdy \
-	style2.xdy
-
-EXTRA_DIST = $(FILES)
-
-tutorial_DATA = $(FILES)
-
+nobase_doc_DATA += \
+	style-tutorial/ex1.raw \
+	style-tutorial/ex1.tex \
+	style-tutorial/ex2.raw \
+	style-tutorial/ex2.tex \
+	style-tutorial/index.tex \
+	style-tutorial/style1.xdy \
+	style-tutorial/style2.xdy

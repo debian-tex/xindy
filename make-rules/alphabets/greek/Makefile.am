@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/greek/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,24 +18,43 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-	iso88597.pl  polytonic-utf8.pl.in utf8.pl.in \
-	translit-latin4.pl translit-utf8.pl.in \
-	translit-tex.xdy
+nobase_nodist_lang_DATA += \
+	greek/iso88597-lang.xdy \
+	greek/iso88597-test.xdy \
+	greek/iso88597.xdy \
+	greek/polytonic-utf8-lang.xdy \
+	greek/polytonic-utf8-test.xdy \
+	greek/polytonic-utf8.xdy \
+	greek/translit-latin4-lang.xdy \
+	greek/translit-latin4-test.xdy \
+	greek/translit-latin4.xdy \
+	greek/translit-utf8-lang.xdy \
+	greek/translit-utf8-test.xdy \
+	greek/translit-utf8.xdy \
+	greek/utf8-lang.xdy \
+	greek/utf8-test.xdy \
+	greek/utf8.xdy
 
+EXTRA_DIST += \
+	greek/iso88597.pl \
+	greek/polytonic-utf8.pl.in \
+	greek/utf8.pl.in \
+	greek/translit-latin4.pl \
+	greek/translit-utf8.pl.in
 
-CLEANFILES = \
-	iso88597.raw \
-	iso88597-doc.tex \
-	polytonic-utf8.raw \
-	polytonic-utf8-doc.tex \
-	translit-latin4.raw \
-	translit-latin4-doc.tex \
-	translit-utf8.raw \
-	translit-utf8-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+DISTCLEANFILES += \
+	greek/polytonic-utf8.pl \
+	greek/translit-utf8.pl \
+	greek/utf8.pl
 
-
-
+DOCS_LATIN4 += \
+	greek/translit-latin4-doc.tex
+DOCS_OTHER += \
+	greek/iso88597-doc.tex
+DOCS_UTF8_LAT += \
+	greek/translit-utf8-doc.tex \
+	greek/utf8-doc.tex
+DOCS_UTF8_OTHER += \
+	greek/utf8-doc.tex \
+	greek/polytonic-utf8-doc.tex
 

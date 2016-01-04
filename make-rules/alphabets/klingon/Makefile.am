@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/klingon/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,15 +18,18 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-	utf8.pl.in \
-	translit-ascii.pl
+nobase_nodist_lang_DATA += \
+	klingon/utf8-lang.xdy \
+	klingon/utf8-test.xdy \
+	klingon/utf8.xdy
 
+EXTRA_DIST += \
+	klingon/utf8.pl.in \
+	klingon/translit-ascii.pl
 
-CLEANFILES = \
-	utf8.raw \
-	utf8-doc.tex
+DISTCLEANFILES += \
+	klingon/utf8.pl
 
-
-
+DOCS_UTF8_OTHER += \
+	klingon/utf8-doc.tex
 

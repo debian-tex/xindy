@@ -1,8 +1,8 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/slovak/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
+##
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,24 +19,45 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-    large-cp1250.pl large-latin2.pl large-utf8.pl.in \
-    small-cp1250.pl small-latin2.pl small-utf8.pl.in
+nobase_nodist_lang_DATA += \
+	slovak/large-cp1250-lang.xdy \
+	slovak/large-cp1250-test.xdy \
+	slovak/large-cp1250.xdy \
+	slovak/large-latin2-lang.xdy \
+	slovak/large-latin2-test.xdy \
+	slovak/large-latin2.xdy \
+	slovak/large-utf8-lang.xdy \
+	slovak/large-utf8-test.xdy \
+	slovak/large-utf8.xdy \
+	slovak/small-cp1250-lang.xdy \
+	slovak/small-cp1250-test.xdy \
+	slovak/small-cp1250.xdy \
+	slovak/small-latin2-lang.xdy \
+	slovak/small-latin2-test.xdy \
+	slovak/small-latin2.xdy \
+	slovak/small-utf8-lang.xdy \
+	slovak/small-utf8-test.xdy \
+	slovak/small-utf8.xdy
 
-CLEANFILES = \
-	large-cp1250.raw \
-	large-cp1250-doc.tex \
-	large-latin2.raw \
-	large-latin2-doc.tex \
-	large-utf8.raw \
-	large-utf8-doc.tex \
-	small-cp1250.raw \
-	small-cp1250-doc.tex \
-	small-latin2.raw \
-	small-latin2-doc.tex \
-	small-utf8.raw \
-	small-utf8-doc.tex
+EXTRA_DIST += \
+	slovak/large-cp1250.pl \
+	slovak/large-latin2.pl \
+	slovak/large-utf8.pl.in \
+	slovak/small-cp1250.pl \
+	slovak/small-latin2.pl \
+	slovak/small-utf8.pl.in
 
+DISTCLEANFILES += \
+	slovak/large-utf8.pl \
+	slovak/small-utf8.pl
 
-
+DOCS_CP1250 += \
+	slovak/large-cp1250-doc.tex \
+	slovak/small-cp1250-doc.tex
+DOCS_LATIN2 += \
+	slovak/small-latin2-doc.tex \
+	slovak/large-latin2-doc.tex
+DOCS_UTF8_LAT += \
+	slovak/small-utf8-doc.tex \
+	slovak/large-utf8-doc.tex
 

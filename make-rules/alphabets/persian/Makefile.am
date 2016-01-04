@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/persian/.
 
-## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 by Joachim Schrod.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,17 +18,23 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-modulesdir = $(pkglibdir)/modules
+nobase_nodist_lang_DATA += \
+	persian/variant1-utf8-lang.xdy \
+	persian/variant1-utf8-test.xdy \
+	persian/variant1-utf8.xdy \
+	persian/variant2-utf8-lang.xdy \
+	persian/variant2-utf8-test.xdy \
+	persian/variant2-utf8.xdy
 
-stylesdir = $(modulesdir)/styles
+EXTRA_DIST += \
+	persian/README \
+	persian/variant1-utf8.pl.in \
+	persian/variant2-utf8.pl.in
 
-STYLES = \
-	example.xdy \
-	makeindex.xdy \
-	vermeer.xdy
+DISTCLEANFILES += \
+	persian/utf8.pl
 
-EXTRA_DIST = $(STYLES)
-
-styles_DATA = $(STYLES)
-
+DOCS_UTF8_OTHER += \
+	persian/variant1-utf8-doc.tex \
+	persian/variant2-utf8-doc.tex
 

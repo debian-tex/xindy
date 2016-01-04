@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/macedonian/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,18 +18,35 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = cp1251.pl iso88595.pl isoir111.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	macedonian/cp1251-lang.xdy \
+	macedonian/cp1251-test.xdy \
+	macedonian/cp1251.xdy \
+	macedonian/iso88595-lang.xdy \
+	macedonian/iso88595-test.xdy \
+	macedonian/iso88595.xdy \
+	macedonian/isoir111-lang.xdy \
+	macedonian/isoir111-test.xdy \
+	macedonian/isoir111.xdy \
+	macedonian/utf8-lang.xdy \
+	macedonian/utf8-test.xdy \
+	macedonian/utf8.xdy
 
-CLEANFILES = \
-	cp1251.raw \
-	cp1251-doc.tex \
-	iso88595.raw \
-	iso88595-doc.tex \
-	isoir111.raw \
-	isoir111-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	macedonian/cp1251.pl \
+	macedonian/iso88595.pl \
+	macedonian/isoir111.pl \
+	macedonian/utf8.pl.in
 
+DISTCLEANFILES += \
+	macedonian/utf8.pl
 
-
+DOCS_CYR_1251 += \
+	macedonian/cp1251-doc.tex
+DOCS_CYR_ISO88595 += \
+	macedonian/iso88595-doc.tex
+DOCS_CYR_ISOIR111 += \
+	macedonian/isoir111-doc.tex
+DOCS_UTF8_CYR += \
+	macedonian/utf8-doc.tex
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: texindy,v 1.11 2010/05/10 23:39:24 jschrod Exp $
+# $Id: texindy,v 1.13 2011/01/18 22:18:29 jschrod Exp $
 #------------------------------------------------------------
 # (history at end)
 
@@ -28,7 +28,7 @@ texindy - create sorted and tagged index from raw LaTeX index
  -L / --language
  -C / --codepage
  -M / --module         (multiple times)
- -I / --input-markup   (supported: latex, omega)
+ -I / --input-markup   (supported: latex, xelatex, omega)
 
 
 =head1 DESCRIPTION
@@ -49,9 +49,7 @@ markup, the command xindy(1) is probably more of interest for you.
 
 B<texindy> is an approach to merge support for the I<make-rules>
 framework, own xindy modules (e.g., for special LaTeX commands in the
-index), and a reasonable level of MakeIndex compatibility. There are
-other older approaches, eventually they will get a description on the
-xindy Web Site, http://www.xindy.org/.
+index), and a reasonable level of MakeIndex compatibility.
 
 
 =head1 OPTIONS
@@ -104,19 +102,46 @@ C<--debug> or C<--verbose>.
 The index is sorted according to the rules of language I<lang>. These
 rules are encoded in a xindy module created by I<make-rules>.
 
-If no input encoding is specified via C<--codepage>, a xindy module
-for that language is searched with a latin, a cp, an iso, or ascii
-encoding, in that order.
+If no input encoding is specified via C<--codepage> or enforced by
+input markup, a xindy module for that language is searched with a
+latin, a cp, an iso, ascii, or utf8 encoding, in that order.
 
-=item C<--codepage> I<enc> / B <-C> I<enc>
+=item C<--codepage> I<enc> / B<-C> I<enc>
 
-The raw input is in input encoding I<enc>. This information is used to
-select the correct xindy sort module and also the I<inputenc> target
-encoding for C<latex> input markup.
+There are two different situations and use cases for this option.
 
-When C<omega> input markup is used, C<utf8> is always used as the sort
-codepage and no inputenc module is loaded. Then this option is
-ignored.
+=over
+
+=item 1.
+
+Input markup is C<latex> (the default).
+
+Then B<texindy>'s raw input is assumed to be encoded in LaTeX Internal
+Character Representation (LICR). I.e., non-ASCII characters are
+encoded as command sequences. This option tells xindy the encoding it
+shall use for letter group headings. (Additionally it specifies the
+encoding used internally for sorting -- but that doesn't matter for
+the result.)
+
+Only LICR encodings for Latin script alphabets are supported; more
+precisely characters that are in LaTeX latin1, latin2, and latin3 LICR
+encodings.
+
+Even when you specify C<utf8> as codepage, only these characters will
+be known. But if you use non-Latin alphabets, you probably use (or
+should use) XeLaTeX or LuaLaTeX and then you have a different input
+markup.
+
+=item 2.
+
+Input markup is C<xelatex> or C<omega>.
+
+Then this option is ignored; codepage C<utf8> is enforced.
+
+B<texindy>'s raw input is assumed to be UTF-8 encoded, LICR is not
+used.
+
+=back
 
 =item C<--module> I<module> / B<-M> I<module>
 
@@ -127,17 +152,22 @@ can be changed with the environment variable C<XINDY_SEARCHPATH>.
 =item C<--input-markup> I<input> / B<-I> I<input>
 
 Specifies the input markup of the raw index. Supported values for
-I<input> are C<latex> and C<omega>.
+I<input> are C<latex>, C<xelatex>, and C<omega>.
 
 C<latex> input markup is the one that is emitted by default from the
-LaTeX kernel, or by the C<index> macro package of David Jones.
-^^-notation of single byte characters is supported. Usage of LaTeX's
-I<inputenc> package is assumed as well.
+LaTeX kernel, or by the C<index> macro package of David Jones, when
+used with standard LaTeX or pdfLaTeX. ^^-notation of single byte
+characters is supported. Usage of LaTeX's I<inputenc> package is
+assumed as well, i.e., raw input is encoded in LICR.
+
+C<xelatex> input markup is like C<latex>, but without I<inputenc>
+usage. Raw input is encoded in UTF-8. LuaLaTeX has the same input
+markup, there's no special option value for it.
 
 C<omega> input markup is like C<latex> input markup, but with Omega's
-^^-notation as encoding for non-ASCII characters. LaTeX I<inputenc>
-encoding is not used then, and C<utf8> is enforced to be the codepage
-for sorting.
+^^-notation as encoding for non-ASCII characters. LICR encoding is not
+used then, and C<utf8> is enforced to be the codepage for sorting and
+for output of letter group headings.
 
 =back
 
@@ -292,6 +322,22 @@ should please contact the author.
 
 =item *
 
+If you have an index rage and a location attribute, e.g.,
+C<\index{key\(attr}> starts the range, one needs (1) to specify that
+attribute in the range closing entry as well (i.e., as
+C<\index{key\)attr}>) and (2) one needs to declare the index attribute
+in an B<xindy> style file.
+
+MakeIndex will output the markup C<\attr{page1--page2}> for such a
+construct. This is not possible to achieve in B<xindy>, output will be
+C<\attrMarkup{page1}--\attrMarkup{page2}>. (This is actually
+considered a bug, but not a high priority one.)
+
+The difference between MakeIndex page number tags and B<xindy>
+location attributes was already explained in the previous item.
+
+=item *
+
 The MakeIndex compatibility definitions support only the default raw
 index syntax and markup definition. It is not possible to configure
 raw index parsing or use a MakeIndex style file to describe output
@@ -320,6 +366,8 @@ Joachim Schrod
 
 =head1 LEGALESE
 
+Copyright (c) 2004-2014 by Joachim Schrod.
+
 B<texindy> is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation; either version 2 of the License, or (at your
@@ -340,7 +388,7 @@ GNU General Public License for more details.
 use strict;
 use English qw(-no_match_vars);
 
-our $VERSION = sprintf "%d.%02d", q$Revision: 1.11 $ =~ /: (\d+)\.(\d+)/ ;
+our $VERSION = sprintf "%d.%02d", q$Revision: 1.13 $ =~ /: (\d+)\.(\d+)/ ;
 
 
 # Used modules.
@@ -352,6 +400,7 @@ use Getopt::Long qw(:config bundling);
 
 # Determine environment. Where is our library directory, and our modules?
 
+our $is_TL = ( '@is_TL@' eq 'yes' );
 our $is_w32 = ( $OSNAME =~ /^MSWin/i ) ;
 our $real_cmd = Cwd::realpath($0);
 our $cmd_dir = dirname($real_cmd);
@@ -362,14 +411,8 @@ our $xindy;
 # the actual scripts are in the library directory and have a .pl
 # extension. In standalone installations, user command xindy is
 # expected to be in the same directory as our command.
-#
-# FIXME: This code assumes that on TeX-Live -- and only there! -- the
-# real command has a .pl extension, this is used for detection that we
-# are on TeX-Live. This is blatantly untrue, in a standalone Windows
-# installation, xindy has also a .pl extension. We have to fix this
-# later, cleanup of this issue would delay inclusion in TL 2010.
 
-if ( $real_cmd =~ /\.pl$/ ) { # TeX Live
+if ( $is_TL ) { # TeX Live
 
     if ( $is_w32 ) {
 	$xindy = "$cmd_dir/xindy.pl";
@@ -415,7 +458,8 @@ sub usage ( ;$ )
 {
     my $exit_code = shift;
     $exit_code += 0;			# turn undef into 0
-    print STDERR <<_EOT_
+    my $out = ( $exit_code ? *STDERR : *STDOUT );
+    print $out <<_EOT_
 
 usage: $cmd [-V?h] [-qv] [-iglr] [-d magic] [-o outfile.ind] [-t log] \\
             [-L lang] [-C codepage] [-M module] [-I input] [idx0 idx1 ...]
@@ -531,15 +575,16 @@ sub parse_options() {
     unshift (@modules, ($letter_ordering ? 'letter-order' : 'word-order'));
     unshift (@modules, 'page-ranges')  unless $no_ranges;
 
-    # Check that the input markup is known. omega markup implies
+    # Check that the input markup is known. xelatex and omega markup implies
     # codepage utf8 for sorting, but no inputenc. We set the codepage
     # to undef to prevent loading of the inputenc module. Setting it
-    # to utf8 for the sort encoding is done by the xindy script.
-    if ( $input_markup ne 'latex' && $input_markup ne 'omega' ) {
+    # to utf8 for sort encoding is done by the xindy script.
+    if ( $input_markup ne 'latex'  &&  $input_markup ne 'xelatex'  &&
+	 $input_markup ne 'omega' ) {
 	print STDERR "Unsupported input markup $input_markup.\n";
 	usage(1);
     }
-    if ( $input_markup eq 'omega' ) {
+    if ( $input_markup eq 'xelatex'  ||  $input_markup eq 'omega' ) {
 	$codepage = undef;
     }
 
@@ -603,6 +648,13 @@ sub output_xindy_release () {
 #======================================================================
 #
 # $Log: texindy,v $
+# Revision 1.13  2011/01/18 22:18:29  jschrod
+#     Document the range raw markup incompatibility with MakeIndex.
+# (Bug ticket 998541)
+#
+# Revision 1.12  2010/08/12 00:16:01  jschrod
+#     Output help message on stdout if there's no error.
+#
 # Revision 1.11  2010/05/10 23:39:24  jschrod
 #     Incorporate TeX-Live patches from Vladimir Volovich and Peter
 # Breitenlohner: Support for TL installation scheme, support for Mac OS

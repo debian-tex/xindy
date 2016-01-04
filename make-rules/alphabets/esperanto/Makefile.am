@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/esperanto/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,14 +18,23 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = latin3.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	esperanto/latin3-lang.xdy \
+	esperanto/latin3-test.xdy \
+	esperanto/latin3.xdy \
+	esperanto/utf8-lang.xdy \
+	esperanto/utf8-test.xdy \
+	esperanto/utf8.xdy
 
-CLEANFILES = \
-	latin3.raw \
-	latin3-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	esperanto/latin3.pl \
+	esperanto/utf8.pl.in
 
+DISTCLEANFILES += \
+	esperanto/utf8.pl
 
-
+DOCS_LATIN3 += \
+	esperanto/latin3-doc.tex
+DOCS_UTF8_LAT += \
+	esperanto/utf8-doc.tex
 

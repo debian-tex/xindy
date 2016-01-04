@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/danish/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,19 +18,29 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-    cp1252.pl latin9.pl utf8.pl.in \
-    latin1.xdy
+nobase_nodist_lang_DATA += \
+	danish/cp1252-lang.xdy \
+	danish/cp1252-test.xdy \
+	danish/cp1252.xdy \
+	danish/latin9-lang.xdy \
+	danish/latin9-test.xdy \
+	danish/latin9.xdy \
+	danish/utf8-lang.xdy \
+	danish/utf8-test.xdy \
+	danish/utf8.xdy
 
+EXTRA_DIST += \
+	danish/cp1252.pl \
+	danish/latin9.pl \
+	danish/utf8.pl.in
 
-CLEANFILES = \
-	cp1252.raw \
-	cp1252-doc.tex \
-	latin9.raw \
-	latin9-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+DISTCLEANFILES += \
+	danish/utf8.pl
 
-
-
+DOCS_CP1252 += \
+	danish/cp1252-doc.tex
+DOCS_LATIN9 += \
+	danish/latin9-doc.tex
+DOCS_UTF8_LAT += \
+	danish/utf8-doc.tex
 

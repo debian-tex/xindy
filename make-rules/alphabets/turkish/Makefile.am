@@ -1,8 +1,8 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/turkish/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
+##
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,16 +19,29 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = latin3.pl latin5.pl utf8.pl.in
+nobase_nodist_lang_DATA += \
+	turkish/latin3-lang.xdy \
+	turkish/latin3-test.xdy \
+	turkish/latin3.xdy \
+	turkish/latin5-lang.xdy \
+	turkish/latin5-test.xdy \
+	turkish/latin5.xdy \
+	turkish/utf8-lang.xdy \
+	turkish/utf8-test.xdy \
+	turkish/utf8.xdy
 
-CLEANFILES = \
-	latin3.raw \
-	latin3-doc.tex \
-	latin5.raw \
-	latin5-doc.tex \
-	utf8.raw \
-	utf8-doc.tex
+EXTRA_DIST += \
+	turkish/latin3.pl \
+	turkish/latin5.pl \
+	turkish/utf8.pl.in
 
+DISTCLEANFILES += \
+	turkish/utf8.pl
 
-
+DOCS_LATIN3 += \
+	turkish/latin3-doc.tex
+DOCS_LATIN5 += \
+	turkish/latin5-doc.tex
+DOCS_UTF8_LAT += \
+	turkish/utf8-doc.tex
 

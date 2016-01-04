@@ -1,8 +1,7 @@
-## Use `autoreconf' in top-level directory to recreate all
-## autoconf/automake files.
-## Or, call `automake Makefile' to create only Makefile.in.
+## Makefile.am fragment for alphabets/german/.
 
 ## Copyright (C) 2004-2005 by Gour.
+## Copyright (C) 2014 Peter Breitenlohner <tex-live@tug.org>
 ##
 ## This program is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -19,23 +18,41 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-EXTRA_DIST = \
-	braille-utf8.pl.in  duden-latin1.pl \
-	din5007-latin1.pl duden-utf8.pl.in din5007-utf8.pl.in \
-	tex-din5007-latin1.xdy tex-duden-latin1.xdy tex-latin1.xdy
+nobase_nodist_lang_DATA += \
+	german/braille-utf8-lang.xdy \
+	german/braille-utf8-test.xdy \
+	german/braille-utf8.xdy \
+	german/din5007-latin1-lang.xdy \
+	german/din5007-latin1-test.xdy \
+	german/din5007-latin1.xdy \
+	german/din5007-utf8-lang.xdy \
+	german/din5007-utf8-test.xdy \
+	german/din5007-utf8.xdy \
+	german/duden-latin1-lang.xdy \
+	german/duden-latin1-test.xdy \
+	german/duden-latin1.xdy \
+	german/duden-utf8-lang.xdy \
+	german/duden-utf8-test.xdy \
+	german/duden-utf8.xdy
 
-CLEANFILES = \
-	braille-utf8.raw \
-	braille-utf8-doc.tex \
-	din5007-latin1.raw \
-	din5007-latin1-doc.tex \
-	din5007-utf8.raw \
-	din5007-utf8-doc.tex \
-	duden-latin1.raw \
-	duden-latin1-doc.tex \
-	duden-utf8.raw \
-	duden-utf8-doc.tex
+EXTRA_DIST += \
+	german/braille-utf8.pl.in \
+	german/duden-latin1.pl \
+	german/din5007-latin1.pl \
+	german/duden-utf8.pl.in \
+	german/din5007-utf8.pl.in
 
+DISTCLEANFILES += \
+	german/braille-utf8.pl \
+	german/din5007-utf8.pl \
+	german/duden-utf8.pl
 
-
+DOCS_LATIN1 += \
+	german/din5007-latin1-doc.tex \
+	german/duden-latin1-doc.tex
+DOCS_UTF8_LAT += \
+	german/din5007-utf8-doc.tex \
+	german/duden-utf8-doc.tex
+DOCS_UTF8_OTHER += \
+	german/braille-utf8-doc.tex
 
