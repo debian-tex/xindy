@@ -24,8 +24,8 @@ indep_subdirs=modules make-rules doc
 xindy_dir=debian/xindy
 
 configure:
-	ac_local -Im4
-	autoconf
+	aclocal -Im4
+	dh_autoreconf
 
 config.status: configure
 	dh_testdir
@@ -66,6 +66,7 @@ clean:
 
 	if [ -f Makefile ]; then $(MAKE) distclean; fi
 
+	dh_autoreconf_clean
 	dh_clean
 
 binary-indep: build-indep
