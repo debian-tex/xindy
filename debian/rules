@@ -23,15 +23,15 @@ indep_subdirs=modules make-rules doc
 
 xindy_dir=debian/xindy
 
-config-update.stamp:
-	dh_autotools-dev_updateconfig
-	touch config-update.stamp
+configure:
+	ac_local -Im4
+	autoconf
 
-config.status: configure config-update.stamp
+config.status: configure
 	dh_testdir
 	./configure $(configure_flags) --disable-make-rules --disable-docs
 
-config.status-with-latex: configure config-update.stamp
+config.status-with-latex: configure
 	dh_testdir
 	if [ -e config.status ]; then \
 	    rm -f build-arch-stamp build-indep-stamp; \
