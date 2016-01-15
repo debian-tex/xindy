@@ -1,4 +1,4 @@
-xindy (2.5.1.20160104-1~1) UNRELEASED; urgency=medium
+xindy (2.5.1.20160104-1) unstable; urgency=medium
 
   * Take over of maintainership into Debian TeX group.
   * Ack NMU fixes (Closes: #617378, #713496, #739143)
@@ -10,7 +10,7 @@ xindy (2.5.1.20160104-1~1) UNRELEASED; urgency=medium
     - remove dpatch dependency, change source format
   * bump standards version, no changes necessary
 
- -- Norbert Preining <preining@debian.org>  Mon, 04 Jan 2016 11:52:17 +0900
+ -- Norbert Preining <preining@debian.org>  Fri, 15 Jan 2016 23:01:49 +0900
 
 xindy (2.4-1.3) unstable; urgency=medium
 
