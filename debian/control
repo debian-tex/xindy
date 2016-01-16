@@ -9,8 +9,8 @@ Build-Depends-Indep: texlive-latex-base,
 Build-Depends: debhelper (>= 7), autotools-dev, flex, clisp (>> 0.49), dh-autoreconf
 Standards-Version: 3.9.6
 Homepage: http://www.xindy.org/
-Vcs-Browser: http://git.debian.org/?p=users/jo-guest/xindy.git
-Vcs-Git: git://anonscm.debian.org/users/jo-guest/xindy.git
+Vcs-Git: git://anonscm.debian.org/debian-tex/xindy.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-tex/xindy.git
 
 Package: xindy
 Architecture: any
