@@ -1,3 +1,10 @@
+xindy (2.5.1.20160104-2) UNRELEASED; urgency=medium
+
+  * Patch from Agustin Martin to fix unescaped left brace
+    (Closes: #826507)
+
+ -- Hilmar Preuße <hille42@web.de>  Tue, 07 Jun 2016 09:28:11 +0200
+
 xindy (2.5.1.20160104-1) unstable; urgency=medium
 
   * Take over of maintainership into Debian TeX group.
