@@ -6,3 +6,4 @@ help-option
 #fix-alphabets-doc-geometry
 #fix-configure
 #fix-entry-with-command
+xindy-use-kpsewhich
