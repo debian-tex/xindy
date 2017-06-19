@@ -1,4 +1,4 @@
-xindy (2.5.1.20160104-2) UNRELEASED; urgency=medium
+xindy (2.5.1.20160104-2) unstable; urgency=medium
 
   [ Hilmar Preuße ]
   * Patch from Agustin Martin to fix unescaped left brace
@@ -8,7 +8,7 @@ xindy (2.5.1.20160104-2) UNRELEASED; urgency=medium
   * Use kpsewhich to search for modules.
     Patch by Akira Kakuto, TeX Live subversion: 41315 and 41316
 
- -- Norbert Preining <preining@debian.org>  Thu, 09 Jun 2016 22:56:24 +0900
+ -- Norbert Preining <preining@debian.org>  Mon, 19 Jun 2017 16:33:59 +0900
 
 xindy (2.5.1.20160104-1) unstable; urgency=medium
 
