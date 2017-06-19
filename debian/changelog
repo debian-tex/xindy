@@ -8,8 +8,9 @@ xindy (2.5.1.20160104-2) unstable; urgency=medium
   * Use kpsewhich to search for modules.
     Patch by Akira Kakuto, TeX Live subversion: 41315 and 41316
   * bump standards version, no changes necessary
+  * dh compat version 9
 
- -- Norbert Preining <preining@debian.org>  Mon, 19 Jun 2017 16:34:31 +0900
+ -- Norbert Preining <preining@debian.org>  Mon, 19 Jun 2017 16:34:54 +0900
 
 xindy (2.5.1.20160104-1) unstable; urgency=medium
 
