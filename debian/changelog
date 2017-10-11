@@ -2,9 +2,9 @@ xindy (2.5.1.20160104-3) unstable; urgency=medium
 
   * cleanup patches, bump standards version (no changes necessary)
   * bump (b-)depends on clisp to avoid clisp-fasl-loader problems
-    (Closes: #877223) (thanks Agustin Martin)
+    (See #877223, thanks Agustin Martin)
 
- -- Norbert Preining <preining@debian.org>  Thu, 12 Oct 2017 08:51:19 +0900
+ -- Norbert Preining <preining@debian.org>  Thu, 12 Oct 2017 08:53:58 +0900
 
 xindy (2.5.1.20160104-2) unstable; urgency=medium
 
