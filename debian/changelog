@@ -1,8 +1,8 @@
-xindy (2.5.1.20160104-4) UNRELEASED; urgency=medium
+xindy (2.5.1.20160104-4) unstable; urgency=medium
 
   * cleanup patches, bump standards version (no changes necessary)
 
- -- Norbert Preining <preining@debian.org>  Thu, 12 Oct 2017 08:39:05 +0900
+ -- Norbert Preining <preining@debian.org>  Thu, 12 Oct 2017 08:40:52 +0900
 
 xindy (2.5.1.20160104-2) unstable; urgency=medium
 
