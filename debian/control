@@ -6,7 +6,7 @@ Uploaders: Norbert Preining <preining@debian.org>
 Build-Depends-Indep: texlive-latex-base,
  texlive-lang-cyrillic, texlive-lang-greek,
  texlive-latex-recommended, texlive-fonts-recommended, cm-super
-Build-Depends: debhelper (>= 7), autotools-dev, flex, clisp (>= 2.49.20170913), dh-autoreconf
+Build-Depends: debhelper (>= 7), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
 Standards-Version: 4.1.1
 Homepage: http://www.xindy.org/
 Vcs-Git: git://anonscm.debian.org/debian-tex/xindy.git
@@ -15,7 +15,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-tex/xindy.git
 Package: xindy
 Architecture: any
 Depends: xindy-rules, ${clisp:Depends}, ${shlibs:Depends}, ${perl:Depends},
-  ${misc:Depends}, clisp (>= 2.49.20170913)
+  ${misc:Depends}, clisp (>= 1:2.49.20180212)
 Description: index generator for structured documents like LaTeX or SGML
  xindy is an index processor that can be used to generate book-like
  indexes for arbitrary document-preparation systems. This includes

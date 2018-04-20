@@ -1,3 +1,11 @@
+xindy (2.5.1.20160104-5) unstable; urgency=medium
+
+  [ Sébastien Villemot ]
+  * Use clisp-memfile-hash instead of clisp-fasl-loader virtual dependency. See
+    the discussion in #886986 for more details. (Closes: #896124)
+
+ -- Norbert Preining <preining@debian.org>  Fri, 20 Apr 2018 10:33:21 +0900
+
 xindy (2.5.1.20160104-4) unstable; urgency=medium
 
   * rebuild for new clisp-fasl-loader
