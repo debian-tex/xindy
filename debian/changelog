@@ -1,3 +1,9 @@
+xindy (2.5.1.20160104-6) unstable; urgency=medium
+
+  * update VCS, my email, standards version
+
+ -- Norbert Preining <norbert@preining.info>  Sat, 02 Mar 2019 15:37:26 +0900
+
 xindy (2.5.1.20160104-5) unstable; urgency=medium
 
   [ Sébastien Villemot ]

@@ -2,15 +2,15 @@ Source: xindy
 Section: text
 Priority: optional
 Maintainer: Debian TeX maintainers <debian-tex-maint@lists.debian.org>
-Uploaders: Norbert Preining <preining@debian.org>
+Uploaders: Norbert Preining <norbert@preining.info>
 Build-Depends-Indep: texlive-latex-base,
  texlive-lang-cyrillic, texlive-lang-greek,
  texlive-latex-recommended, texlive-fonts-recommended, cm-super
 Build-Depends: debhelper (>= 7), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
-Standards-Version: 4.1.1
+Standards-Version: 4.2.1
 Homepage: http://www.xindy.org/
-Vcs-Git: https://salsa.debian.org/tex-team/xindy.git
-Vcs-Browser: https://salsa.debian.org/tex-team/xindy
+Vcs-Git: https://github.com/debian-tex/xindy.git
+Vcs-Browser: https://github.com/debian-tex/xindy
 
 Package: xindy
 Architecture: any
