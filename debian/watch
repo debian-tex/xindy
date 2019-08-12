@@ -1,3 +1,2 @@
 version=3
-
-ftp://ctan.org/tex-archive/indexing/xindy/xindy-([\d.]*)\.tar\.gz
+https://mirror.informatik.hs-fulda.de/tex-archive/indexing/xindy/base/xindy-([\d.]*)\.tar\.gz

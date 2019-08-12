@@ -1,3 +1,13 @@
+xindy (2.5.1.20160104-8) unstable; urgency=medium
+
+  New Upload to force rebuild (Closes: #934633)
+
+  * Add me to Uploaders.
+  * Fix Debian/watch file.
+  * Bump Standards Version, no changes necessary.
+
+ -- Hilmar Preusse <hille42@web.de>  Mon, 12 Aug 2019 22:20:18 +0200
+
 xindy (2.5.1.20160104-7) unstable; urgency=medium
 
   * source only upload

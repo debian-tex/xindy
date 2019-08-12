@@ -2,7 +2,7 @@
 ## fix-FHS.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
 ##
 ## DP: All files below /usr/lib/xindy/modules/ are architecture independent
-## DP: and therefor need to be below /usr/share/ as forced by the FHS.
+## DP: and therefore need to be below /usr/share/ as forced by the FHS.
 
 @DPATCH@
 ---
