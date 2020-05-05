@@ -8,7 +8,7 @@ Build-Depends-Indep: texlive-latex-base,
  texlive-lang-cyrillic, texlive-lang-greek,
  texlive-latex-recommended, texlive-fonts-recommended, cm-super
 Build-Depends: debhelper-compat (= 12), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
-Standards-Version: 4.4.0
+Standards-Version: 4.5.0
 Homepage: http://www.xindy.org/
 Vcs-Git: https://github.com/debian-tex/xindy.git
 Vcs-Browser: https://github.com/debian-tex/xindy
