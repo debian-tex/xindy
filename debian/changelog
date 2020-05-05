@@ -1,3 +1,10 @@
+xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
+
+  * Bump debhelper dependency to >= 9, since that's what is used in
+    debian/compat.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 10:26:37 +0000
+
 xindy (2.5.1.20160104-8) unstable; urgency=medium
 
   New Upload to force rebuild (Closes: #934633)
