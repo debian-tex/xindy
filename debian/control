@@ -7,7 +7,7 @@ Uploaders: Norbert Preining <norbert@preining.info>,
 Build-Depends-Indep: texlive-latex-base,
  texlive-lang-cyrillic, texlive-lang-greek,
  texlive-latex-recommended, texlive-fonts-recommended, cm-super
-Build-Depends: debhelper (>= 9~), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
+Build-Depends: debhelper (>= 12~), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
 Standards-Version: 4.4.0
 Homepage: http://www.xindy.org/
 Vcs-Git: https://github.com/debian-tex/xindy.git
