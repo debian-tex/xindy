@@ -2,3 +2,4 @@ fix-FHS
 1000_Unescaped-left-brace-deprecated-in-regexps.diff
 help-option
 xindy-use-kpsewhich
+norwegianutf8.pl.in

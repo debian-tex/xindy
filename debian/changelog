@@ -1,11 +1,16 @@
 xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
 
+  [ Debian Janitor ]
   * Bump debhelper dependency to >= 9, since that's what is used in
     debian/compat.
   * Bump debhelper from deprecated 9 to 12.
   * Set debhelper-compat version in Build-Depends.
   * Rely on pre-initialized dpkg-architecture variables.
   * Update standards version to 4.5.0, no changes needed.
+
+  [ Hilmar Preusse ]
+  * Apply patch for #968437, thanks to
+    Petter Reinholdtsen <pere@hungry.com>.
 
  -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 10:26:37 +0000
 
