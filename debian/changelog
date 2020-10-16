@@ -7,14 +7,12 @@ xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
   * Set debhelper-compat version in Build-Depends.
   * Rely on pre-initialized dpkg-architecture variables.
   * Update standards version to 4.5.0, no changes needed.
+  * Apply multi-arch hints.
+    + xindy-rules: Add Multi-Arch: foreign.
 
   [ Hilmar Preusse ]
   * Apply patch for #968437, thanks to
-    Petter Reinholdtsen <pere@hungry.com>.
-
-  [ Debian Janitor ]
-  * Apply multi-arch hints.
-    + xindy-rules: Add Multi-Arch: foreign.
+    Petter Reinholdtsen <pere@hungry.com>, (Closes: #968437).
 
  -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 10:26:37 +0000
 
