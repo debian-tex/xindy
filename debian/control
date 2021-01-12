@@ -1,7 +1,7 @@
 Source: xindy
 Section: text
 Priority: optional
-Maintainer: Debian TeX maintainers <debian-tex-maint@lists.debian.org>
+Maintainer: Debian TeX Task Force <debian-tex-maint@lists.debian.org>
 Uploaders: Norbert Preining <norbert@preining.info>,
            Hilmar Preusse <hille42@web.de>
 Build-Depends-Indep: texlive-latex-base,
