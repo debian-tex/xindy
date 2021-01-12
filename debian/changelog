@@ -14,7 +14,7 @@ xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
   * Apply patch for #968437, thanks to
     Petter Reinholdtsen <pere@hungry.com>, (Closes: #968437).
 
- -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 10:26:37 +0000
+ -- Hilmar Preusse <hille42@web.de>  Tue, 12 Jan 2021 23:28:27 +0100
 
 xindy (2.5.1.20160104-8) unstable; urgency=medium
 
