@@ -5,9 +5,14 @@ Maintainer: Debian TeX maintainers <debian-tex-maint@lists.debian.org>
 Uploaders: Norbert Preining <norbert@preining.info>,
            Hilmar Preusse <hille42@web.de>
 Build-Depends-Indep: texlive-latex-base,
- texlive-lang-cyrillic, texlive-lang-greek,
- texlive-latex-recommended, texlive-fonts-recommended, cm-super
-Build-Depends: debhelper-compat (= 12), autotools-dev, flex, clisp (>= 1:2.49.20180212), dh-autoreconf
+	texlive-lang-cyrillic,
+	texlive-lang-greek,
+	texlive-latex-recommended,
+	texlive-fonts-recommended,
+	cm-super
+Build-Depends: debhelper-compat (= 12),
+	flex,
+	clisp (>= 1:2.49.20180212)
 Standards-Version: 4.5.0
 Homepage: http://www.xindy.org/
 Vcs-Git: https://github.com/debian-tex/xindy.git
