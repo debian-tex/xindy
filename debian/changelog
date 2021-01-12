@@ -6,7 +6,7 @@ xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
   * Bump debhelper from deprecated 9 to 12.
   * Set debhelper-compat version in Build-Depends.
   * Rely on pre-initialized dpkg-architecture variables.
-  * Update standards version to 4.5.0, no changes needed.
+  * Update standards version to 4.5.1, no changes needed.
   * Apply multi-arch hints.
     + xindy-rules: Add Multi-Arch: foreign.
 
