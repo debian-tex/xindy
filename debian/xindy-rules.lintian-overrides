@@ -1,3 +1,4 @@
+xindy-rules: national-encoding usr/share/doc/xindy-rules/style-tutorial/ex1.raw
 xindy-rules: national-encoding usr/share/doc/xindy-rules/style-tutorial/style1.xdy
 xindy-rules: national-encoding usr/share/doc/xindy-rules/style-tutorial/style2.xdy
 xindy-rules: national-encoding usr/share/xindy/base/german-sty.xdy

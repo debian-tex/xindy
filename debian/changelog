@@ -17,6 +17,7 @@ xindy (2.5.1.20160104-9) UNRELEASED; urgency=medium
     W: xindy source: useless-autoreconf-build-depends autotools-dev
     W: xindy source: useless-autoreconf-build-depends dh-autoreconf
     P: copyright-refers-to-symlink-license
+    W: national-encoding
   * Lintian Override for Xindy input files:
     W: xindy-rules: national-encoding
 
