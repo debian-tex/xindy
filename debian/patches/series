@@ -4,3 +4,4 @@ help-option
 xindy-use-kpsewhich
 norwegianutf8.pl.in
 lintian_national-encoding
+xindy-fix-hyperref-compatibility.patch

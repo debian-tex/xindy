@@ -1,3 +1,9 @@
+xindy (2.5.1.20160104-10) unstable; urgency=medium
+
+  * Apply patch from xindy PR 6 to fix hyperref compatibility.
+
+ -- Norbert Preining <norbert@preining.info>  Tue, 09 Mar 2021 17:46:02 +0900
+
 xindy (2.5.1.20160104-9) unstable; urgency=medium
 
   [ Debian Janitor ]
