@@ -12,7 +12,7 @@ Build-Depends-Indep: texlive-latex-base,
 	cm-super
 Build-Depends: debhelper-compat (= 12),
 	flex,
-	clisp (>= 1:2.49.20180212)
+	clisp
 Standards-Version: 4.5.1
 Homepage: http://www.xindy.org/
 Vcs-Git: https://github.com/debian-tex/xindy.git
@@ -21,7 +21,7 @@ Vcs-Browser: https://github.com/debian-tex/xindy
 Package: xindy
 Architecture: any
 Depends: xindy-rules, ${clisp:Depends}, ${shlibs:Depends}, ${perl:Depends},
-  ${misc:Depends}, clisp (>= 1:2.49.20180212)
+  ${misc:Depends}, clisp
 Description: index generator for structured documents like LaTeX or SGML
  xindy is an index processor that can be used to generate book-like
  indexes for arbitrary document-preparation systems. This includes
