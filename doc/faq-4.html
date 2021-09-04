@@ -157,31 +157,31 @@ be
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
-(sort-rule "ä" "ae")
+(sort-rule "Ã¤" "ae")
 </PRE>
 </CODE></BLOCKQUOTE>
 <P>defining that a word containing the umlaut-a will be sorted as if it
 contained the letters <CODE>ae</CODE> instead. This is one form of how the
-umlaut-a (ä) is sorted into german indexes. With an appropriate set of
+umlaut-a (Ã¤) is sorted into german indexes. With an appropriate set of
 rules on can express the complete rules of a specific language.
 <P>An example of how an appropriate mapping for some of the Roman
 languages could look like is:
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
-(sort-rule "à" "a")
-(sort-rule "á" "a")
-(sort-rule "ã" "a")
-(sort-rule "è" "e")
-(sort-rule "é" "e")
-(sort-rule "ç" "c")
+(sort-rule "Ã " "a")
+(sort-rule "Ã¡" "a")
+(sort-rule "Ã£" "a")
+(sort-rule "Ã¨" "e")
+(sort-rule "Ã©" "e")
+(sort-rule "Ã§" "c")
 </PRE>
 </CODE></BLOCKQUOTE>
 <P>This makes the accented letters be sorted as their unaccented
 counterparts, yielding the desired sort ordering.
 <P>Sometimes it is necessary to specify keyword mappings that tell the
 system to put something <EM>behind</EM> something else. For instance, we'd
-like to map the character <EM>ö</EM> behind the letter <EM>o</EM>. No problem
+like to map the character <EM>Ã¶</EM> behind the letter <EM>o</EM>. No problem
 if you use the special characters <CODE>~b</CODE> and <CODE>~e</CODE> which
 are called the <EM>beginning</EM> and <EM>ending</EM> characters. The first
 letter lexicographically precedes all other letters whereas the latter
@@ -190,10 +190,10 @@ as follows.
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
-(sort-rule "ö" "o~e")
+(sort-rule "Ã¶" "o~e")
 </PRE>
 </CODE></BLOCKQUOTE>
-<P>Now the <EM>ö</EM> is directly positioned after the <EM>o</EM> but before
+<P>Now the <EM>Ã¶</EM> is directly positioned after the <EM>o</EM> but before
 <EM>p</EM>.
 <P>
 <P>See the manual for a detailed description of this feature.
