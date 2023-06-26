@@ -1,3 +1,9 @@
+xindy (2.5.1.20160104-12) UNRELEASED; urgency=medium
+
+  * For any reason master was commited w/ patches applied. Revert that step.
+
+ -- Hilmar Preusse <hille42@web.de>  Mon, 26 Jun 2023 23:45:21 +0200
+
 xindy (2.5.1.20160104-11) unstable; urgency=medium
 
   [ Debian Janitor ]
