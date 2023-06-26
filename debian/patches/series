@@ -5,3 +5,4 @@ xindy-use-kpsewhich
 norwegianutf8.pl.in
 lintian_national-encoding
 xindy-fix-hyperref-compatibility.patch
+launchpad_1735439.patch
