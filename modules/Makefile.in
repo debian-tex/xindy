@@ -263,7 +263,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-modulesdir = $(pkgdatadir)
+modulesdir = $(pkglibdir)/modules
 nobase_modules_DATA = base/book-order.xdy base/ff-ranges-only.xdy \
 	base/ff-ranges.xdy base/german-sty.xdy base/ignore-hyphen.xdy \
 	base/ignore-punctuation.xdy base/keep-blanks.xdy \

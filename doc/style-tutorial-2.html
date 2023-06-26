@@ -153,9 +153,9 @@ following is an excerpt of this file:
 <PRE>
 \begin{theindex}
   academia\quad{}{\bf 1}acafetado\quad{}{\bf 2}acalmar\quad{}{\bf 4}
-  a√ßafr√£o\quad{}{\bf 3}indexflat\quad{}1hierarchical\quad{}2
+  aÁafr„o\quad{}{\bf 3}indexflat\quad{}1hierarchical\quad{}2
   veryhierarchical\quad{}3impressive\quad{}4saber\quad{}{\bf 7}
-  sabor\quad{}{\bf 8}sab√£o\quad{}{\bf 6}s√°bado\quad{}{\bf 5}
+  sabor\quad{}{\bf 8}sab„o\quad{}{\bf 6}s·bado\quad{}{\bf 5}
 \end{theindex}
 </PRE>
 </CODE></BLOCKQUOTE>
@@ -215,7 +215,7 @@ easy, isn't it! The output <CODE>ex1.ind</CODE> looks like the following:
  \item academia\quad{}{\bf 1}
  \item acafetado\quad{}{\bf 2}
  \item acalmar\quad{}{\bf 4}
- \item a√ßafr√£o\quad{}{\bf 3}
+ \item aÁafr„o\quad{}{\bf 3}
  \item index
     \subitem flat\quad{}1
     \subitem hierarchical\quad{}2
@@ -224,8 +224,8 @@ easy, isn't it! The output <CODE>ex1.ind</CODE> looks like the following:
       \subsubitem impressive\quad{}4
  \item saber\quad{}{\bf 7}
  \item sabor\quad{}{\bf 8}
- \item sab√£o\quad{}{\bf 6}
- \item s√°bado\quad{}{\bf 5}
+ \item sab„o\quad{}{\bf 6}
+ \item s·bado\quad{}{\bf 5}
 
 \end{theindex}
 </PRE>
@@ -233,8 +233,8 @@ easy, isn't it! The output <CODE>ex1.ind</CODE> looks like the following:
 <P>Hmm, as you might have seen there are several problems that need
 further investigation. The index contains some Portuguese words that
 are printed correctly but should appear at other positions inside the
-index. For instance, the word <EM>s√°bado</EM> should appear before the
-word <EM>saber</EM> since <EM>√°</EM> must be sorted as if it were simply an
+index. For instance, the word <EM>s·bado</EM> should appear before the
+word <EM>saber</EM> since <EM>·</EM> must be sorted as if it were simply an
 <EM>a</EM>. The reason why these words are not sorted correctly is
 simple---the accentuated letters have codes beyond position 128 in the
 ISO-Latin alphabet. Sorting based on these codes yields this incorrect
@@ -292,12 +292,12 @@ fits our needs:
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
-(sort-rule "√†" "a")
-(sort-rule "√°" "a")
-(sort-rule "√£" "a")
-(sort-rule "√®" "e")
-(sort-rule "√©" "e")
-(sort-rule "√ß" "c")
+(sort-rule "‡" "a")
+(sort-rule "·" "a")
+(sort-rule "„" "a")
+(sort-rule "Ë" "e")
+(sort-rule "È" "e")
+(sort-rule "Á" "c")
 </PRE>
 </CODE></BLOCKQUOTE>
 <P>These rules define mappings from a keyword to a <EM>normalized</EM>

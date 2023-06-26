@@ -285,7 +285,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-langdir = $(pkgdatadir)/lang
+langdir = $(pkglibdir)/modules/lang
 nobase_nodist_lang_DATA = albanian/latin1-lang.xdy \
 	albanian/latin1-test.xdy albanian/latin1.xdy \
 	albanian/utf8-lang.xdy albanian/utf8-test.xdy \

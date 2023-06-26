@@ -19,7 +19,7 @@
 ## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ## Boston, MA 02110-1301 USA.
 
-langdir	= $(pkgdatadir)/lang
+langdir	= $(pkglibdir)/modules/lang
 
 nobase_nodist_lang_DATA =
 EXTRA_DIST =

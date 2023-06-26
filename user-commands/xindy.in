@@ -260,8 +260,14 @@ behaviour.
 
 For more complex usage, when C<bbb> is not an identifier, no such
 compatibility definitions exist and may also not been created with
-current B<xindy>. Such a situation is reported to exist for the
-C<memoir> LaTeX class.
+current B<xindy>. In particular, this means that by default the LaTeX
+package C<hyperref> will create raw index files that cannot be
+processed with B<xindy>. This is not a bug, this is the unfortunate
+result of an intented incompatibility. It is currently not possible to
+get both hyperref's index links and use B<xindy>.
+
+A similar situation is reported to exist for the C<memoir> LaTeX
+class.
 
 Programmers who know Common Lisp and Lex and want to work on a remedy
 should please contact the author.
@@ -450,13 +456,11 @@ if ( $is_TL ) { # TeX Live, MiKTeX, or W32TeX
     }
 
     # modules directory
-    $modules_dir = "/usr/share/xindy";
-    unless ( -d $modules_dir ) {
-    #if ( -d "$cmd_dir/../modules" ) {	# /opt style
-    #	$modules_dir = "$cmd_dir/../modules";
-    #} elsif ( -d "$lib_dir/modules" ) {	# /usr style
-    #	$modules_dir = "$lib_dir/modules";
-    #} else {
+    if ( -d "$cmd_dir/../modules" ) {	# /opt style
+	$modules_dir = "$cmd_dir/../modules";
+    } elsif ( -d "$lib_dir/modules" ) {	# /usr style
+	$modules_dir = "$lib_dir/modules";
+    } else {
 	die "$cmd: Cannot locate xindy modules directory";
     }
 
@@ -467,9 +471,10 @@ if ( $is_TL ) { # TeX Live, MiKTeX, or W32TeX
 
 sub usage ( ;$ )
 {
-    my $signal_error = int shift;
-    my $output_handle = $signal_error ? *STDERR{IO} : *STDOUT{IO};
-    print $output_handle <<_EOT_
+    my $exit_code = shift;
+    $exit_code += 0;			# turn undef into 0
+    my $out = ( $exit_code ? *STDERR : *STDOUT );
+    print $out <<_EOT_
 
 usage: $cmd [-V?h] [-qv] [-d magic] [-o outfile.ind] [-t log] \\
             [-L lang] [-C codepage] [-M module] [-I input] \\
@@ -493,7 +498,7 @@ GNU-STYLE LONG OPTIONS FOR SHORT OPTIONS:
 
 _EOT_
   ;
-    exit ($signal_error ? 1 : 0);
+    exit ($exit_code);
 }
 
 our ($quiet, $verbose, %debug,
@@ -798,13 +803,7 @@ sub xindy_expression () {
 	push (@temp_files, $style_file);
 	$style_file=quotify($style_file);
 	foreach my $module ( @modules ) {
-	    my $fnmodule=`kpsewhich -progname=xindy -format=othertext $module`;
-	    if ($fnmodule) {
-		chomp($fnmodule);
-		print $sf "(require \"$fnmodule\")\n";
-	    } else {
-		print $sf "(require \"$module\")\n";
-	    }
+	    print $sf "(require \"$module\")\n";
 	}
 	close ($sf);
     }

@@ -259,7 +259,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-modulesdir = $(pkgdatadir)
+modulesdir = $(pkglibdir)/modules
 inputencdir = $(modulesdir)/tex/inputenc
 INPUTENCS = \
 	cp1250.xdy \
