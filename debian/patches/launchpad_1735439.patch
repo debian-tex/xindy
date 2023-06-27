@@ -1,3 +1,9 @@
+Description: Use sed instead of grep to generate latin.xdy
+Author: Ulrich Müller
+Bug: LP #1735439
+Forwarded: https://sourceforge.net/p/xindy/bugs/60/
+Last-Update: 2017-02-06
+
 --- xindy.orig/make-rules/inputenc/Makefile.am
 +++ xindy/make-rules/inputenc/Makefile.am
 @@ -44,7 +44,7 @@

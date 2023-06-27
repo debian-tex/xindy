@@ -1,3 +1,8 @@
+Description: Replace national encoding characters by UTF-8 characters.
+Author: Hilmar Preuße <hille42@web.de>
+Forwarded: Note done, could be done
+Last-Update: 2021-01-16
+
 Index: xindy/doc/faq-1.html
 ===================================================================
 --- xindy.orig/doc/faq-1.html	2019-07-05 13:08:04.476135235 +0200
