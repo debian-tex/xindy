@@ -1,8 +1,8 @@
 Description: Incorrect Norwegian sorting of č and šIncorrect Norwegian sorting of č and š
 Author: Petter Reinholdtsen <pere@hungry.com>
 Bug: Debian Bug #968437
-Forwarded: Note done, could be done
-Applied-Upstream: Note done, could be done
+Forwarded: not-needed
+Applied-Upstream: not-needed
 Last-Update: 2020-08-16
 
 --- xindy.orig/make-rules/alphabets/norwegian/utf8.pl.in
