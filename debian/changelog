@@ -4,6 +4,7 @@ xindy (2.5.1.20160104-12) UNRELEASED; urgency=medium
     Revert that step.
   * latin.xdy is built incorrectly (causing crash) (LP: #1735439)
   * Fix / Override Lintian stuff.
+  * Update 'Standards-Version' to 4.7.0. no changes required.
 
  -- Hilmar Preusse <hille42@web.de>  Mon, 26 Jun 2023 23:45:21 +0200
 

@@ -13,7 +13,7 @@ Build-Depends-Indep: texlive-latex-base,
 Build-Depends: debhelper-compat (= 13),
 	flex,
 	clisp
-Standards-Version: 4.5.1
+Standards-Version: 4.7.0
 Homepage: http://www.xindy.org/
 Rules-Requires-Root: no
 Vcs-Git: https://github.com/debian-tex/xindy.git
