@@ -1,0 +1,3 @@
+Tests: test-suite
+Depends: xindy, xindy-rules
+Restrictions: build-needed, allow-stderr
