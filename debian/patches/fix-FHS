@@ -1,10 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## fix-FHS.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
-##
-## DP: All files below /usr/lib/xindy/modules/ are architecture independent
-## DP: and therefore need to be below /usr/share/ as forced by the FHS.
+From: Jörg Sommer <joerg@alea.gnuu.de>
+Description:All files below /usr/lib/xindy/modules/ are architecture independent
+ and therefore need to be below /usr/share/ as forced by the FHS.
 
-@DPATCH@
 ---
  make-rules/alphabets/Makefile.am |    2 +-
  make-rules/alphabets/Makefile.in |    2 +-
