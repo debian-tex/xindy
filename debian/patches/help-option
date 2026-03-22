@@ -1,10 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## help-option.dpatch by Jörg Sommer <joerg@alea.gnuu.de>
-##
-## DP: The commandline option --help of xindy and texindy prints the help
-## DP: message to stderr.
+From: Jörg Sommer <joerg@alea.gnuu.de>
+Description: The commandline option --help of xindy and texindy prints the help
+ message to stderr.
 
-@DPATCH@
 ---
  user-commands/texindy.in |    9 ++++-----
  user-commands/xindy.in   |    9 ++++-----
